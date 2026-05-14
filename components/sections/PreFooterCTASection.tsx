@@ -94,7 +94,7 @@ export default function PreFooterCTASection() {
                 backgroundClip: "text",
               }}
             >
-              remember.
+              remember?
             </span>
           </span>
         </h2>
@@ -125,7 +125,7 @@ export default function PreFooterCTASection() {
               flexDirection: "column",
               gap: 12,
               paddingLeft: "clamp(16px, 2vw, 32px)",
-              borderLeft: "1px solid rgba(0,0,0,0.18)",
+              borderLeft: "1px solid rgba(8,0,53,0.18)",
             }}
           >
             {[
@@ -144,8 +144,8 @@ export default function PreFooterCTASection() {
                   alignItems: "center",
                 }}
               >
-                <Lz color="rgba(0,0,0,0.4)" />
-                <span style={{ color: "rgba(0,0,0,0.45)" }}>{item.k}</span>
+                <Lz color="rgba(8,0,53,0.4)" />
+                <span style={{ color: "rgba(8,0,53,0.45)" }}>{item.k}</span>
                 <span style={{ color: "var(--pitch-black)" }}>{item.v}</span>
               </div>
             ))}

@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { MetaLabel, Reveal, Lz } from "@/components/Primitives";
 
 const PROJECT_TYPES = [
@@ -17,6 +17,12 @@ export default function ContactSection() {
   const [audience, setAudience] = useState("5,000 – 50,000");
   const [whatsapp, setWhatsapp] = useState(true);
   const [submitted, setSubmitted] = useState(false);
+  const [location, setLocation] = useState("");
+
+  useEffect(() => {
+    const p = new URLSearchParams(window.location.search).get("country");
+    if (p) setLocation(p);
+  }, []);
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -157,7 +163,7 @@ export default function ContactSection() {
 
               <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                 <label style={{ fontFamily: "var(--font-support)", fontSize: 10, letterSpacing: "0.18em", textTransform: "lowercase", color: "var(--fg-muted-on-light)" }}>location<span style={{ opacity: 0.4 }}>_</span></label>
-                <input type="text" placeholder="Country · city" style={inputStyle} />
+                <input type="text" placeholder="Country · city" value={location} onChange={(e) => setLocation(e.target.value)} style={inputStyle} />
               </div>
 
               <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>

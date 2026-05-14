@@ -146,7 +146,7 @@ export default function WhyRannaSection() {
             }}
           >
             Trusted by the region&apos;s most{" "}
-            <span style={{ color: "rgba(0,0,0,0.22)" }}>demanding programs.</span>
+            <span style={{ color: "rgba(8,0,53,0.22)" }}>demanding programs.</span>
           </div>
           <div style={{ marginTop: "auto", display: "flex", gap: 6, flexWrap: "wrap" }}>
             {["F1", "FIFA", "WEF", "NEOM", "Riyadh Season"].map((b) => (

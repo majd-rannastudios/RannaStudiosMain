@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef } from "react";
+import Link from "next/link";
 import { gsap } from "@/lib/gsap";
 import { MetaLabel } from "@/components/Primitives";
 
@@ -130,16 +131,16 @@ export default function RegionalSection() {
         {/* Markets list */}
         <div ref={marketsRef} style={{ display: "flex", flexDirection: "column" }}>
           {MARKETS.map((m, i) => (
-            <a
+            <Link
               key={m.code}
               data-market
-              href="#proposal"
+              href={`/contact?country=${encodeURIComponent(m.name)}#proposal`}
               style={{
                 display: "grid",
-                gridTemplateColumns: "64px 1fr",
-                alignItems: "center",
-                padding: "24px 0",
-                gap: 24,
+                gridTemplateColumns: "auto 1fr",
+                alignItems: "start",
+                padding: "clamp(16px, 2vw, 28px) 0",
+                gap: "clamp(16px, 2vw, 32px)",
                 borderTop: "1px solid var(--rule-on-dark)",
                 cursor: "pointer",
                 transition: "padding 280ms cubic-bezier(.6,0,.2,1), color 280ms",
@@ -155,16 +156,45 @@ export default function RegionalSection() {
                 (e.currentTarget as HTMLAnchorElement).style.color = "var(--dust-white)";
               }}
             >
-              <span style={{ fontFamily: "var(--font-support)", fontSize: 11, letterSpacing: "0.16em", color: "rgba(255,255,255,0.45)" }}>
+              {/* Code — capability-name style */}
+              <span style={{
+                fontFamily: "var(--font-display)",
+                fontSize: "clamp(13px, 1.2vw, 17px)",
+                fontWeight: 600,
+                letterSpacing: "-0.01em",
+                color: "rgba(255,255,255,0.4)",
+                paddingTop: "clamp(6px, 0.6vw, 10px)",
+                whiteSpace: "nowrap",
+              }}>
                 {m.code.toUpperCase()} · 0{i + 1}
               </span>
-              <span style={{ fontFamily: "var(--font-display)", fontSize: "clamp(22px, 2.4vw, 32px)", fontWeight: 500, letterSpacing: "-0.015em" }}>
-                {m.name}
-                <small style={{ display: "block", fontFamily: "var(--font-support)", fontSize: 11, letterSpacing: "0.14em", color: "rgba(255,255,255,0.55)", marginTop: 4, fontWeight: 400 }}>
+
+              {/* Name + city */}
+              <span>
+                <span style={{
+                  display: "block",
+                  fontFamily: "var(--font-display)",
+                  fontSize: "clamp(24px, 3.2vw, 56px)",
+                  fontWeight: 700,
+                  letterSpacing: "-0.04em",
+                  lineHeight: 0.88,
+                  textTransform: "uppercase",
+                }}>
+                  {m.name}
+                </span>
+                <span style={{
+                  display: "block",
+                  fontFamily: "var(--font-display)",
+                  fontSize: "clamp(13px, 1.2vw, 17px)",
+                  fontWeight: 600,
+                  letterSpacing: "-0.01em",
+                  color: "rgba(255,255,255,0.5)",
+                  marginTop: "clamp(4px, 0.5vw, 8px)",
+                }}>
                   {m.capital}
-                </small>
+                </span>
               </span>
-            </a>
+            </Link>
           ))}
           <div style={{ borderTop: "1px solid var(--rule-on-dark)" }} />
         </div>

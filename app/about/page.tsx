@@ -11,8 +11,7 @@ export default function AboutPage() {
       {/* Page hero */}
       <section
         style={{
-          background:
-            "linear-gradient(170deg, var(--ember-dawn) 0%, var(--burnt-horizon) 22%, var(--crimson-bloom) 48%, var(--veil-becoming) 72%, var(--abyssal-black) 100%)",
+          background: "linear-gradient(160deg, #1A0870 0%, #080035 55%)",
           padding: "clamp(140px, 18vw, 240px) clamp(20px, 5vw, 88px) clamp(64px, 8vw, 96px)",
           position: "relative",
           overflow: "hidden",
@@ -95,7 +94,7 @@ export default function AboutPage() {
                   backgroundClip: "text",
                 }}
               >
-                remember.
+                remember?
               </span>
             </span>
           </h2>

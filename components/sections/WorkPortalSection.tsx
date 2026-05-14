@@ -236,7 +236,7 @@ export default function WorkPortalSection() {
       id="work"
       style={{
         background: "var(--dust-white)",
-        padding: "clamp(80px, 10vw, 144px) clamp(20px, 5vw, 88px)",
+        padding: "clamp(40px, 5vw, 64px) clamp(20px, 5vw, 88px) clamp(80px, 10vw, 144px)",
       }}
     >
       {/* WHO WE ARE — transitioned here from the dark section above */}

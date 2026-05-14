@@ -182,7 +182,7 @@ export default function CredibilitySection() {
                   color: "var(--pitch-black)",
                   opacity: 0.55,
                   paddingTop: "clamp(4px, 0.6vw, 8px)",
-                  borderTop: "1px solid rgba(0,0,0,0.15)",
+                  borderTop: "1px solid rgba(8,0,53,0.15)",
                   width: "100%",
                   textAlign: "center",
                 }}
@@ -226,7 +226,7 @@ export default function CredibilitySection() {
       <div
         style={{
           background: "var(--dust-white)",
-          padding: "clamp(56px, 8vw, 112px) clamp(20px, 5vw, 88px)",
+          padding: "clamp(56px, 8vw, 112px) clamp(20px, 5vw, 88px) clamp(24px, 3vw, 40px)",
         }}
       >
         {/* Big centered heading — word-by-word reveal */}

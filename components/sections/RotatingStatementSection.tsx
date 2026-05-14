@@ -46,7 +46,7 @@ export default function RotatingStatementSection() {
       ref={sectionRef}
       style={{
         background: "#080035",
-        padding: "clamp(36px, 4.5vw, 64px) 0",
+        padding: "clamp(36px, 4.5vw, 64px) 0 clamp(72px, 9vw, 120px)",
         overflow: "hidden",
       }}
     >

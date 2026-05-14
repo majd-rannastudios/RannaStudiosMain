@@ -104,9 +104,9 @@ export default function ExperiencesSection() {
                 if (bg) bg.style.opacity = "0";
                 el.style.color = "var(--pitch-black)";
                 const sub = el.querySelector("[data-sub]") as HTMLElement | null;
-                if (sub) sub.style.color = "rgba(0,0,0,0.6)";
+                if (sub) sub.style.color = "rgba(8,0,53,0.6)";
                 const meta = el.querySelector("[data-meta]") as HTMLElement | null;
-                if (meta) meta.style.color = "rgba(0,0,0,0.35)";
+                if (meta) meta.style.color = "rgba(8,0,53,0.35)";
               }}
             >
               {/* Full-opacity color overlay on hover */}
@@ -131,7 +131,7 @@ export default function ExperiencesSection() {
                   fontSize: "clamp(64px, 6vw, 96px)",
                   fontWeight: 700,
                   letterSpacing: "-0.04em",
-                  color: "rgba(0,0,0,0.06)",
+                  color: "rgba(8,0,53,0.06)",
                   lineHeight: 1,
                   userSelect: "none",
                   pointerEvents: "none",
@@ -154,7 +154,7 @@ export default function ExperiencesSection() {
                 </span>
                 <span
                   data-sub
-                  style={{ fontSize: 14, lineHeight: 1.5, color: "rgba(0,0,0,0.6)", maxWidth: "32ch", transition: "color 280ms" }}
+                  style={{ fontSize: 14, lineHeight: 1.5, color: "rgba(8,0,53,0.6)", maxWidth: "32ch", transition: "color 280ms" }}
                 >
                   {e.desc}
                 </span>
@@ -162,7 +162,7 @@ export default function ExperiencesSection() {
 
               <div
                 data-meta
-                style={{ position: "relative", zIndex: 1, fontFamily: "var(--font-support)", fontSize: 10, letterSpacing: "0.14em", textTransform: "lowercase", color: "rgba(0,0,0,0.35)", marginTop: "auto", transition: "color 280ms" }}
+                style={{ position: "relative", zIndex: 1, fontFamily: "var(--font-support)", fontSize: 10, letterSpacing: "0.14em", textTransform: "lowercase", color: "rgba(8,0,53,0.35)", marginTop: "auto", transition: "color 280ms" }}
               >
                 {e.best}
               </div>

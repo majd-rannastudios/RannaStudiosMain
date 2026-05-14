@@ -3,7 +3,9 @@
 export default function WhatsAppCTA() {
   return (
     <a
-      href="#proposal"
+      href="https://wa.me/966551520499"
+      target="_blank"
+      rel="noopener noreferrer"
       aria-label="Request a proposal via WhatsApp"
       style={{
         position: "fixed",

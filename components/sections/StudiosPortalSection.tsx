@@ -117,7 +117,7 @@ export default function StudiosPortalSection() {
       <div
         style={{
           background: "var(--dust-white)",
-          padding: "clamp(20px, 2.5vw, 36px) clamp(20px, 5vw, 88px) clamp(24px, 3vw, 48px)",
+          padding: "clamp(72px, 9vw, 120px) clamp(20px, 5vw, 88px) clamp(24px, 3vw, 48px)",
         }}
       >
         <h2
