@@ -75,7 +75,6 @@ export default function WhoWeAreSection() {
               display: "grid",
               gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)",
               gap: 0,
-              borderTop: "1px solid var(--rule-on-light)",
             }}
           >
             {[
@@ -87,7 +86,6 @@ export default function WhoWeAreSection() {
                 key={p.num}
                 style={{
                   padding: "32px 24px 24px 16px",
-                  borderRight: "1px solid var(--rule-on-light)",
                 }}
               >
                 <div style={{ fontFamily: "var(--font-support)", fontSize: 11, letterSpacing: "0.16em", color: "var(--burnt-horizon)", marginBottom: 8 }}>

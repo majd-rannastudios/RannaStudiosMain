@@ -162,7 +162,7 @@ export default function StudiosPortalSection() {
             overflow: "hidden",
             display: "flex",
             flexDirection: "column",
-            justifyContent: isMobile ? "stretch" : "center",
+            justifyContent: "flex-start",
             padding: isMobile ? 0 : "clamp(96px, 12vh, 140px) clamp(20px, 3vw, 48px) clamp(36px, 4vh, 56px)",
             gap: isMobile ? 0 : "clamp(12px, 1.5vw, 20px)",
           }}
