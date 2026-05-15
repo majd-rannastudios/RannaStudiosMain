@@ -3,6 +3,7 @@ import { useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
+import { useIsMobile } from "@/hooks/useIsMobile";
 import { MetaLabel, Lz } from "@/components/Primitives";
 
 const PREVIEW = [
@@ -167,6 +168,7 @@ function WorkCard({ c, index }: { c: typeof PREVIEW[number]; index: number }) {
 const HEADING_LINES = [["Projects", "That"], ["Define", "The"], ["Region"]];
 
 export default function WorkPortalSection() {
+  const isMobile   = useIsMobile();
   const sectionRef = useRef<HTMLElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
@@ -293,7 +295,7 @@ export default function WorkPortalSection() {
         ref={gridRef}
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(3, 1fr)",
+          gridTemplateColumns: isMobile ? "repeat(2, 1fr)" : "repeat(3, 1fr)",
           gap: "clamp(10px, 1.4vw, 18px)",
           marginBottom: "clamp(32px, 4vw, 52px)",
         }}

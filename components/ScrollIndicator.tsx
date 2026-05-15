@@ -1,14 +1,20 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 export default function ScrollIndicator() {
-  const diamondRef = useRef<HTMLDivElement>(null);
+  const diamondRef  = useRef<HTMLDivElement>(null);
   const lastScrollY = useRef(0);
   const rotationRef = useRef(45);
+  const [visible, setVisible] = useState(false);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const onScroll = (e: Event) => {
       const { scrollY, progress } = (e as CustomEvent<{ scrollY: number; progress: number }>).detail;
+      if (scrollY > 40 && !visible) setVisible(true);
+      if (scrollY <= 40 && visible)  setVisible(false);
+
       const delta = scrollY - lastScrollY.current;
       lastScrollY.current = scrollY;
       rotationRef.current += delta * 0.18;
@@ -21,7 +27,7 @@ export default function ScrollIndicator() {
 
     window.addEventListener("lenis:scroll", onScroll);
     return () => window.removeEventListener("lenis:scroll", onScroll);
-  }, []);
+  }, [visible]);
 
   return (
     <div
@@ -34,19 +40,24 @@ export default function ScrollIndicator() {
         width: 20,
         zIndex: 90,
         pointerEvents: "none",
+        opacity: visible ? 1 : 0,
+        transition: "opacity 400ms ease",
       }}
     >
-      <div
-        style={{
-          position: "absolute",
-          left: "50%",
-          top: "4%",
-          bottom: "4%",
-          width: 1,
-          background: "rgba(255,255,255,0.1)",
-          transform: "translateX(-50%)",
-        }}
-      />
+      {/* Vertical track line — desktop only */}
+      {!isMobile && (
+        <div
+          style={{
+            position: "absolute",
+            left: "50%",
+            top: "4%",
+            bottom: "4%",
+            width: 1,
+            background: "rgba(255,255,255,0.1)",
+            transform: "translateX(-50%)",
+          }}
+        />
+      )}
       <div
         ref={diamondRef}
         style={{

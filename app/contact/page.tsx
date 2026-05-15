@@ -47,7 +47,8 @@ export default function ContactPage() {
           style={{
             marginTop: 48,
             display: "flex",
-            gap: 48,
+            gap: 32,
+            flexWrap: "wrap",
             borderTop: "1px solid var(--rule-on-dark)",
             paddingTop: 32,
           }}

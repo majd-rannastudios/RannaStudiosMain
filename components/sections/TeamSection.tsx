@@ -1,5 +1,6 @@
 "use client";
 import { MetaLabel, Reveal, Lz } from "@/components/Primitives";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 const TEAM = [
   { role: "Founder · Executive Director", name: "T. Ranna", expertise: "Strategy, partnerships, regional networks." },
@@ -22,6 +23,7 @@ const PORTRAIT_BGS = [
 ];
 
 export default function TeamSection() {
+  const isMobile = useIsMobile();
   return (
     <section
       id="team"
@@ -34,7 +36,7 @@ export default function TeamSection() {
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "1fr 1fr",
+          gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
           gap: "clamp(24px, 4vw, 80px)",
           alignItems: "end",
           marginBottom: "clamp(40px, 5vw, 80px)",
@@ -64,7 +66,16 @@ export default function TeamSection() {
       </div>
 
       <div
-        style={{
+        style={isMobile ? {
+          display: "flex",
+          overflowX: "auto",
+          scrollSnapType: "x mandatory",
+          WebkitOverflowScrolling: "touch",
+          gap: 2,
+          paddingBottom: 4,
+          borderTop: "1px solid var(--rule-on-light)",
+          borderBottom: "1px solid var(--rule-on-light)",
+        } : {
           display: "grid",
           gridTemplateColumns: "repeat(5, 1fr)",
           gap: 1,
@@ -81,6 +92,11 @@ export default function TeamSection() {
               display: "flex",
               flexDirection: "column",
               cursor: "pointer",
+              ...(isMobile ? {
+                flex: "0 0 72vw",
+                scrollSnapAlign: "start",
+                minWidth: 0,
+              } : {}),
             }}
           >
             <div

@@ -3,6 +3,7 @@ import { useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 function CountUp({ value, plus = false }: { value: number; plus?: boolean }) {
   const numRef = useRef<HTMLSpanElement>(null);
@@ -75,7 +76,8 @@ const STATS: { v: number | string; plus?: boolean; k: string }[] = [
 ];
 
 export default function CredibilitySection() {
-  const statsRef = useRef<HTMLDivElement>(null);
+  const isMobile  = useIsMobile();
+  const statsRef  = useRef<HTMLDivElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
   const seeWorkLineRef = useRef<HTMLSpanElement>(null);
   const logoHeadingRef = useRef<HTMLHeadingElement>(null);
@@ -139,8 +141,8 @@ export default function CredibilitySection() {
           ref={statsRef}
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(4, 1fr)",
-            gap: "clamp(24px, 4vw, 64px)",
+            gridTemplateColumns: isMobile ? "repeat(2, 1fr)" : "repeat(4, 1fr)",
+            gap: isMobile ? "clamp(20px, 4vw, 36px)" : "clamp(24px, 4vw, 64px)",
             justifyItems: "center",
             textAlign: "center",
           }}
@@ -160,7 +162,7 @@ export default function CredibilitySection() {
               <span
                 style={{
                   fontFamily: "var(--font-display)",
-                  fontSize: "clamp(64px, 10vw, 160px)",
+                  fontSize: isMobile ? "clamp(36px, 12vw, 64px)" : "clamp(64px, 10vw, 160px)",
                   fontWeight: 700,
                   letterSpacing: "-0.04em",
                   fontVariantNumeric: "tabular-nums",

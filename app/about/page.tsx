@@ -1,5 +1,6 @@
 "use client";
 import WhoWeAreSection from "@/components/sections/WhoWeAreSection";
+import ExperiencesSection from "@/components/sections/ExperiencesSection";
 import StudiosPortalSection from "@/components/sections/StudiosPortalSection";
 import TeamSection from "@/components/sections/TeamSection";
 import RegionalSection from "@/components/sections/RegionalSection";
@@ -54,6 +55,7 @@ export default function AboutPage() {
       </section>
 
       <WhoWeAreSection />
+      <ExperiencesSection />
       <StudiosPortalSection />
       <TeamSection />
       <RegionalSection />

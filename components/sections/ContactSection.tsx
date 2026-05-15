@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { MetaLabel, Reveal, Lz } from "@/components/Primitives";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 const PROJECT_TYPES = [
   "Activation", "Fan Zone", "F1 / Sport", "Cultural Program",
@@ -18,6 +19,7 @@ export default function ContactSection() {
   const [whatsapp, setWhatsapp] = useState(true);
   const [submitted, setSubmitted] = useState(false);
   const [location, setLocation] = useState("");
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const p = new URLSearchParams(window.location.search).get("country");
@@ -68,7 +70,7 @@ export default function ContactSection() {
         aria-hidden="true"
       />
 
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1.2fr", gap: "clamp(40px, 5vw, 96px)", position: "relative", alignItems: "start" }}>
+      <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1.2fr", gap: "clamp(40px, 5vw, 96px)", position: "relative", alignItems: "start" }}>
         <Reveal>
           <MetaLabel color="var(--burnt-horizon)">request a free proposal</MetaLabel>
           <h2
@@ -123,7 +125,7 @@ export default function ContactSection() {
             border: "1px solid var(--rule-on-light)",
             padding: "clamp(28px, 4vw, 48px)",
             display: "grid",
-            gridTemplateColumns: "1fr 1fr",
+            gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
             gap: "24px 20px",
             position: "relative",
           }}

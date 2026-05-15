@@ -1,7 +1,9 @@
 "use client";
 import { Lz } from "@/components/Primitives";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 export default function FooterSection() {
+  const isMobile = useIsMobile();
   return (
     <footer
       id="contact"
@@ -14,14 +16,14 @@ export default function FooterSection() {
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "1.4fr 1fr 1fr 1fr",
+          gridTemplateColumns: isMobile ? "1fr 1fr" : "1.4fr 1fr 1fr 1fr",
           gap: "clamp(24px, 3vw, 64px)",
           paddingBottom: 56,
           borderBottom: "1px solid rgba(255,255,255,0.2)",
         }}
       >
         {/* Brand column */}
-        <div>
+        <div style={isMobile ? { gridColumn: "1 / -1" } : undefined}>
           <img
             src="/logo.png"
             alt="Ranna Studios"
@@ -62,7 +64,7 @@ export default function FooterSection() {
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "1fr 1fr 1fr",
+          gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr 1fr",
           gap: 16,
           paddingTop: 24,
           fontFamily: "var(--font-support)",

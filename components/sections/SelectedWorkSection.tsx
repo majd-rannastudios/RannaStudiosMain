@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { MetaLabel, Reveal, Lz } from "@/components/Primitives";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 interface Case {
   super: string;
@@ -267,6 +268,7 @@ function CaseCarousel({ c, i }: { c: Case; i: number }) {
 }
 
 export default function SelectedWorkSection() {
+  const isMobile = useIsMobile();
   return (
     <section id="work">
       {/* Header — white background */}
@@ -280,7 +282,7 @@ export default function SelectedWorkSection() {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "1fr 1fr",
+            gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
             gap: "clamp(24px, 5vw, 80px)",
             alignItems: "end",
           }}
@@ -321,7 +323,7 @@ export default function SelectedWorkSection() {
             delay={60}
             style={{
               display: "grid",
-              gridTemplateColumns: "1.3fr 1fr",
+              gridTemplateColumns: isMobile ? "1fr" : "1.3fr 1fr",
               gap: "clamp(24px, 4vw, 56px)",
               padding: "clamp(24px, 3vw, 40px) clamp(20px, 5vw, 88px)",
               borderBottom: "1px solid var(--rule-on-light)",

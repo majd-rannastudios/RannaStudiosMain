@@ -1,7 +1,6 @@
 "use client";
 import StudiosServicesSection from "@/components/sections/StudiosServicesSection";
 import ExperiencesSection from "@/components/sections/ExperiencesSection";
-import TeamSection from "@/components/sections/TeamSection";
 import { MetaLabel } from "@/components/Primitives";
 import Link from "next/link";
 
@@ -54,7 +53,7 @@ export default function ServicesPage() {
           operate together to deliver seamless, ambitious experiences across the region.
         </p>
 
-        <div style={{ marginTop: 40, display: "flex", gap: 12 }}>
+        <div style={{ marginTop: 40, display: "flex", gap: 12, flexWrap: "wrap" }}>
           <Link href="/contact" className="btn-rs solid" style={{ textDecoration: "none" }}>
             <span>request a free proposal</span>
             <span style={{ opacity: 0.7 }}>→</span>
@@ -68,7 +67,6 @@ export default function ServicesPage() {
 
       <ExperiencesSection />
       <StudiosServicesSection />
-      <TeamSection />
     </main>
   );
 }

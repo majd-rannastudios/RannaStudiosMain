@@ -3,6 +3,7 @@ import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { gsap } from "@/lib/gsap";
 import { MetaLabel } from "@/components/Primitives";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 const MARKETS = [
   { code: "ksa", name: "Saudi Arabia", capital: "Riyadh · Jeddah · NEOM", x: 50, y: 56 },
@@ -12,6 +13,7 @@ const MARKETS = [
 ];
 
 export default function RegionalSection() {
+  const isMobile   = useIsMobile();
   const sectionRef = useRef<HTMLElement>(null);
   const headingRef = useRef<HTMLDivElement>(null);
   const marketsRef = useRef<HTMLDivElement>(null);
@@ -36,14 +38,19 @@ export default function RegionalSection() {
 
       if (marketsRef.current) {
         const rows = marketsRef.current.querySelectorAll("[data-market]");
-        gsap.from(rows, {
-          opacity: 0,
-          x: -32,
-          stagger: 0.1,
-          duration: 0.8,
-          ease: "power3.out",
-          scrollTrigger: { trigger: marketsRef.current, start: "top 80%" },
-        });
+        if (isMobile) {
+          // Skip opacity/x animation on mobile — rows stay visible immediately
+          gsap.set(rows, { opacity: 1, x: 0 });
+        } else {
+          gsap.from(rows, {
+            opacity: 0,
+            x: -32,
+            stagger: 0.1,
+            duration: 0.8,
+            ease: "power3.out",
+            scrollTrigger: { trigger: marketsRef.current, start: "top 80%" },
+          });
+        }
       }
 
       if (mapRef.current) {
@@ -58,7 +65,7 @@ export default function RegionalSection() {
     }, sectionRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [isMobile]);
 
   return (
     <section
@@ -127,7 +134,7 @@ export default function RegionalSection() {
         </h2>
       </div>
 
-      <div style={{ display: "grid", gridTemplateColumns: "1.2fr 1fr", gap: "clamp(40px, 5vw, 96px)", position: "relative" }}>
+      <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.2fr 1fr", gap: "clamp(40px, 5vw, 96px)", position: "relative" }}>
         {/* Markets list */}
         <div ref={marketsRef} style={{ display: "flex", flexDirection: "column" }}>
           {MARKETS.map((m, i) => (
@@ -199,10 +206,10 @@ export default function RegionalSection() {
           <div style={{ borderTop: "1px solid var(--rule-on-dark)" }} />
         </div>
 
-        {/* Map */}
+        {/* Map — hidden on mobile */}
         <div
           ref={mapRef}
-          style={{ position: "relative", aspectRatio: "1", border: "1px solid var(--rule-on-dark)", background: "var(--abyssal-black)", padding: 24 }}
+          style={{ display: isMobile ? "none" : undefined, position: "relative", aspectRatio: "1", border: "1px solid var(--rule-on-dark)", background: "var(--abyssal-black)", padding: 24 }}
         >
           {/* Grid background */}
           <div

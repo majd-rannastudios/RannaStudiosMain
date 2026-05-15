@@ -1,7 +1,9 @@
 "use client";
 import { MetaLabel, Reveal, Lz } from "@/components/Primitives";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 export default function WhyRannaSection() {
+  const isMobile = useIsMobile();
   return (
     <section
       style={{
@@ -36,7 +38,7 @@ export default function WhyRannaSection() {
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "1.4fr 1fr 1fr",
+          gridTemplateColumns: isMobile ? "1fr 1fr" : "1.4fr 1fr 1fr",
           gridTemplateRows: "auto auto",
           gap: 10,
         }}
@@ -53,7 +55,7 @@ export default function WhyRannaSection() {
             display: "flex",
             flexDirection: "column",
             justifyContent: "space-between",
-            minHeight: 520,
+            minHeight: isMobile ? 300 : 520,
           }}
         >
           <div
