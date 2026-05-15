@@ -88,6 +88,7 @@ export default function NavSection() {
   });
 
   return (
+    <>
     <header
       style={{
         position: "fixed",
@@ -312,9 +313,10 @@ export default function NavSection() {
           )}
         </button>
       )}
+    </header>
 
-      {/* ── Mobile full-screen dropdown ───────────────────────── */}
-      {isMobile && (
+    {/* ── Mobile full-screen dropdown — outside <header> to prevent backdrop-filter containment ── */}
+    {isMobile && (
         <div
           style={{
             position: "fixed",
@@ -488,6 +490,6 @@ export default function NavSection() {
           </div>
         </div>
       )}
-    </header>
+    </>
   );
 }

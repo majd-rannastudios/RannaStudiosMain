@@ -75,7 +75,7 @@ export default function HeroSection() {
       id="top"
       style={{
         background: "var(--dust-white)",
-        paddingTop: "clamp(160px, 20vh, 220px)",
+        paddingTop: isMobile ? "clamp(88px, 12vh, 110px)" : "clamp(160px, 20vh, 220px)",
         paddingBottom: "clamp(24px, 3vh, 48px)",
         overflow: "hidden",
       }}
