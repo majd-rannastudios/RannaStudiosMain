@@ -162,7 +162,7 @@ export default function StudiosPortalSection() {
             overflow: "hidden",
             display: "flex",
             flexDirection: "column",
-            justifyContent: "flex-start",
+            justifyContent: isMobile ? "flex-start" : "center",
             padding: isMobile ? 0 : "clamp(96px, 12vh, 140px) clamp(20px, 3vw, 48px) clamp(36px, 4vh, 56px)",
             gap: isMobile ? 0 : "clamp(12px, 1.5vw, 20px)",
           }}
@@ -176,6 +176,7 @@ export default function StudiosPortalSection() {
                 flex: 1,
                 background: "transparent",
                 border: "none",
+                borderBottom: i < STUDIOS.length - 1 ? `1px solid ${tb}` : "none",
                 cursor: "pointer",
                 display: "flex",
                 flexDirection: "column",
@@ -209,13 +210,14 @@ export default function StudiosPortalSection() {
           {/* Desktop — studio list */}
           {!isMobile && (
             <>
-              <div style={{ display: "flex", flexDirection: "column", paddingTop: "clamp(10px, 1.4vw, 20px)" }}>
+              <div style={{ display: "flex", flexDirection: "column", borderTop: `1px solid ${tb}`, paddingTop: "clamp(10px, 1.4vw, 20px)" }}>
                 {STUDIOS.map((s, i) => (
                   <button
                     key={i}
                     onClick={() => scrollToStudio(i)}
                     style={{
                       background: "transparent", border: "none",
+                      borderBottom: i < STUDIOS.length - 1 ? `1px solid ${tb}` : "none",
                       cursor: "pointer", textAlign: "left",
                       padding: "clamp(6px, 1vw, 14px) 0",
                     }}
