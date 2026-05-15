@@ -4,6 +4,7 @@ import { MetaLabel, Reveal, Lz } from "@/components/Primitives";
 import { useIsMobile } from "@/hooks/useIsMobile";
 
 interface Case {
+  slug: string;
   super: string;
   name: string;
   desc: string;
@@ -15,6 +16,7 @@ interface Case {
 
 const CASES: Case[] = [
   {
+    slug: "f1",
     super: "case 01_ · activation × production",
     name: "Formula 1 Saudi Arabian Grand Prix",
     desc: "Fan zone experience and VIP activation across the Jeddah Corniche Circuit — immersive themed zones, premium hospitality, and cross-day operational coordination for 100k+ daily attendees.",
@@ -31,6 +33,7 @@ const CASES: Case[] = [
     side: "live",
   },
   {
+    slug: "rolls-royce",
     super: "case 02_ · activation × creative",
     name: "Rolls Royce",
     desc: "Curated brand evening for Rolls Royce — full spatial design, bespoke guest journey, and live operations at a private Riyadh venue. An intimate format built to match the brand's standard.",
@@ -46,6 +49,7 @@ const CASES: Case[] = [
     ],
   },
   {
+    slug: "saudi-games",
     super: "case 03_ · activation × production",
     name: "The Saudi Games",
     desc: "National multi-sport activations across venues — fan engagement zones, cultural programming, and event operations for one of the Kingdom's flagship sporting competitions.",
@@ -61,6 +65,7 @@ const CASES: Case[] = [
     ],
   },
   {
+    slug: "wta",
     super: "case 04_ · production × activations",
     name: "WTA Finals Riyadh",
     desc: "End-to-end event production and guest experience for the WTA Finals — arrival flow, premium hospitality, on-court activations, and multi-day operational management.",
@@ -76,6 +81,7 @@ const CASES: Case[] = [
     ],
   },
   {
+    slug: "isg",
     super: "case 05_ · production × creative",
     name: "Islamic Solidarity Games",
     desc: "Operational and creative production across the ISG — venue activations, gala dinner design and production, and multi-day event management for an international audience.",
@@ -91,6 +97,7 @@ const CASES: Case[] = [
     ],
   },
   {
+    slug: "range-rover",
     super: "case 06_ · activation × creative",
     name: "Range Rover Activation",
     desc: "Immersive brand activation and experiential launch for Range Rover — concept through build, on-ground guest journey design, and live operations at a curated Riyadh venue.",
@@ -321,6 +328,7 @@ export default function SelectedWorkSection() {
             key={i}
             as="div"
             delay={60}
+            id={`case-${c.slug}`}
             style={{
               display: "grid",
               gridTemplateColumns: isMobile ? "1fr" : "1.3fr 1fr",

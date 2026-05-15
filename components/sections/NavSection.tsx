@@ -11,32 +11,23 @@ const STUDIOS = [
   { code: "04", name: "Production",  desc: "Logistics, site management, run-of-show, and full event operations.",               href: "/services#production",   accent: "#FB9203" },
 ];
 
-const ABOUT_LINKS = [
-  { label: "field of expertise", href: "/services" },
-  { label: "team",               href: "/about#team" },
-];
-
 const NAV_LINKS = [
   { label: "work",    href: "/work",    color: "var(--burnt-horizon)" },
   { label: "news",    href: "/news",    color: "var(--crimson-bloom)" },
-  { label: "about",   href: "/about",   sub: ABOUT_LINKS, color: "var(--veil-becoming)" },
+  { label: "about",   href: "/about",   color: "var(--veil-becoming)" },
   { label: "contact", href: "/contact", color: "var(--ember-dawn)" },
 ];
 
 export default function NavSection() {
   const [scrolled, setScrolled]           = useState(false);
   const [megaOpen, setMegaOpen]           = useState(false);
-  const [aboutOpen, setAboutOpen]         = useState(false);
   const [menuOpen, setMenuOpen]           = useState(false);
   const [studiosExpanded, setStudiosExpanded] = useState(false);
-  const [aboutExpanded, setAboutExpanded]     = useState(false);
 
   const isMobile       = useIsMobile();
   const megaRef        = useRef<HTMLDivElement>(null);
   const studiosTrigger = useRef<HTMLDivElement>(null);
-  const aboutTrigger   = useRef<HTMLDivElement>(null);
   const closeMegaTimer  = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const closeAboutTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const pathname        = usePathname();
   const isHomePage      = pathname === "/";
@@ -60,7 +51,6 @@ export default function NavSection() {
   useEffect(() => {
     setMenuOpen(false);
     setStudiosExpanded(false);
-    setAboutExpanded(false);
   }, [pathname]);
 
   // Lock body scroll when mobile menu open
@@ -71,8 +61,6 @@ export default function NavSection() {
 
   function openMega()  { if (closeMegaTimer.current)  clearTimeout(closeMegaTimer.current);  setMegaOpen(true); }
   function closeMega() { closeMegaTimer.current  = setTimeout(() => setMegaOpen(false), 160); }
-  function openAbout()  { if (closeAboutTimer.current) clearTimeout(closeAboutTimer.current); setAboutOpen(true); }
-  function closeAbout() { closeAboutTimer.current = setTimeout(() => setAboutOpen(false), 160); }
 
   const navTop     = scrolled ? 95 : 132;
   const mobileTop  = scrolled ? 62 : 94;
@@ -186,79 +174,26 @@ export default function NavSection() {
             </div>
           </div>
 
-          {/* Plain nav links + about dropdown */}
-          {NAV_LINKS.map((item) =>
-            item.sub ? (
-              <div key={item.label} ref={aboutTrigger} style={{ position: "relative" }} onMouseEnter={openAbout} onMouseLeave={closeAbout}>
-                <Link
-                  href={item.href}
-                  style={{
-                    fontFamily: "var(--font-support)", fontSize: 15, fontWeight: 700,
-                    letterSpacing: "0.12em", textTransform: "lowercase",
-                    display: "inline-flex", alignItems: "center", gap: 6,
-                    transition: "color 320ms cubic-bezier(.6,0,.2,1)",
-                    color: isScrolledOrInner ? "var(--dust-white)" : item.color,
-                    textDecoration: "none",
-                    borderBottom: isActive(item.href) ? "2px solid currentColor" : "2px solid transparent",
-                    paddingBottom: 2,
-                  }}
-                >
-                  {item.label}
-                  <span style={chevron(aboutOpen, 7)} />
-                </Link>
-                <div
-                  onMouseEnter={openAbout}
-                  onMouseLeave={closeAbout}
-                  style={{
-                    position: "absolute", top: "calc(100% + 16px)", left: "50%",
-                    transform: `translateX(-50%) translateY(${aboutOpen ? 0 : -6}px)`,
-                    minWidth: 200, background: "var(--abyssal-black)",
-                    border: "1px solid var(--rule-on-dark)", padding: "8px 0",
-                    opacity: aboutOpen ? 1 : 0,
-                    pointerEvents: aboutOpen ? "all" : "none",
-                    transition: "opacity 200ms cubic-bezier(.6,0,.2,1), transform 200ms cubic-bezier(.6,0,.2,1)",
-                    zIndex: 99,
-                  }}
-                >
-                  {item.sub.map((sub) => (
-                    <Link
-                      key={sub.href} href={sub.href}
-                      onClick={() => setAboutOpen(false)}
-                      style={{
-                        display: "block", padding: "10px 20px",
-                        fontFamily: "var(--font-support)", fontSize: 11,
-                        letterSpacing: "0.14em", textTransform: "lowercase",
-                        color: "var(--dust-white)", textDecoration: "none",
-                        transition: "color 140ms, background 140ms",
-                      }}
-                      onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = "var(--ember-dawn)"; (e.currentTarget as HTMLAnchorElement).style.background = "color-mix(in oklab, var(--ember-dawn) 8%, transparent)"; }}
-                      onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = "var(--dust-white)"; (e.currentTarget as HTMLAnchorElement).style.background = "transparent"; }}
-                    >
-                      {sub.label}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            ) : (
-              <Link
-                key={item.label} href={item.href}
-                style={{
-                  fontFamily: "var(--font-support)", fontSize: 15, fontWeight: 700,
-                  letterSpacing: "0.12em", textTransform: "lowercase",
-                  display: "inline-flex", alignItems: "center", gap: 6,
-                  transition: "color 320ms cubic-bezier(.6,0,.2,1)",
-                  color: isScrolledOrInner ? "var(--dust-white)" : item.color,
-                  textDecoration: "none",
-                  borderBottom: isActive(item.href) ? "2px solid currentColor" : "2px solid transparent",
-                  paddingBottom: 2,
-                }}
-                onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = isScrolledOrInner ? "rgba(255,255,255,0.6)" : "rgba(8,0,53,0.4)"; }}
-                onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = isScrolledOrInner ? "var(--dust-white)" : (item.color ?? "var(--pitch-black)"); }}
-              >
-                {item.label}
-              </Link>
-            )
-          )}
+          {/* Plain nav links */}
+          {NAV_LINKS.map((item) => (
+            <Link
+              key={item.label} href={item.href}
+              style={{
+                fontFamily: "var(--font-support)", fontSize: 15, fontWeight: 700,
+                letterSpacing: "0.12em", textTransform: "lowercase",
+                display: "inline-flex", alignItems: "center", gap: 6,
+                transition: "color 320ms cubic-bezier(.6,0,.2,1)",
+                color: isScrolledOrInner ? "var(--dust-white)" : item.color,
+                textDecoration: "none",
+                borderBottom: isActive(item.href) ? "2px solid currentColor" : "2px solid transparent",
+                paddingBottom: 2,
+              }}
+              onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = isScrolledOrInner ? "rgba(255,255,255,0.6)" : "rgba(8,0,53,0.4)"; }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = isScrolledOrInner ? "var(--dust-white)" : (item.color ?? "var(--pitch-black)"); }}
+            >
+              {item.label}
+            </Link>
+          ))}
         </nav>
       )}
 
@@ -400,50 +335,27 @@ export default function NavSection() {
               borderBottom: "1px solid var(--rule-on-dark)",
               fontFamily: "var(--font-display)", fontSize: "clamp(26px, 7vw, 36px)",
               fontWeight: 500, letterSpacing: "-0.025em",
-              color: "var(--dust-white)", textDecoration: "none",
+              color: isActive("/work") ? "var(--ember-dawn)" : "var(--dust-white)",
+              textDecoration: "none",
             }}
           >
             Work
           </Link>
 
-          {/* About accordion */}
-          <div style={{ borderBottom: "1px solid var(--rule-on-dark)" }}>
-            <button
-              onClick={() => setAboutExpanded((e) => !e)}
-              style={{
-                display: "flex", width: "100%", justifyContent: "space-between", alignItems: "center",
-                background: "transparent", border: "none", padding: "20px 0",
-                cursor: "pointer", color: "var(--dust-white)",
-                fontFamily: "var(--font-display)", fontSize: "clamp(26px, 7vw, 36px)",
-                fontWeight: 500, letterSpacing: "-0.025em",
-              }}
-            >
-              About
-              <span style={chevron(aboutExpanded, 10)} />
-            </button>
-            <div style={{
-              maxHeight: aboutExpanded ? 200 : 0,
-              overflow: "hidden",
-              transition: "max-height 280ms cubic-bezier(.6,0,.2,1)",
-            }}>
-              {ABOUT_LINKS.map((sub) => (
-                <Link
-                  key={sub.href} href={sub.href}
-                  onClick={() => setMenuOpen(false)}
-                  style={{
-                    display: "block", padding: "12px 0 12px 12px",
-                    borderTop: "1px solid var(--rule-on-dark)",
-                    fontFamily: "var(--font-support)", fontSize: 14,
-                    letterSpacing: "0.1em", textTransform: "lowercase",
-                    color: "rgba(255,255,255,0.65)", textDecoration: "none",
-                  }}
-                >
-                  {sub.label}
-                </Link>
-              ))}
-              <div style={{ height: 12 }} />
-            </div>
-          </div>
+          {/* About */}
+          <Link
+            href="/about" onClick={() => setMenuOpen(false)}
+            style={{
+              display: "block", padding: "20px 0",
+              borderBottom: "1px solid var(--rule-on-dark)",
+              fontFamily: "var(--font-display)", fontSize: "clamp(26px, 7vw, 36px)",
+              fontWeight: 500, letterSpacing: "-0.025em",
+              color: isActive("/about") ? "var(--ember-dawn)" : "var(--dust-white)",
+              textDecoration: "none",
+            }}
+          >
+            About
+          </Link>
 
           {/* News */}
           <Link
@@ -453,7 +365,8 @@ export default function NavSection() {
               borderBottom: "1px solid var(--rule-on-dark)",
               fontFamily: "var(--font-display)", fontSize: "clamp(26px, 7vw, 36px)",
               fontWeight: 500, letterSpacing: "-0.025em",
-              color: "var(--dust-white)", textDecoration: "none",
+              color: isActive("/news") ? "var(--ember-dawn)" : "var(--dust-white)",
+              textDecoration: "none",
             }}
           >
             News
@@ -467,7 +380,8 @@ export default function NavSection() {
               borderBottom: "1px solid var(--rule-on-dark)",
               fontFamily: "var(--font-display)", fontSize: "clamp(26px, 7vw, 36px)",
               fontWeight: 500, letterSpacing: "-0.025em",
-              color: "var(--dust-white)", textDecoration: "none",
+              color: isActive("/contact") ? "var(--ember-dawn)" : "var(--dust-white)",
+              textDecoration: "none",
             }}
           >
             Contact

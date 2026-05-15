@@ -8,6 +8,7 @@ import { MetaLabel, Lz } from "@/components/Primitives";
 
 const PREVIEW = [
   {
+    slug: "f1",
     name: "Formula 1 Saudi Arabian Grand Prix",
     tag: "activation × production",
     photo: "/cases/sagp-1.jpg",
@@ -15,6 +16,7 @@ const PREVIEW = [
     year: "2025",
   },
   {
+    slug: "wta",
     name: "WTA Finals Riyadh",
     tag: "production × activations",
     photo: "/cases/wta-1.jpg",
@@ -22,6 +24,7 @@ const PREVIEW = [
     year: "2025",
   },
   {
+    slug: "saudi-games",
     name: "The Saudi Games",
     tag: "activation × creative",
     photo: "/cases/sg-1.jpg",
@@ -29,6 +32,7 @@ const PREVIEW = [
     year: "2024",
   },
   {
+    slug: "isg",
     name: "Islamic Solidarity Games",
     tag: "production × tech",
     photo: "/cases/isg-1.jpg",
@@ -36,6 +40,7 @@ const PREVIEW = [
     year: "2023",
   },
   {
+    slug: "range-rover",
     name: "Riyadh Racing Championship",
     tag: "activation × creative",
     photo: "/cases/rr-1.jpg",
@@ -43,6 +48,7 @@ const PREVIEW = [
     year: "2023",
   },
   {
+    slug: "rolls-royce",
     name: "Rolls-Royce Brand Experience",
     tag: "creative × activations",
     photo: "/cases/rollsroyce-1.jpg",
@@ -56,7 +62,7 @@ function WorkCard({ c, index }: { c: typeof PREVIEW[number]; index: number }) {
 
   return (
     <Link
-      href="/work"
+      href={`/work#case-${c.slug}`}
       style={{ textDecoration: "none", color: "var(--dust-white)", display: "block" }}
       onMouseEnter={() => { if (imgRef.current) gsap.to(imgRef.current, { scale: 1.06, duration: 0.7, ease: "power2.out" }); }}
       onMouseLeave={() => { if (imgRef.current) gsap.to(imgRef.current, { scale: 1, duration: 0.7, ease: "power2.out" }); }}

@@ -206,7 +206,7 @@ export default function CredibilitySection() {
         >
           <div style={{ display: "inline-block" }}>
             <Link
-              href="/work"
+              href="/#work"
               className="cta-link-dark"
               style={{
                 fontFamily: "var(--font-display)",

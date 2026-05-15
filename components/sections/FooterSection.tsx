@@ -39,6 +39,7 @@ export default function FooterSection() {
         <FooterCol title="navigate" links={[
           { label: "studios", href: "/services" },
           { label: "selected work", href: "/work" },
+          { label: "news", href: "/news" },
           { label: "about", href: "/about" },
           { label: "regional", href: "/#regional" },
           { label: "contact", href: "/contact" },

@@ -27,7 +27,7 @@ export default function PreFooterCTASection() {
         });
       }
 
-      if (accentRef.current && !isMobile) {
+      if (accentRef.current) {
         gsap.fromTo(
           accentRef.current,
           { x: "50vw" },
