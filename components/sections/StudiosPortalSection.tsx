@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { useIsMobile } from "@/hooks/useIsMobile";
 
@@ -75,48 +75,13 @@ const STUDIOS = [
 ];
 
 export default function StudiosPortalSection() {
-  const [active, setActive] = useState(0);
-  const activeRef = useRef(0);
   const [openCap, setOpenCap] = useState<string | null>(null);
-  const isMobile  = useIsMobile();
-
-  const studio = STUDIOS[active];
-  const tc   = studio.textDark ? "var(--pitch-black)"   : "var(--dust-white)";
-  const tb   = studio.textDark ? "rgba(0,0,0,0.18)"     : "rgba(255,255,255,0.18)";
-  const tmut = studio.textDark ? "rgba(0,0,0,0.28)"     : "rgba(255,255,255,0.25)";
-
-  function scrollToStudio(idx: number) {
-    const el = document.querySelector<HTMLElement>(`[data-portal-studio="${idx}"]`);
-    el?.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
-
-  useEffect(() => {
-    const sections = document.querySelectorAll<HTMLElement>("[data-portal-studio]");
-    if (!sections.length) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            const idx = parseInt((e.target as HTMLElement).dataset.portalStudio ?? "0", 10);
-            if (idx !== activeRef.current) {
-              activeRef.current = idx;
-              setActive(idx);
-            }
-          }
-        });
-      },
-      { threshold: 0, rootMargin: "-25% 0px -65% 0px" }
-    );
-
-    sections.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
-  }, []);
+  const isMobile = useIsMobile();
 
   return (
     <section id="studios">
 
-      {/* ── Big heading — outside the sticky grid ─────────────── */}
+      {/* Big heading — outside the per-studio grids */}
       <div
         style={{
           background: "var(--dust-white)",
@@ -148,101 +113,79 @@ export default function StudiosPortalSection() {
         </h2>
       </div>
 
-      {/* ── Two-column layout ──────────────────────────────────── */}
-      <div style={{ display: "grid", gridTemplateColumns: isMobile ? "44px 1fr" : "5fr 8fr", position: "relative" }}>
+      {/* One grid per studio so sticky left is constrained to that studio's height */}
+      {STUDIOS.map((s, si) => {
+        const tc   = s.textDark ? "var(--pitch-black)"   : "var(--dust-white)";
+        const tb   = s.textDark ? "rgba(0,0,0,0.18)"     : "rgba(255,255,255,0.18)";
 
-        {/* Left — sticky, background follows active studio */}
-        <div
-          style={{
-            position: "sticky",
-            top: 0,
-            height: "100vh",
-            backgroundColor: studio.bg,
-            transition: "background-color 480ms ease",
-            overflow: "hidden",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "flex-start",
-            padding: isMobile ? 0 : "clamp(96px, 12vh, 140px) clamp(20px, 3vw, 48px) clamp(36px, 4vh, 56px)",
-            gap: isMobile ? 0 : "clamp(12px, 1.5vw, 20px)",
-          }}
-        >
-          {/* Mobile — rotated studio names filling full height */}
-          {isMobile && STUDIOS.map((s, i) => (
-            <button
-              key={i}
-              onClick={() => scrollToStudio(i)}
+        return (
+          <div
+            key={si}
+            style={{
+              display: "grid",
+              gridTemplateColumns: isMobile ? "44px 1fr" : "5fr 8fr",
+              position: "relative",
+            }}
+          >
+            {/* Left sticky panel — scoped to this studio's grid height */}
+            <div
               style={{
-                flex: 1,
-                background: "transparent",
-                border: "none",
-                borderBottom: i < STUDIOS.length - 1 ? `1px solid ${tb}` : "none",
-                cursor: "pointer",
+                position: "sticky",
+                top: 0,
+                height: "100vh",
+                backgroundColor: s.bg,
+                transition: "background-color 480ms ease",
+                overflow: "hidden",
                 display: "flex",
                 flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: 5,
-                padding: "4px 0",
-                writingMode: "vertical-lr",
+                justifyContent: "flex-start",
+                padding: isMobile ? 0 : "clamp(96px, 12vh, 140px) clamp(20px, 3vw, 48px) clamp(36px, 4vh, 56px)",
+                gap: isMobile ? 0 : "clamp(12px, 1.5vw, 20px)",
               }}
             >
-              <span style={{
-                fontFamily: "var(--font-support)",
-                fontSize: 7,
-                letterSpacing: "0.2em",
-                textTransform: "uppercase",
-                color: i === active ? tc : tmut,
-                transition: "color 400ms ease",
-              }}>{s.num}</span>
-              <span style={{
-                fontFamily: "var(--font-display)",
-                fontSize: 10,
-                fontWeight: 700,
-                letterSpacing: "0.06em",
-                textTransform: "uppercase",
-                color: i === active ? tc : tmut,
-                transition: "color 400ms ease",
-              }}>{s.name}</span>
-            </button>
-          ))}
+              {/* Mobile — rotated studio label */}
+              {isMobile && (
+                <div
+                  style={{
+                    flex: 1,
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: 5,
+                    padding: "4px 0",
+                    writingMode: "vertical-lr",
+                  }}
+                >
+                  <span style={{ fontFamily: "var(--font-support)", fontSize: 7, letterSpacing: "0.2em", textTransform: "uppercase", color: tc }}>{s.num}</span>
+                  <span style={{ fontFamily: "var(--font-display)", fontSize: 10, fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase", color: tc }}>{s.name}</span>
+                </div>
+              )}
 
-          {/* Desktop — studio list */}
-          {!isMobile && (
-            <>
-              <div style={{ display: "flex", flexDirection: "column", borderTop: `1px solid ${tb}`, paddingTop: "clamp(10px, 1.4vw, 20px)" }}>
-                {STUDIOS.map((s, i) => (
-                  <button
-                    key={i}
-                    onClick={() => scrollToStudio(i)}
-                    style={{
-                      background: "transparent", border: "none",
-                      borderBottom: i < STUDIOS.length - 1 ? `1px solid ${tb}` : "none",
-                      cursor: "pointer", textAlign: "left",
-                      padding: "clamp(6px, 1vw, 14px) 0",
-                    }}
-                  >
-                    <span style={{ display: "block", fontFamily: "var(--font-support)", fontSize: 10, letterSpacing: "0.2em", color: i === active ? tc : tmut, marginBottom: 4, transition: "color 400ms ease" }}>{s.num}</span>
-                    <span style={{ display: "block", fontFamily: "var(--font-display)", fontSize: "clamp(24px, 3.2vw, 56px)", fontWeight: 700, letterSpacing: "-0.04em", lineHeight: 0.88, textTransform: "uppercase", color: i === active ? tc : tmut, transition: "color 400ms ease" }}>{s.name}</span>
-                  </button>
-                ))}
-              </div>
-              <div style={{ paddingTop: "clamp(12px, 1.5vw, 22px)", borderTop: `1px solid ${tb}` }}>
-                <Link href="/services" className="btn-rs" style={{ fontSize: 11, padding: "10px 18px", borderColor: tc, color: tc, textDecoration: "none", display: "inline-flex" }}>
-                  <span>explore all services</span>
-                  <span style={{ opacity: 0.6, marginLeft: 10 }}>→</span>
-                </Link>
-              </div>
-            </>
-          )}
-        </div>
+              {/* Desktop — studio name */}
+              {!isMobile && (
+                <>
+                  <div style={{ display: "flex", flexDirection: "column", borderTop: `1px solid ${tb}`, paddingTop: "clamp(10px, 1.4vw, 20px)" }}>
+                    <div style={{ padding: "clamp(6px, 1vw, 14px) 0" }}>
+                      <span style={{ display: "block", fontFamily: "var(--font-support)", fontSize: 10, letterSpacing: "0.2em", color: tc, marginBottom: 4 }}>{s.num}</span>
+                      <span style={{ display: "block", fontFamily: "var(--font-display)", fontSize: "clamp(24px, 3.2vw, 56px)", fontWeight: 700, letterSpacing: "-0.04em", lineHeight: 0.88, textTransform: "uppercase", color: tc }}>{s.name}</span>
+                    </div>
+                  </div>
+                  {si === STUDIOS.length - 1 && (
+                    <div style={{ paddingTop: "clamp(12px, 1.5vw, 22px)", borderTop: `1px solid ${tb}` }}>
+                      <Link href="/services" className="btn-rs" style={{ fontSize: 11, padding: "10px 18px", borderColor: tc, color: tc, textDecoration: "none", display: "inline-flex" }}>
+                        <span>explore all services</span>
+                        <span style={{ opacity: 0.6, marginLeft: 10 }}>→</span>
+                      </Link>
+                    </div>
+                  )}
+                </>
+              )}
+            </div>
 
-        {/* Right — scrollable, white */}
-        <div style={{ background: "var(--dust-white)" }}>
-          {STUDIOS.map((s, si) => (
-            <div key={si} data-portal-studio={si}>
-
-              {/* Subtle studio separator — number only, no name */}
+            {/* Right — capability rows */}
+            <div style={{ background: "var(--dust-white)" }}>
+              {/* Studio separator */}
               <div
                 style={{
                   padding: "clamp(32px, 4vw, 56px) clamp(28px, 3.5vw, 56px) clamp(14px, 1.6vw, 22px)",
@@ -356,9 +299,9 @@ export default function StudiosPortalSection() {
                 );
               })}
             </div>
-          ))}
-        </div>
-      </div>
+          </div>
+        );
+      })}
     </section>
   );
 }
