@@ -1,7 +1,9 @@
 "use client";
 import { MetaLabel, Reveal } from "@/components/Primitives";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 export default function WhoWeAreSection() {
+  const isMobile = useIsMobile();
   return (
     <section
       id="about"
@@ -14,11 +16,12 @@ export default function WhoWeAreSection() {
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "1fr 1.2fr",
+          gridTemplateColumns: isMobile ? "1fr" : "1fr 1.2fr",
           gap: "clamp(40px, 6vw, 96px)",
           alignItems: "start",
         }}
       >
+        {!isMobile && (
         <Reveal>
           <MetaLabel color="var(--burnt-horizon)">who we are</MetaLabel>
           <h2
@@ -36,6 +39,7 @@ export default function WhoWeAreSection() {
             experiences.
           </h2>
         </Reveal>
+        )}
 
         <Reveal as="div" delay={120}>
           <p
@@ -69,7 +73,7 @@ export default function WhoWeAreSection() {
             style={{
               marginTop: 48,
               display: "grid",
-              gridTemplateColumns: "repeat(3, 1fr)",
+              gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)",
               gap: 0,
               borderTop: "1px solid var(--rule-on-light)",
             }}

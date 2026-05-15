@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 const STUDIOS = [
   {
@@ -76,6 +77,8 @@ const STUDIOS = [
 export default function StudiosPortalSection() {
   const [active, setActive] = useState(0);
   const activeRef = useRef(0);
+  const [openCap, setOpenCap] = useState<string | null>(null);
+  const isMobile  = useIsMobile();
 
   const studio = STUDIOS[active];
   const tc   = studio.textDark ? "var(--pitch-black)"   : "var(--dust-white)";
@@ -146,7 +149,7 @@ export default function StudiosPortalSection() {
       </div>
 
       {/* ── Two-column layout ──────────────────────────────────── */}
-      <div style={{ display: "grid", gridTemplateColumns: "5fr 8fr", position: "relative" }}>
+      <div style={{ display: "grid", gridTemplateColumns: isMobile ? "44px 1fr" : "5fr 8fr", position: "relative" }}>
 
         {/* Left — sticky, background follows active studio */}
         <div
@@ -159,88 +162,79 @@ export default function StudiosPortalSection() {
             overflow: "hidden",
             display: "flex",
             flexDirection: "column",
-            justifyContent: "center",
-            padding: "clamp(96px, 12vh, 140px) clamp(20px, 3vw, 48px) clamp(36px, 4vh, 56px)",
-            gap: "clamp(12px, 1.5vw, 20px)",
+            justifyContent: isMobile ? "stretch" : "center",
+            padding: isMobile ? 0 : "clamp(96px, 12vh, 140px) clamp(20px, 3vw, 48px) clamp(36px, 4vh, 56px)",
+            gap: isMobile ? 0 : "clamp(12px, 1.5vw, 20px)",
           }}
         >
-          {/* Studio list */}
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              borderTop: `1px solid ${tb}`,
-              paddingTop: "clamp(10px, 1.4vw, 20px)",
-            }}
-          >
-            {STUDIOS.map((s, i) => (
-              <button
-                key={i}
-                onClick={() => scrollToStudio(i)}
-                style={{
-                  background: "transparent",
-                  border: "none",
-                  borderBottom: i < STUDIOS.length - 1 ? `1px solid ${tb}` : "none",
-                  cursor: "pointer",
-                  textAlign: "left",
-                  padding: "clamp(6px, 1vw, 14px) 0",
-                }}
-              >
-                <span
-                  style={{
-                    display: "block",
-                    fontFamily: "var(--font-support)",
-                    fontSize: 10,
-                    letterSpacing: "0.2em",
-                    color: i === active ? tc : tmut,
-                    marginBottom: 4,
-                    transition: "color 400ms ease",
-                  }}
-                >
-                  {s.num}
-                </span>
-                <span
-                  style={{
-                    display: "block",
-                    fontFamily: "var(--font-display)",
-                    fontSize: "clamp(24px, 3.2vw, 56px)",
-                    fontWeight: 700,
-                    letterSpacing: "-0.04em",
-                    lineHeight: 0.88,
-                    textTransform: "uppercase",
-                    color: i === active ? tc : tmut,
-                    transition: "color 400ms ease",
-                  }}
-                >
-                  {s.name}
-                </span>
-              </button>
-            ))}
-          </div>
-
-          {/* Footer CTA */}
-          <div
-            style={{
-              paddingTop: "clamp(12px, 1.5vw, 22px)",
-              borderTop: `1px solid ${tb}`,
-            }}
-          >
-            <Link
-              href="/services"
-              className="btn-rs"
+          {/* Mobile — rotated studio names filling full height */}
+          {isMobile && STUDIOS.map((s, i) => (
+            <button
+              key={i}
+              onClick={() => scrollToStudio(i)}
               style={{
-                fontSize: 11,
-                padding: "10px 18px",
-                borderColor: tc,
-                color: tc,
-                textDecoration: "none",
-                display: "inline-flex",
+                flex: 1,
+                background: "transparent",
+                border: "none",
+                borderBottom: i < STUDIOS.length - 1 ? `1px solid ${tb}` : "none",
+                cursor: "pointer",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: 5,
+                padding: "4px 0",
+                writingMode: "vertical-lr",
               }}
             >
-              <span>explore all services</span>
-              <span style={{ opacity: 0.6, marginLeft: 10 }}>→</span>
-            </Link>
-          </div>
+              <span style={{
+                fontFamily: "var(--font-support)",
+                fontSize: 7,
+                letterSpacing: "0.2em",
+                textTransform: "uppercase",
+                color: i === active ? tc : tmut,
+                transition: "color 400ms ease",
+              }}>{s.num}</span>
+              <span style={{
+                fontFamily: "var(--font-display)",
+                fontSize: 10,
+                fontWeight: 700,
+                letterSpacing: "0.06em",
+                textTransform: "uppercase",
+                color: i === active ? tc : tmut,
+                transition: "color 400ms ease",
+              }}>{s.name}</span>
+            </button>
+          ))}
+
+          {/* Desktop — studio list */}
+          {!isMobile && (
+            <>
+              <div style={{ display: "flex", flexDirection: "column", borderTop: `1px solid ${tb}`, paddingTop: "clamp(10px, 1.4vw, 20px)" }}>
+                {STUDIOS.map((s, i) => (
+                  <button
+                    key={i}
+                    onClick={() => scrollToStudio(i)}
+                    style={{
+                      background: "transparent", border: "none",
+                      borderBottom: i < STUDIOS.length - 1 ? `1px solid ${tb}` : "none",
+                      cursor: "pointer", textAlign: "left",
+                      padding: "clamp(6px, 1vw, 14px) 0",
+                    }}
+                  >
+                    <span style={{ display: "block", fontFamily: "var(--font-support)", fontSize: 10, letterSpacing: "0.2em", color: i === active ? tc : tmut, marginBottom: 4, transition: "color 400ms ease" }}>{s.num}</span>
+                    <span style={{ display: "block", fontFamily: "var(--font-display)", fontSize: "clamp(24px, 3.2vw, 56px)", fontWeight: 700, letterSpacing: "-0.04em", lineHeight: 0.88, textTransform: "uppercase", color: i === active ? tc : tmut, transition: "color 400ms ease" }}>{s.name}</span>
+                  </button>
+                ))}
+              </div>
+              <div style={{ paddingTop: "clamp(12px, 1.5vw, 22px)", borderTop: `1px solid ${tb}` }}>
+                <Link href="/services" className="btn-rs" style={{ fontSize: 11, padding: "10px 18px", borderColor: tc, color: tc, textDecoration: "none", display: "inline-flex" }}>
+                  <span>explore all services</span>
+                  <span style={{ opacity: 0.6, marginLeft: 10 }}>→</span>
+                </Link>
+              </div>
+            </>
+          )}
         </div>
 
         {/* Right — scrollable, white */}
@@ -271,65 +265,96 @@ export default function StudiosPortalSection() {
               </div>
 
               {/* Capability rows */}
-              {s.capabilities.map((cap, ci) => (
-                <div
-                  key={ci}
-                  style={{
-                    display: "grid",
-                    gridTemplateColumns: "48px 1fr",
-                    gap: "clamp(16px, 2vw, 28px)",
-                    padding: "clamp(20px, 2.5vw, 36px) clamp(28px, 3.5vw, 56px)",
-                    borderBottom: "1px solid var(--rule-on-light)",
-                    alignItems: "start",
-                    transition: "background 200ms",
-                    cursor: "default",
-                  }}
-                  onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLDivElement).style.background =
-                      `color-mix(in oklab, ${s.bg} 7%, transparent)`;
-                  }}
-                  onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLDivElement).style.background = "transparent";
-                  }}
-                >
-                  <span
+              {s.capabilities.map((cap, ci) => {
+                const capKey = `${si}-${ci}`;
+                const isCapOpen = openCap === capKey;
+                return (
+                  <div
+                    key={ci}
                     style={{
-                      fontFamily: "var(--font-support)",
-                      fontSize: 10,
-                      letterSpacing: "0.18em",
-                      color: s.bg,
-                      paddingTop: 4,
-                      opacity: 0.55,
+                      display: "grid",
+                      gridTemplateColumns: isMobile ? "28px 1fr" : "48px 1fr",
+                      gap: isMobile ? "clamp(8px, 2vw, 14px)" : "clamp(16px, 2vw, 28px)",
+                      padding: isMobile
+                        ? "clamp(14px, 2vw, 20px) clamp(12px, 2vw, 18px)"
+                        : "clamp(20px, 2.5vw, 36px) clamp(28px, 3.5vw, 56px)",
+                      borderBottom: "1px solid var(--rule-on-light)",
+                      alignItems: "start",
+                      transition: "background 200ms",
+                      cursor: isMobile ? "pointer" : "default",
                     }}
+                    onClick={isMobile ? () => setOpenCap(isCapOpen ? null : capKey) : undefined}
+                    onMouseEnter={!isMobile ? (e) => {
+                      (e.currentTarget as HTMLDivElement).style.background =
+                        `color-mix(in oklab, ${s.bg} 7%, transparent)`;
+                    } : undefined}
+                    onMouseLeave={!isMobile ? (e) => {
+                      (e.currentTarget as HTMLDivElement).style.background = "transparent";
+                    } : undefined}
                   >
-                    {String(ci + 1).padStart(2, "0")}
-                  </span>
-                  <div>
-                    <div
-                      style={{
-                        fontFamily: "var(--font-display)",
-                        fontSize: "clamp(15px, 1.4vw, 20px)",
-                        fontWeight: 600,
-                        letterSpacing: "-0.015em",
-                        color: "var(--pitch-black)",
-                        marginBottom: 8,
-                      }}
-                    >
-                      {cap.name}
-                    </div>
-                    <div
+                    <span
                       style={{
                         fontFamily: "var(--font-support)",
-                        fontSize: "clamp(12px, 0.95vw, 14px)",
-                        lineHeight: 1.65,
-                        color: "var(--fg-muted-on-light)",
+                        fontSize: 10,
+                        letterSpacing: "0.18em",
+                        color: s.bg,
+                        paddingTop: 4,
+                        opacity: 0.55,
                       }}
                     >
-                      {cap.desc}
+                      {String(ci + 1).padStart(2, "0")}
+                    </span>
+                    <div>
+                      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                        <div
+                          style={{
+                            fontFamily: "var(--font-display)",
+                            fontSize: isMobile ? "clamp(13px, 3.2vw, 16px)" : "clamp(15px, 1.4vw, 20px)",
+                            fontWeight: 600,
+                            letterSpacing: "-0.015em",
+                            color: "var(--pitch-black)",
+                            marginBottom: isMobile ? 0 : 6,
+                          }}
+                        >
+                          {cap.name}
+                        </div>
+                        {isMobile && (
+                          <span style={{ fontSize: 16, color: "rgba(8,0,53,0.35)", flexShrink: 0, marginLeft: 8, lineHeight: 1 }}>
+                            {isCapOpen ? "−" : "+"}
+                          </span>
+                        )}
+                      </div>
+                      {!isMobile && (
+                        <div
+                          style={{
+                            fontFamily: "var(--font-support)",
+                            fontSize: "clamp(12px, 0.95vw, 14px)",
+                            lineHeight: 1.6,
+                            color: "var(--fg-muted-on-light)",
+                          }}
+                        >
+                          {cap.desc}
+                        </div>
+                      )}
+                      {isMobile && (
+                        <div style={{ maxHeight: isCapOpen ? 150 : 0, overflow: "hidden", transition: "max-height 300ms cubic-bezier(.4,0,.2,1)" }}>
+                          <div
+                            style={{
+                              fontFamily: "var(--font-support)",
+                              fontSize: "clamp(11px, 2.6vw, 13px)",
+                              lineHeight: 1.6,
+                              color: "var(--fg-muted-on-light)",
+                              paddingTop: 6,
+                            }}
+                          >
+                            {cap.desc}
+                          </div>
+                        </div>
+                      )}
                     </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           ))}
         </div>

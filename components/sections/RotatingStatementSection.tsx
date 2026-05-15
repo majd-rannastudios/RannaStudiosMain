@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef } from "react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 const TICKER_ITEMS = [
   { word: "Immersive",    color: "var(--ember-dawn)" },
@@ -14,8 +15,18 @@ export default function RotatingStatementSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const tickerRef = useRef<HTMLDivElement>(null);
   const copyRef = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
+    if (isMobile) {
+      if (tickerRef.current) {
+        tickerRef.current.style.animation = "ticker-scroll 18s linear infinite";
+      }
+      return;
+    }
+
+    if (tickerRef.current) tickerRef.current.style.animation = "";
+
     const ctx = gsap.context(() => {
       if (tickerRef.current && sectionRef.current) {
         gsap.to(tickerRef.current, {
@@ -39,7 +50,7 @@ export default function RotatingStatementSection() {
       });
     });
     return () => ctx.revert();
-  }, []);
+  }, [isMobile]);
 
   return (
     <section
@@ -124,7 +135,6 @@ export default function RotatingStatementSection() {
             lineHeight: 1.35,
             color: "var(--dust-white)",
             margin: 0,
-            whiteSpace: "nowrap",
           }}
         >
           We don&apos;t manufacture events.{" "}

@@ -3,6 +3,7 @@ import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { gsap } from "@/lib/gsap";
 import { MetaLabel, Lz } from "@/components/Primitives";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 const HEADLINE_LINES = ["Ready to build", "something the", "world will"];
 
@@ -11,6 +12,7 @@ export default function PreFooterCTASection() {
   const linesRef = useRef<HTMLHeadingElement>(null);
   const accentRef = useRef<HTMLSpanElement>(null);
   const bodyRef = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -25,7 +27,7 @@ export default function PreFooterCTASection() {
         });
       }
 
-      if (accentRef.current) {
+      if (accentRef.current && !isMobile) {
         gsap.fromTo(
           accentRef.current,
           { x: "50vw" },
@@ -49,7 +51,7 @@ export default function PreFooterCTASection() {
     });
 
     return () => ctx.revert();
-  }, []);
+  }, [isMobile]);
 
   return (
     <section

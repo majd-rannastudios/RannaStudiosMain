@@ -1,12 +1,14 @@
 "use client";
 import { useEffect, useRef } from "react";
 import { gsap } from "@/lib/gsap";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 export default function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const line1Ref   = useRef<HTMLSpanElement>(null);
   const line2Ref   = useRef<HTMLSpanElement>(null);
   const videoRef   = useRef<HTMLDivElement>(null);
+  const isMobile   = useIsMobile();
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -34,6 +36,39 @@ export default function HeroSection() {
     return () => ctx.revert();
   }, []);
 
+  const headline = (
+    <h1
+      style={{
+        fontFamily: "var(--font-display)",
+        fontSize: "clamp(36px, 6vw, 104px)",
+        fontWeight: 500,
+        letterSpacing: "-0.045em",
+        lineHeight: 0.92,
+        color: isMobile ? "var(--pitch-black)" : "var(--dust-white)",
+        margin: 0,
+      }}
+    >
+      <span style={{ display: "block", overflow: "hidden", lineHeight: 1.0 }}>
+        <span ref={line1Ref} style={{ display: "block" }}>EXPERIENCES</span>
+      </span>
+      <span style={{ display: "block", overflow: "hidden", lineHeight: 1.0 }}>
+        <span ref={line2Ref} style={{ display: "block" }}>
+          PEOPLE{" "}
+          <em style={{
+            fontStyle: "normal",
+            fontWeight: 700,
+            background: "linear-gradient(90deg, var(--ember-dawn) 0%, var(--burnt-horizon) 35%, var(--crimson-bloom) 70%, var(--veil-becoming) 100%)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text",
+          }}>
+            REMEMBER.
+          </em>
+        </span>
+      </span>
+    </h1>
+  );
+
   return (
     <section
       ref={sectionRef}
@@ -45,11 +80,17 @@ export default function HeroSection() {
         overflow: "hidden",
       }}
     >
-      {/* Video with text overlay — same reduced width as before */}
+      {/* Mobile: headline above video */}
+      {isMobile && (
+        <div style={{ padding: "0 clamp(20px, 5vw, 40px)", marginBottom: 28, textAlign: "center" }}>
+          {headline}
+        </div>
+      )}
+
       <div
         ref={videoRef}
         style={{
-          padding: "0 clamp(40px, 10vw, 180px)",
+          padding: isMobile ? "0 clamp(16px, 4vw, 32px)" : "0 clamp(40px, 10vw, 180px)",
           position: "relative",
         }}
       >
@@ -58,8 +99,8 @@ export default function HeroSection() {
           style={{
             width: "100%",
             aspectRatio: "16 / 9",
-            padding: "clamp(6px, 0.7vw, 12px)",
-            backgroundImage: "url('/gradient-frame.jpg')",
+            padding: isMobile ? 0 : "clamp(6px, 0.7vw, 12px)",
+            backgroundImage: isMobile ? undefined : "url('/gradient-frame.jpg')",
             backgroundSize: "cover",
             backgroundPosition: "center",
             position: "relative",
@@ -83,59 +124,32 @@ export default function HeroSection() {
             />
           </div>
 
-          {/* Dark overlay for text legibility */}
-          <div
-            aria-hidden="true"
-            style={{
-              position: "absolute",
-              inset: 0,
-              background: "linear-gradient(to bottom, rgba(8,0,53,0.30) 0%, rgba(8,0,53,0.65) 100%)",
-              pointerEvents: "none",
-            }}
-          />
-
-          {/* Headline — centered over the video */}
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              textAlign: "center",
-            }}
-          >
-            <h1
-              style={{
-                fontFamily: "var(--font-display)",
-                fontSize: "clamp(36px, 6vw, 104px)",
-                fontWeight: 500,
-                letterSpacing: "-0.045em",
-                lineHeight: 0.92,
-                color: "var(--dust-white)",
-                margin: 0,
-              }}
-            >
-              <span style={{ display: "block", overflow: "hidden", lineHeight: 1.0 }}>
-                <span ref={line1Ref} style={{ display: "block" }}>EXPERIENCES</span>
-              </span>
-              <span style={{ display: "block", overflow: "hidden", lineHeight: 1.0 }}>
-                <span ref={line2Ref} style={{ display: "block" }}>
-                  PEOPLE{" "}
-                  <em style={{
-                    fontStyle: "normal",
-                    fontWeight: 700,
-                    background: "linear-gradient(90deg, var(--ember-dawn) 0%, var(--burnt-horizon) 35%, var(--crimson-bloom) 70%, var(--veil-becoming) 100%)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    backgroundClip: "text",
-                  }}>
-                    REMEMBER.
-                  </em>
-                </span>
-              </span>
-            </h1>
-          </div>
+          {/* Desktop only: dark overlay + headline centered over video */}
+          {!isMobile && (
+            <>
+              <div
+                aria-hidden="true"
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  background: "linear-gradient(to bottom, rgba(8,0,53,0.30) 0%, rgba(8,0,53,0.65) 100%)",
+                  pointerEvents: "none",
+                }}
+              />
+              <div
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  textAlign: "center",
+                }}
+              >
+                {headline}
+              </div>
+            </>
+          )}
         </div>
       </div>
     </section>

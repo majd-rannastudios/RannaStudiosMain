@@ -1,5 +1,6 @@
 "use client";
 import WhoWeAreSection from "@/components/sections/WhoWeAreSection";
+import StudiosPortalSection from "@/components/sections/StudiosPortalSection";
 import TeamSection from "@/components/sections/TeamSection";
 import RegionalSection from "@/components/sections/RegionalSection";
 import { MetaLabel } from "@/components/Primitives";
@@ -53,6 +54,7 @@ export default function AboutPage() {
       </section>
 
       <WhoWeAreSection />
+      <StudiosPortalSection />
       <TeamSection />
       <RegionalSection />
 
