@@ -14,52 +14,43 @@ export default function RotatingStatementSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const tickerRef  = useRef<HTMLDivElement>(null);
   const copyRef    = useRef<HTMLDivElement>(null);
-  const tweenRef   = useRef<gsap.core.Tween | null>(null);
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      const el = tickerRef.current;
-      if (!el) return;
+    const el = tickerRef.current;
+    if (!el) return;
 
-      // Measure single-set width after render
-      const singleWidth = el.scrollWidth / 2;
+    let xPos = 0;
+    let lastY = window.scrollY;
+    let singleWidth = 0;
+    let tickFn: (() => void) | null = null;
 
-      // Continuous seamless loop — always plays, never stops
-      tweenRef.current = gsap.fromTo(
-        el,
-        { x: 0 },
-        {
-          x: -singleWidth,
-          ease: "none",
-          repeat: -1,
-          duration: 22,
+    const setup = () => {
+      singleWidth = el.scrollWidth / 2;
+      if (singleWidth <= 0) return;
+
+      gsap.set(el, { x: 0 });
+
+      // On every GSAP frame: check how far the page has scrolled since last frame
+      // and advance the ticker by that amount — only moves when scrolling
+      tickFn = () => {
+        const currentY = window.scrollY;
+        const delta = Math.abs(currentY - lastY);
+        lastY = currentY;
+
+        if (delta > 0.1) {
+          xPos = (xPos + delta * 1.4) % singleWidth;
+          gsap.set(el, { x: -xPos });
         }
-      );
+      };
 
-      // Boost playback rate while scrolling; settle back to 1× when still
-      ScrollTrigger.create({
-        trigger: sectionRef.current,
-        start: "top bottom",
-        end: "bottom top",
-        onUpdate: (self) => {
-          const vel = Math.abs(self.getVelocity());
-          const target = 1 + vel / 600;
-          gsap.to(tweenRef.current, {
-            timeScale: target,
-            duration: 0.4,
-            ease: "power1.out",
-            overwrite: "auto",
-          });
-        },
-        onLeave: () => {
-          gsap.to(tweenRef.current, { timeScale: 1, duration: 1.2, ease: "power1.out", overwrite: "auto" });
-        },
-        onLeaveBack: () => {
-          gsap.to(tweenRef.current, { timeScale: 1, duration: 1.2, ease: "power1.out", overwrite: "auto" });
-        },
-      });
+      gsap.ticker.add(tickFn);
+    };
 
-      // Entrance fade for the copy below
+    // Double RAF so fonts + layout are fully measured
+    const raf = requestAnimationFrame(() => requestAnimationFrame(setup));
+
+    // Entrance fade for the copy below
+    const ctx = gsap.context(() => {
       gsap.from(copyRef.current, {
         opacity: 0,
         y: 24,
@@ -69,7 +60,11 @@ export default function RotatingStatementSection() {
       });
     });
 
-    return () => ctx.revert();
+    return () => {
+      cancelAnimationFrame(raf);
+      if (tickFn) gsap.ticker.remove(tickFn);
+      ctx.revert();
+    };
   }, []);
 
   return (
@@ -81,7 +76,7 @@ export default function RotatingStatementSection() {
         overflow: "hidden",
       }}
     >
-      {/* Horizontal ticker — continuous GSAP loop */}
+      {/* Horizontal ticker — moves only while scrolling, loops seamlessly */}
       <div style={{ overflow: "hidden" }} aria-hidden="true">
         <div
           ref={tickerRef}
@@ -91,7 +86,6 @@ export default function RotatingStatementSection() {
             width: "max-content",
           }}
         >
-          {/* Duplicate the set so the loop is seamless */}
           {[...TICKER_ITEMS, ...TICKER_ITEMS].map((item, i) => (
             <span
               key={i}
