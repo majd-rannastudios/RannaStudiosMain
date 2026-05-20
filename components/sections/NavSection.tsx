@@ -41,10 +41,14 @@ export default function NavSection() {
   const studiosActive = pathname === "/services" || pathname.startsWith("/services");
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
-    return () => window.removeEventListener("scroll", onScroll);
+    const updateHeader = () => {
+      setScrolled(window.scrollY > 40);
+      const h = document.querySelector("header")?.getBoundingClientRect().height ?? 0;
+      if (h > 0) document.documentElement.style.setProperty("--header-h", `${h}px`);
+    };
+    window.addEventListener("scroll", updateHeader, { passive: true });
+    updateHeader();
+    return () => window.removeEventListener("scroll", updateHeader);
   }, []);
 
   // Close mobile menu on navigation
@@ -202,12 +206,12 @@ export default function NavSection() {
         <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
           <Link
             href="/contact"
-            className="btn-rs"
+            className={`btn-rs nav-cta${!isScrolledOrInner ? " btn-rs-on-light" : ""}`}
             style={{
-              fontSize: 11, fontWeight: 700, padding: "10px 18px",
+              fontSize: 15, fontWeight: 700, padding: "10px 18px",
               background: isScrolledOrInner ? "rgba(8,0,53,0.4)" : "transparent",
               borderColor: isScrolledOrInner ? "rgba(255,255,255,0.5)" : "var(--burnt-horizon)",
-              color: isScrolledOrInner ? "var(--dust-white)" : "var(--burnt-horizon)",
+              ...(isScrolledOrInner ? { color: "var(--dust-white)" } : {}),
               textDecoration: "none",
               transition: "background 320ms cubic-bezier(.6,0,.2,1), border-color 320ms, color 320ms",
             }}
@@ -395,7 +399,7 @@ export default function NavSection() {
               className="btn-rs"
               style={{
                 display: "flex", justifyContent: "center", textDecoration: "none",
-                fontSize: 12, padding: "16px 24px",
+                fontSize: 15, padding: "16px 24px",
               }}
             >
               <span>request a free proposal</span>

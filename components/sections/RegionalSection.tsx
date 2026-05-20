@@ -1,23 +1,32 @@
 "use client";
 import { useEffect, useRef } from "react";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { gsap } from "@/lib/gsap";
 import { MetaLabel } from "@/components/Primitives";
 import { useIsMobile } from "@/hooks/useIsMobile";
 
+const RegionalMap = dynamic(() => import("@/components/RegionalMap"), { ssr: false });
+
 const MARKETS = [
-  { code: "ksa", name: "Saudi Arabia", capital: "Riyadh · Jeddah · NEOM", x: 50, y: 56 },
-  { code: "uae", name: "United Arab Emirates", capital: "Dubai · Abu Dhabi", x: 67, y: 60 },
-  { code: "qa", name: "Qatar", capital: "Doha", x: 60, y: 52 },
-  { code: "lb", name: "Lebanon", capital: "Beirut", x: 24, y: 30 },
+  { code: "ksa", name: "Saudi Arabia",         capital: "Riyadh · Jeddah · Dammam · NEOM", lat: 24.0,  lng: 45.0,  zoom: 5 },
+  { code: "uae", name: "United Arab Emirates", capital: "Dubai · Abu Dhabi",       lat: 24.4,  lng: 54.6,  zoom: 7 },
+  { code: "qa",  name: "Qatar",                capital: "Doha",                    lat: 25.28, lng: 51.53, zoom: 9 },
+  { code: "lb",  name: "Lebanon",              capital: "Beirut",                  lat: 33.88, lng: 35.85, zoom: 9 },
 ];
 
 export default function RegionalSection() {
-  const isMobile   = useIsMobile();
-  const sectionRef = useRef<HTMLElement>(null);
-  const headingRef = useRef<HTMLDivElement>(null);
-  const marketsRef = useRef<HTMLDivElement>(null);
-  const mapRef = useRef<HTMLDivElement>(null);
+  const isMobile    = useIsMobile();
+  const sectionRef  = useRef<HTMLElement>(null);
+  const headingRef  = useRef<HTMLDivElement>(null);
+  const marketsRef  = useRef<HTMLDivElement>(null);
+  const mapRef      = useRef<HTMLDivElement>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const leafletMap  = useRef<any>(null);
+
+  const flyToMarket = (lat: number, lng: number, zoom: number) => {
+    leafletMap.current?.flyTo([lat, lng], zoom, { animate: true, duration: 1.4 });
+  };
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -138,10 +147,13 @@ export default function RegionalSection() {
         {/* Markets list */}
         <div ref={marketsRef} style={{ display: "flex", flexDirection: "column" }}>
           {MARKETS.map((m, i) => (
-            <Link
+            <div
               key={m.code}
               data-market
-              href={`/contact?country=${encodeURIComponent(m.name)}#proposal`}
+              role="button"
+              tabIndex={0}
+              onClick={() => flyToMarket(m.lat, m.lng, m.zoom)}
+              onKeyDown={(e) => e.key === "Enter" && flyToMarket(m.lat, m.lng, m.zoom)}
               style={{
                 display: "grid",
                 gridTemplateColumns: "auto 1fr",
@@ -150,20 +162,19 @@ export default function RegionalSection() {
                 gap: "clamp(16px, 2vw, 32px)",
                 borderTop: "1px solid var(--rule-on-dark)",
                 cursor: "pointer",
-                transition: "padding 280ms cubic-bezier(.6,0,.2,1), color 280ms",
-                textDecoration: "none",
+                transition: "padding-left 280ms cubic-bezier(.6,0,.2,1), color 280ms",
                 color: "var(--dust-white)",
               }}
               onMouseEnter={(e) => {
-                (e.currentTarget as HTMLAnchorElement).style.paddingLeft = "12px";
-                (e.currentTarget as HTMLAnchorElement).style.color = "var(--crimson-bloom)";
+                (e.currentTarget as HTMLDivElement).style.paddingLeft = "12px";
+                (e.currentTarget as HTMLDivElement).style.color = "var(--crimson-bloom)";
               }}
               onMouseLeave={(e) => {
-                (e.currentTarget as HTMLAnchorElement).style.paddingLeft = "0";
-                (e.currentTarget as HTMLAnchorElement).style.color = "var(--dust-white)";
+                (e.currentTarget as HTMLDivElement).style.paddingLeft = "0";
+                (e.currentTarget as HTMLDivElement).style.color = "var(--dust-white)";
               }}
             >
-              {/* Code — capability-name style */}
+              {/* Code */}
               <span style={{
                 fontFamily: "var(--font-display)",
                 fontSize: "clamp(13px, 1.2vw, 17px)",
@@ -176,7 +187,7 @@ export default function RegionalSection() {
                 {m.code.toUpperCase()} · 0{i + 1}
               </span>
 
-              {/* Name + city */}
+              {/* Name + city + contact link */}
               <span>
                 <span style={{
                   display: "block",
@@ -201,88 +212,25 @@ export default function RegionalSection() {
                   {m.capital}
                 </span>
               </span>
-            </Link>
+            </div>
           ))}
           <div style={{ borderTop: "1px solid var(--rule-on-dark)" }} />
         </div>
 
         {/* Map — hidden on mobile */}
-        <div
-          ref={mapRef}
-          style={{ display: isMobile ? "none" : undefined, position: "relative", aspectRatio: "1", border: "1px solid var(--rule-on-dark)", background: "var(--abyssal-black)", padding: 24 }}
-        >
-          {/* Grid background */}
+        {!isMobile && (
           <div
+            ref={mapRef}
             style={{
-              position: "absolute",
-              inset: 0,
-              backgroundImage: "linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px) 0 0/ 8.333% 100%, linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px) 0 0/ 100% 8.333%",
+              position: "relative",
+              aspectRatio: "1",
+              border: "1px solid var(--rule-on-dark)",
+              overflow: "hidden",
             }}
-          />
-          <div style={{ position: "relative", fontFamily: "var(--font-support)", fontSize: 10, letterSpacing: "0.16em", textTransform: "lowercase", color: "var(--fg-muted-on-dark)", display: "flex", justifyContent: "space-between" }}>
-            <span>map / gcc + lev</span>
-            <span>04 markets</span>
+          >
+            <RegionalMap onReady={(m) => { leafletMap.current = m; }} />
           </div>
-
-          {/* Abstract land outlines */}
-          <svg viewBox="0 0 100 100" preserveAspectRatio="none" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", opacity: 0.16 }}>
-            <path d="M18,28 Q22,25 26,29 Q30,32 32,30 Q34,28 36,30 L34,36 Q32,40 30,42 L24,46 L20,40 L18,32 Z" fill="none" stroke="#FBF9F9" strokeWidth="0.4" />
-            <path d="M40,40 L62,42 Q72,42 76,46 L84,50 Q88,54 84,60 Q80,68 72,72 L60,72 L52,68 L46,60 L42,52 Q40,46 40,40 Z" fill="none" stroke="#FBF9F9" strokeWidth="0.4" />
-          </svg>
-
-          {/* Connecting arcs — purple */}
-          <svg viewBox="0 0 100 100" preserveAspectRatio="none" style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }}>
-            <path d="M24,30 Q40,18 50,56" fill="none" stroke="var(--veil-becoming)" strokeWidth="0.4" strokeDasharray="1 1" opacity="0.8" />
-            <path d="M50,56 Q56,50 60,52" fill="none" stroke="var(--veil-becoming)" strokeWidth="0.4" strokeDasharray="1 1" opacity="0.8" />
-            <path d="M50,56 Q60,58 67,60" fill="none" stroke="var(--veil-becoming)" strokeWidth="0.4" strokeDasharray="1 1" opacity="0.8" />
-          </svg>
-
-          {/* Market pins — purple */}
-          {MARKETS.map((m) => (
-            <span
-              key={m.code}
-              data-name={m.name.toLowerCase()}
-              style={{
-                position: "absolute",
-                width: 14,
-                height: 14,
-                background: "var(--veil-becoming)",
-                borderRadius: "50%",
-                boxShadow: "0 0 0 6px color-mix(in oklab, var(--veil-becoming) 30%, transparent)",
-                transform: "translate(-50%, -50%)",
-                left: `${m.x}%`,
-                top: `${m.y}%`,
-              }}
-            >
-              <span
-                style={{
-                  position: "absolute",
-                  left: 22,
-                  top: "50%",
-                  transform: "translateY(-50%)",
-                  fontFamily: "var(--font-support)",
-                  fontSize: 11,
-                  letterSpacing: "0.12em",
-                  textTransform: "lowercase",
-                  color: "var(--dust-white)",
-                  whiteSpace: "nowrap",
-                }}
-              >
-                {m.name.toLowerCase()}
-              </span>
-              <span
-                style={{
-                  position: "absolute",
-                  inset: -6,
-                  border: "1px solid var(--veil-becoming)",
-                  borderRadius: "50%",
-                  opacity: 0.5,
-                  animation: "ring 2.4s ease-out infinite",
-                }}
-              />
-            </span>
-          ))}
-        </div>
+        )}
       </div>
     </section>
   );

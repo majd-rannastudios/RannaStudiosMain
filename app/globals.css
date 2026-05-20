@@ -153,6 +153,10 @@ button { font-family: inherit; }
 .btn-rs:hover::before { transform: translateY(0); }
 .btn-rs:hover { color: var(--dust-white); border-color: var(--burnt-horizon); }
 
+/* Used on transparent/light navbar — keeps color in CSS so hover can override inline styles */
+.btn-rs-on-light { color: var(--burnt-horizon); }
+.btn-rs-on-light:hover { color: var(--dust-white); }
+
 .btn-rs.solid {
   background: var(--burnt-horizon);
   border-color: var(--burnt-horizon);
@@ -204,7 +208,10 @@ button { font-family: inherit; }
 .cta-link-dark:hover + .cta-underline { background: var(--dust-white); }
 
 /* ---- Logo marquee ---- */
-@keyframes marquee { to { transform: translateX(-50%); } }
+@keyframes marquee {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-50%, 0, 0); }
+}
 
 /* ---- Ticker scroll ---- */
 @keyframes ticker-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
@@ -256,6 +263,10 @@ button { font-family: inherit; }
 }
 .post-body li { margin-bottom: 8px; }
 .post-body a { color: var(--burnt-horizon); text-decoration: underline; }
+
+/* Hide the nav CTA button when the viewport is too narrow to fit it without wrapping */
+.nav-cta { white-space: nowrap; }
+@media (max-width: 1000px) { .nav-cta { display: none !important; } }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

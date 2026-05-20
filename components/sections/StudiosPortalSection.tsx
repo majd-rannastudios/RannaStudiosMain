@@ -155,8 +155,8 @@ export default function StudiosPortalSection() {
         <div
           style={{
             position: "sticky",
-            top: 0,
-            height: "100vh",
+            top: "var(--header-h, 62px)",
+            height: "calc(100vh - var(--header-h, 62px))",
             backgroundColor: studio.bg,
             transition: "background-color 480ms ease",
             overflow: "hidden",

@@ -50,27 +50,34 @@ function CountUp({ value, plus = false }: { value: number; plus?: boolean }) {
 }
 
 const LOGOS = [
-  { file: "f1.png",           label: "Formula 1 SAGP" },
-  { file: "fifa_cwc.png",     label: "FIFA Club World Cup" },
-  { file: "neom.png",         label: "NEOM" },
-  { file: "wef.png",          label: "World Economic Forum" },
-  { file: "dakar.png",        label: "Dakar Rally" },
-  { file: "diriyah.png",      label: "Diriyah Season" },
-  { file: "extreme_e.png",    label: "Extreme E" },
-  { file: "pfl.png",          label: "PFL" },
-  { file: "tantora.png",      label: "Winter at Tantora" },
-  { file: "smf.png",          label: "Saudi Media Forum" },
-  { file: "alula.png",        label: "AlUla" },
-  { file: "riyadh_combat.png",label: "Riyadh Combat Games" },
+  { file: "f1.png",           label: "Formula 1 STC Saudi Arabian Grand Prix" },
+  { file: "wta.png",          label: "WTA Finals Riyadh" },
   { file: "saudi_games.png",  label: "Saudi Games" },
-  { file: "formula_e.png",    label: "Formula E" },
+  { file: "joulat_riyadh.png",label: "Joulat Al-Riyadh" },
+  { file: "extreme_e.png",    label: "Extreme E" },
+  { file: "rolls_royce.png",  label: "Rolls Royce" },
+  { file: "fifa_cwc.png",     label: "FIFA Club World Cup" },
+  { file: "dakar.png",        label: "Dakar Rally" },
+  { file: "neom.png",         label: "NEOM" },
+  { file: "range_rover.webp", label: "Range Rover" },
+  { file: "formula_e.png",    label: "ABB Formula E" },
+  { file: "beesline.png",     label: "Beesline" },
+  { file: "ims.png",          label: "International MICE Summit" },
+  { file: "riyadh_combat.png",label: "Riyadh 2023 World Combat Games" },
+  { file: "wef.png",          label: "World Economic Forum" },
+  { file: "smf.png",          label: "Saudi Media Forum" },
+  { file: "pfl.png",          label: "Professional Fighters League" },
+  { file: "tantora.png",      label: "Winter at Tantora" },
+  { file: "riyadh25.png",     label: "Riyadh 2025 — Islamic Solidarity Games" },
+  { file: "diriyah.png",      label: "Diriyah Season" },
+  { file: "alula.png",        label: "AlUla Camel Cup" },
+  { file: "jeddah_season.png",label: "Jeddah Season" },
   { file: "byblos.png",       label: "Byblos International Festival" },
-  { file: "zuhair_murad.png", label: "Zuhair Murad" },
 ];
 
 const STATS: { v: number | string; plus?: boolean; k: string }[] = [
   { v: 55,     plus: true,  k: "Events Delivered" },
-  { v: "10+",  plus: false, k: "Combined Team Experience" },
+  { v: "10+",  plus: false, k: "Years of Combined Team Experience" },
   { v: 4,      plus: false, k: "Studios" },
   { v: "500K+",plus: false, k: "Event Attendees" },
 ];
@@ -273,6 +280,7 @@ export default function CredibilitySection() {
               gap: "clamp(40px, 6vw, 96px)",
               width: "max-content",
               animation: "marquee 40s linear infinite",
+              willChange: "transform",
             }}
           >
             {[...LOGOS, ...LOGOS].map((logo, i) => (
@@ -290,7 +298,7 @@ export default function CredibilitySection() {
                   alt={logo.label}
                   width={240}
                   height={128}
-                  style={{ height: "clamp(80px, 9vw, 128px)", width: "auto", maxWidth: 240, objectFit: "contain", opacity: 0.55, filter: "grayscale(1)" }}
+                  style={{ height: "clamp(80px, 9vw, 128px)", width: "auto", maxWidth: 240, objectFit: "contain", opacity: 0.55, filter: "grayscale(1)", mixBlendMode: "multiply" }}
                 />
               </div>
             ))}

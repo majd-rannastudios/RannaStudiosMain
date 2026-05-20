@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 const STUDIOS = [
   {
@@ -76,6 +77,7 @@ const STUDIOS = [
 export default function StudiosServicesSection() {
   const [active, setActive] = useState(0);
   const activeRef = useRef(0);
+  const isMobile = useIsMobile();
 
   const studio = STUDIOS[active];
   const tc   = studio.textDark ? "var(--pitch-black)"   : "var(--dust-white)";
@@ -118,8 +120,8 @@ export default function StudiosServicesSection() {
       <div
         style={{
           position: "sticky",
-          top: 0,
-          height: "100vh",
+          top: isMobile ? "var(--header-h, 62px)" : 0,
+          height: isMobile ? "calc(100vh - var(--header-h, 62px))" : "100vh",
           backgroundColor: studio.bg,
           transition: "background-color 480ms ease",
           overflow: "hidden",
@@ -195,7 +197,7 @@ export default function StudiosServicesSection() {
             href="/contact"
             className="btn-rs"
             style={{
-              fontSize: 11,
+              fontSize: 15,
               padding: "10px 18px",
               borderColor: tc,
               color: tc,
