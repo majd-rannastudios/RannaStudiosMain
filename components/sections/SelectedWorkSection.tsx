@@ -328,7 +328,7 @@ const CASES: Case[] = [
     name: "ISG Gala Dinner",
     desc: "Entertainment management for the Islamic Games Gala Dinner — greeting entertainment, live performance programming, and general entertainment delivery, creating a welcoming and engaging guest experience for athletes, delegates, and VIP attendees.",
     tint: "linear-gradient(160deg, rgba(8,0,53,0.55) 0%, rgba(227,80,10,0.35) 100%)",
-    media: ["/cases/isg-gala/isg-gala-1.jpg", "/cases/isg-gala/isg-gala-2.jpg", "/cases/isg-gala/isg-gala-3.jpg"],
+    media: ["/cases/isg-gala/isg-gala-4-compressed.mp4", "/cases/isg-gala/isg-gala-1.jpg", "/cases/isg-gala/isg-gala-2.jpg", "/cases/isg-gala/isg-gala-3.jpg"],
     specs: [
       { k: "location", v: "Riyadh, Saudi Arabia" },
       { k: "year",     v: "2025" },
