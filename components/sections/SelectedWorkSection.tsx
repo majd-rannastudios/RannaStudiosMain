@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { MetaLabel, Reveal, Lz } from "@/components/Primitives";
 import { useIsMobile } from "@/hooks/useIsMobile";
 
@@ -343,6 +343,20 @@ const CASES: Case[] = [
 function CaseCarousel({ c, i }: { c: Case; i: number }) {
   const [idx, setIdx] = useState(0);
   const total = c.media.length;
+  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+
+  useEffect(() => {
+    videoRefs.current.forEach((v, j) => {
+      if (!v) return;
+      if (j === idx) {
+        v.currentTime = 0;
+        v.play().catch(() => {});
+      } else {
+        v.pause();
+      }
+    });
+  }, [idx]);
+
   const prev = () => setIdx((idx - 1 + total) % total);
   const next = () => setIdx((idx + 1) % total);
 
@@ -384,8 +398,8 @@ function CaseCarousel({ c, i }: { c: Case; i: number }) {
         isVideo(src) ? (
           <video
             key={j}
+            ref={(el) => { videoRefs.current[j] = el; }}
             src={src}
-            autoPlay
             muted
             loop
             playsInline
