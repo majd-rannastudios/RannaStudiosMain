@@ -296,7 +296,7 @@ const CASES: Case[] = [
     name: "SIFI — Team Building",
     desc: "Team building activation delivered for SIFI — a private corporate event featuring interactive engagement activities, group challenges, and on-site event management designed to strengthen collaboration and employee engagement.",
     tint: "linear-gradient(160deg, rgba(10,10,30,0.65) 0%, rgba(40,10,60,0.5) 100%)",
-    media: ["/cases/sifi/sifi-1.jpg", "/cases/sifi/sifi-2.mp4", "/cases/sifi/sifi-3.mp4"],
+    media: ["/cases/sifi/sifi-2.mp4", "/cases/sifi/sifi-3.mp4", "/cases/sifi/sifi-1.jpg"],
     specs: [
       { k: "location", v: "Riyadh, Saudi Arabia" },
       { k: "year",     v: "2026" },
@@ -328,7 +328,7 @@ const CASES: Case[] = [
     name: "ISG Gala Dinner",
     desc: "Entertainment management for the Islamic Games Gala Dinner — greeting entertainment, live performance programming, and general entertainment delivery, creating a welcoming and engaging guest experience for athletes, delegates, and VIP attendees.",
     tint: "linear-gradient(160deg, rgba(8,0,53,0.55) 0%, rgba(227,80,10,0.35) 100%)",
-    media: ["/cases/isg-gala/isg-gala-1.jpg", "/cases/isg-gala/isg-gala-2.jpg", "/cases/isg-gala/isg-gala-3.jpg", "/cases/isg-gala/isg-gala-4.mp4"],
+    media: ["/cases/isg-gala/isg-gala-1.jpg", "/cases/isg-gala/isg-gala-2.jpg", "/cases/isg-gala/isg-gala-3.jpg"],
     specs: [
       { k: "location", v: "Riyadh, Saudi Arabia" },
       { k: "year",     v: "2025" },
@@ -346,7 +346,9 @@ function CaseCarousel({ c, i }: { c: Case; i: number }) {
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
 
   useEffect(() => {
-    videoRefs.current.forEach((v, j) => {
+    c.media.forEach((src, j) => {
+      if (!isVideo(src)) return;
+      const v = videoRefs.current[j];
       if (!v) return;
       if (j === idx) {
         v.currentTime = 0;
@@ -355,7 +357,7 @@ function CaseCarousel({ c, i }: { c: Case; i: number }) {
         v.pause();
       }
     });
-  }, [idx]);
+  }, [idx, c.media]);
 
   const prev = () => setIdx((idx - 1 + total) % total);
   const next = () => setIdx((idx + 1) % total);
@@ -403,6 +405,7 @@ function CaseCarousel({ c, i }: { c: Case; i: number }) {
             muted
             loop
             playsInline
+            preload="auto"
             aria-hidden={j !== idx}
             style={{
               position: "absolute",
