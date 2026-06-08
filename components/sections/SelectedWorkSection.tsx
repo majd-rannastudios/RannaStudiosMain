@@ -1,5 +1,5 @@
 "use client";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useMemo } from "react";
 import { MetaLabel, Reveal, Lz } from "@/components/Primitives";
 import { useIsMobile } from "@/hooks/useIsMobile";
 
@@ -341,23 +341,49 @@ const CASES: Case[] = [
 ];
 
 function CaseCarousel({ c, i }: { c: Case; i: number }) {
+  type PhotoItem = { src: string; mIdx: number };
+  type Slide =
+    | { kind: "video"; src: string; mIdx: number }
+    | { kind: "photos"; items: PhotoItem[] };
+
+  // Videos are solo slides; consecutive photos are grouped into pairs
+  const slides = useMemo<Slide[]>(() => {
+    const result: Slide[] = [];
+    let j = 0;
+    while (j < c.media.length) {
+      const src = c.media[j];
+      if (isVideo(src)) {
+        result.push({ kind: "video", src, mIdx: j });
+        j++;
+      } else {
+        const items: PhotoItem[] = [{ src, mIdx: j }];
+        if (j + 1 < c.media.length && !isVideo(c.media[j + 1])) {
+          items.push({ src: c.media[j + 1], mIdx: j + 1 });
+          j += 2;
+        } else {
+          j++;
+        }
+        result.push({ kind: "photos", items });
+      }
+    }
+    return result;
+  }, [c.media]);
+
   const [idx, setIdx] = useState(0);
-  const total = c.media.length;
+  const total = slides.length;
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
 
   useEffect(() => {
+    const active = slides[idx];
     c.media.forEach((src, j) => {
       if (!isVideo(src)) return;
       const v = videoRefs.current[j];
       if (!v) return;
-      if (j === idx) {
-        v.currentTime = 0;
-        v.play().catch(() => {});
-      } else {
-        v.pause();
-      }
+      const isActive = active?.kind === "video" && active.mIdx === j;
+      if (isActive) { v.currentTime = 0; v.play().catch(() => {}); }
+      else { v.pause(); }
     });
-  }, [idx, c.media]);
+  }, [idx, slides, c.media]);
 
   const prev = () => setIdx((idx - 1 + total) % total);
   const next = () => setIdx((idx + 1) % total);
@@ -386,58 +412,47 @@ function CaseCarousel({ c, i }: { c: Case; i: number }) {
   };
 
   return (
-    <div
-      style={{
-        position: "relative",
-        aspectRatio: "16 / 10",
-        overflow: "hidden",
-        background: "var(--abyssal-black)",
-        order: 1,
-      }}
-    >
-      {/* Media — photos and videos, stacked, fade between them */}
-      {c.media.map((src, j) =>
-        isVideo(src) ? (
-          <video
-            key={j}
-            ref={(el) => { videoRefs.current[j] = el; }}
-            src={src}
-            muted
-            loop
-            playsInline
-            preload="auto"
-            aria-hidden={j !== idx}
-            style={{
-              position: "absolute",
-              inset: 0,
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-              objectPosition: "center",
-              opacity: j === idx ? 1 : 0,
-              transition: "opacity 420ms cubic-bezier(.6,0,.2,1)",
-            }}
-          />
-        ) : (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            key={j}
-            src={src}
-            alt={j === 0 ? c.name : ""}
-            aria-hidden={j !== 0}
-            style={{
-              position: "absolute",
-              inset: 0,
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-              objectPosition: "center",
-              opacity: j === idx ? 1 : 0,
-              transition: "opacity 420ms cubic-bezier(.6,0,.2,1)",
-            }}
-          />
-        )
-      )}
+    <div style={{ position: "relative", aspectRatio: "16 / 10", overflow: "hidden", background: "var(--abyssal-black)", order: 1 }}>
+
+      {/* Slides — each fades in/out */}
+      {slides.map((slide, si) => (
+        <div
+          key={si}
+          style={{
+            position: "absolute",
+            inset: 0,
+            display: "flex",
+            opacity: si === idx ? 1 : 0,
+            transition: "opacity 420ms cubic-bezier(.6,0,.2,1)",
+          }}
+        >
+          {slide.kind === "video" ? (
+            <video
+              ref={(el) => { videoRefs.current[slide.mIdx] = el; }}
+              src={slide.src}
+              muted loop playsInline preload="auto"
+              style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }}
+            />
+          ) : (
+            slide.items.map(({ src, mIdx }, pi) => (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                key={pi}
+                src={src}
+                alt={mIdx === 0 ? c.name : ""}
+                style={{
+                  flex: 1,
+                  width: `${100 / slide.items.length}%`,
+                  height: "100%",
+                  objectFit: "contain",
+                  objectPosition: "center",
+                  borderLeft: pi > 0 ? "1px solid rgba(255,255,255,0.08)" : undefined,
+                }}
+              />
+            ))
+          )}
+        </div>
+      ))}
 
       {/* Brand tint */}
       <div style={{ position: "absolute", inset: 0, background: c.tint, pointerEvents: "none", zIndex: 1 }} />
@@ -465,77 +480,31 @@ function CaseCarousel({ c, i }: { c: Case; i: number }) {
       {/* Prev / Next arrows */}
       {total > 1 && (
         <>
-          <button
-            onClick={prev}
-            style={{ ...btnStyle, left: 16 }}
+          <button onClick={prev} style={{ ...btnStyle, left: 16 }}
             onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(0,0,0,0.7)"; }}
             onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(0,0,0,0.45)"; }}
-            aria-label="Previous photo"
-          >
-            ←
-          </button>
-          <button
-            onClick={next}
-            style={{ ...btnStyle, right: 16 }}
+            aria-label="Previous">←</button>
+          <button onClick={next} style={{ ...btnStyle, right: 16 }}
             onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(0,0,0,0.7)"; }}
             onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(0,0,0,0.45)"; }}
-            aria-label="Next photo"
-          >
-            →
-          </button>
+            aria-label="Next">→</button>
         </>
       )}
 
-      {/* Counter + dot indicators */}
-      {total > 0 && (
-        <div
-          style={{
-            position: "absolute",
-            bottom: 16,
-            left: 0,
-            right: 0,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: 8,
-            zIndex: 4,
-          }}
-        >
-          {c.media.map((_: string, j: number) => (
-            <button
-              key={j}
-              onClick={() => setIdx(j)}
-              aria-label={`Photo ${j + 1}`}
-              style={{
-                width: 6,
-                height: 6,
-                background: j === idx ? "var(--dust-white)" : "rgba(255,255,255,0.3)",
-                border: 0,
-                padding: 0,
-                cursor: "pointer",
-                transform: "rotate(45deg)",
-                transition: "background 200ms, transform 200ms",
-                flexShrink: 0,
-              }}
+      {/* Dot indicators */}
+      {total > 1 && (
+        <div style={{ position: "absolute", bottom: 16, left: 0, right: 0, display: "flex", alignItems: "center", justifyContent: "center", gap: 8, zIndex: 4 }}>
+          {slides.map((_, si) => (
+            <button key={si} onClick={() => setIdx(si)} aria-label={`Slide ${si + 1}`}
+              style={{ width: 6, height: 6, background: si === idx ? "var(--dust-white)" : "rgba(255,255,255,0.3)", border: 0, padding: 0, cursor: "pointer", transform: "rotate(45deg)", transition: "background 200ms", flexShrink: 0 }}
             />
           ))}
         </div>
       )}
 
-      {/* Photo counter */}
-      {total > 0 && (
-        <div
-          style={{
-            position: "absolute",
-            bottom: 14,
-            right: 20,
-            zIndex: 4,
-            fontFamily: "var(--font-support)",
-            fontSize: 10,
-            letterSpacing: "0.14em",
-            color: "rgba(255,255,255,0.5)",
-          }}
-        >
+      {/* Slide counter */}
+      {total > 1 && (
+        <div style={{ position: "absolute", bottom: 14, right: 20, zIndex: 4, fontFamily: "var(--font-support)", fontSize: 10, letterSpacing: "0.14em", color: "rgba(255,255,255,0.5)" }}>
           {String(idx + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
         </div>
       )}
