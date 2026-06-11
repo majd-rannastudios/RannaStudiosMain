@@ -201,26 +201,6 @@ export default function NavSection() {
         </nav>
       )}
 
-      {/* ── Desktop CTA ───────────────────────────────────────── */}
-      {!isMobile && (
-        <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
-          <Link
-            href="/contact"
-            className={`btn-rs nav-cta${!isScrolledOrInner ? " btn-rs-on-light" : ""}`}
-            style={{
-              fontSize: 15, fontWeight: 700, padding: "10px 18px",
-              background: isScrolledOrInner ? "rgba(8,0,53,0.4)" : "transparent",
-              borderColor: isScrolledOrInner ? "rgba(255,255,255,0.5)" : "var(--burnt-horizon)",
-              ...(isScrolledOrInner ? { color: "var(--dust-white)" } : {}),
-              textDecoration: "none",
-              transition: "background 320ms cubic-bezier(.6,0,.2,1), border-color 320ms, color 320ms",
-            }}
-          >
-            <span>request a free proposal</span>{" "}
-            <span style={{ opacity: 0.7 }}>→</span>
-          </Link>
-        </div>
-      )}
 
       {/* ── Mobile hamburger — 3 brand diamonds ─────────────── */}
       {isMobile && (
@@ -391,21 +371,6 @@ export default function NavSection() {
             Contact
           </Link>
 
-          {/* CTA */}
-          <div style={{ paddingTop: 36 }}>
-            <Link
-              href="/contact"
-              onClick={() => setMenuOpen(false)}
-              className="btn-rs"
-              style={{
-                display: "flex", justifyContent: "center", textDecoration: "none",
-                fontSize: 15, padding: "16px 24px",
-              }}
-            >
-              <span>request a free proposal</span>
-              <span style={{ opacity: 0.7, marginLeft: 12 }}>→</span>
-            </Link>
-          </div>
         </div>
       )}
     </>
