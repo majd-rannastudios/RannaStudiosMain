@@ -277,29 +277,32 @@ export default function CredibilitySection() {
             style={{
               display: "flex",
               alignItems: "center",
-              gap: "clamp(40px, 6vw, 96px)",
               width: "max-content",
               animation: "marquee 40s linear infinite",
               willChange: "transform",
             }}
           >
-            {[...LOGOS, ...LOGOS].map((logo, i) => (
+            {[0, 1].map((track) => (
               <div
-                key={i}
+                key={track}
                 style={{
                   display: "inline-flex",
                   alignItems: "center",
-                  justifyContent: "center",
+                  gap: "clamp(40px, 6vw, 96px)",
+                  paddingRight: "clamp(40px, 6vw, 96px)",
                   flexShrink: 0,
                 }}
               >
-                <Image
-                  src={`/logos/${logo.file}`}
-                  alt={logo.label}
-                  width={240}
-                  height={128}
-                  style={{ height: "clamp(80px, 9vw, 128px)", width: "auto", maxWidth: 240, objectFit: "contain", opacity: 0.55, filter: "grayscale(1)", mixBlendMode: "multiply" }}
-                />
+                {LOGOS.map((logo, i) => (
+                  <Image
+                    key={i}
+                    src={`/logos/${logo.file}`}
+                    alt={logo.label}
+                    width={240}
+                    height={128}
+                    style={{ height: "clamp(80px, 9vw, 128px)", width: "auto", maxWidth: 240, objectFit: "contain", opacity: 0.55, filter: "grayscale(1)", mixBlendMode: "multiply" }}
+                  />
+                ))}
               </div>
             ))}
           </div>

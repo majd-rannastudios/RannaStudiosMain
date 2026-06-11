@@ -32,7 +32,6 @@ export default function NavSection() {
   const pathname        = usePathname();
   const isHomePage      = pathname === "/";
   const isScrolledOrInner = scrolled || !isHomePage;
-  const logoFilter      = isScrolledOrInner ? "brightness(0) invert(1)" : "none";
 
   function isActive(href: string) {
     if (href === "/") return pathname === "/";
@@ -104,15 +103,23 @@ export default function NavSection() {
     >
       {/* ── Logo ─────────────────────────────────────────────── */}
       <Link href="/" style={{ display: "inline-flex", alignItems: "center", gap: 12, zIndex: 101, position: "relative" }}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/logo.png"
-          alt="Ranna Studios"
+        <div
+          role="img"
+          aria-label="Ranna Studios"
           style={{
             height: isMobile ? (scrolled ? 36 : 48) : (scrolled ? 70 : 108),
-            width: "auto",
-            filter: menuOpen ? "brightness(0) invert(1)" : logoFilter,
-            transition: "height 320ms cubic-bezier(.6,0,.2,1), filter 320ms cubic-bezier(.6,0,.2,1)",
+            aspectRatio: "5263 / 2959",
+            flexShrink: 0,
+            WebkitMaskImage: "url('/logo.png')",
+            WebkitMaskRepeat: "no-repeat",
+            WebkitMaskSize: "contain",
+            WebkitMaskPosition: "center",
+            maskImage: "url('/logo.png')",
+            maskRepeat: "no-repeat",
+            maskSize: "contain",
+            maskPosition: "center",
+            background: (menuOpen || isScrolledOrInner) ? "var(--dust-white)" : "var(--pitch-black)",
+            transition: "height 320ms cubic-bezier(.6,0,.2,1), background 320ms cubic-bezier(.6,0,.2,1)",
           }}
         />
       </Link>
