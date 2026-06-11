@@ -10,12 +10,9 @@ const PROJECT_TYPES = [
 ];
 
 const TIMELINES = ["< 30 days", "1 – 3 months", "3 – 6 months", "6+ months", "Multi-year"];
-const AUDIENCES = ["< 500", "500 – 5,000", "5,000 – 50,000", "50,000 – 200,000", "200,000+"];
-
 export default function ContactSection() {
   const [type, setType] = useState("Activation");
   const [timeline, setTimeline] = useState("3 – 6 months");
-  const [audience, setAudience] = useState("5,000 – 50,000");
   const [whatsapp, setWhatsapp] = useState(true);
   const [submitted, setSubmitted] = useState(false);
   const [location, setLocation] = useState("");
@@ -88,13 +85,8 @@ export default function ContactSection() {
             <em style={{ fontStyle: "normal", color: "var(--burnt-horizon)" }}>free</em>{" "}
             proposal.
           </h2>
-          <p style={{ fontSize: "clamp(16px, 1.2vw, 19px)", lineHeight: 1.5, color: "var(--fg-muted-on-light)", maxWidth: "48ch" }}>
-            Tell us about your project and our team will come back with an initial creative direction
-            tailored to your audience, goals, and experience strategy.
-          </p>
-          <p style={{ fontFamily: "var(--font-support)", fontSize: 12, letterSpacing: "0.04em", color: "var(--ember-dawn)", marginTop: 24, maxWidth: "42ch", lineHeight: 1.6, borderLeft: "1px solid var(--ember-dawn)", paddingLeft: 16 }}>
-            Creative ideation and proposal development are part of the process —
-            you&apos;ll receive considered direction, not a price list.
+          <p style={{ fontSize: "clamp(15px, 1.1vw, 17px)", lineHeight: 1.5, color: "var(--fg-muted-on-light)", maxWidth: "44ch" }}>
+            Tell us about your project and we&apos;ll come back with a tailored direction — not a price list.
           </p>
 
           <div style={{ marginTop: 40, display: "flex", flexDirection: "column", gap: 1, background: "var(--rule-on-light)" }}>
@@ -172,13 +164,6 @@ export default function ContactSection() {
                 <label style={{ fontFamily: "var(--font-support)", fontSize: 10, letterSpacing: "0.18em", textTransform: "lowercase", color: "var(--fg-muted-on-light)" }}>timeline<span style={{ opacity: 0.4 }}>_</span></label>
                 <select value={timeline} onChange={(e) => setTimeline(e.target.value)} style={{ ...inputStyle, appearance: "none", cursor: "pointer" }}>
                   {TIMELINES.map((t) => <option key={t} style={{ background: "var(--dust-white)", color: "var(--pitch-black)" }}>{t}</option>)}
-                </select>
-              </div>
-
-              <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                <label style={{ fontFamily: "var(--font-support)", fontSize: 10, letterSpacing: "0.18em", textTransform: "lowercase", color: "var(--fg-muted-on-light)" }}>estimated audience<span style={{ opacity: 0.4 }}>_</span></label>
-                <select value={audience} onChange={(e) => setAudience(e.target.value)} style={{ ...inputStyle, appearance: "none", cursor: "pointer" }}>
-                  {AUDIENCES.map((t) => <option key={t} style={{ background: "var(--dust-white)", color: "var(--pitch-black)" }}>{t}</option>)}
                 </select>
               </div>
 

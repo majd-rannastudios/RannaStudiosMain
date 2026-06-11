@@ -44,29 +44,19 @@ export default function WhoWeAreSection() {
         <Reveal as="div" delay={120}>
           <p
             style={{
-              fontSize: "clamp(20px, 1.7vw, 26px)",
-              lineHeight: 1.4,
+              fontSize: "clamp(18px, 1.6vw, 24px)",
+              lineHeight: 1.5,
               color: "var(--pitch-black)",
               fontWeight: 400,
-              marginBottom: 28,
+              marginBottom: 32,
               borderLeft: "2px solid var(--burnt-horizon)",
               paddingLeft: 20,
+              maxWidth: "56ch",
             }}
           >
-            Ranna Studios is a <strong>multidisciplinary studio network</strong> — not a full-service
-            agency. We design, build, and operate high-impact experiences for the people, programs,
-            and platforms that define the region.
-          </p>
-          <p style={{ fontSize: "clamp(16px, 1.3vw, 19px)", lineHeight: 1.55, margin: "0 0 20px", maxWidth: "56ch", color: "color-mix(in oklab, var(--pitch-black) 80%, var(--dust-white))" }}>
-            Activations, creative direction, entertainment technology, and production execution operate
-            as four specialized studios under one roof. Together they deliver experiences that engage
-            audiences and operate seamlessly at scale — from a single VIP moment to a multi-month
-            destination program.
-          </p>
-          <p style={{ fontSize: "clamp(16px, 1.3vw, 19px)", lineHeight: 1.55, margin: "0 0 20px", maxWidth: "56ch", color: "color-mix(in oklab, var(--pitch-black) 80%, var(--dust-white))" }}>
-            Our work begins with creative ambition and is held to operational discipline. Concepts that
-            could only happen here. Operations that hold under stadium-grade scrutiny. Systems that
-            outlive the activation.
+            Ranna Studios is a multidisciplinary studio network built to design, produce, and operate
+            the region&apos;s most ambitious experiences — from sports mega-events to brand activations,
+            delivered by a team with deep creative and operational expertise across the GCC.
           </p>
 
           <div

@@ -51,6 +51,17 @@ export default function AboutPage() {
             experiences.
           </h1>
 
+          <div style={{ marginTop: 40, display: "flex", gap: 12, flexWrap: "wrap" }}>
+            <a
+              href="/portfolio.pdf"
+              download
+              className="btn-rs"
+              style={{ textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 10 }}
+            >
+              <span>download portfolio</span>
+              <span style={{ opacity: 0.7 }}>↓</span>
+            </a>
+          </div>
         </div>
       </section>
 
