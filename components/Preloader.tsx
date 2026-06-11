@@ -6,6 +6,14 @@ export default function Preloader() {
   const [phase, setPhase] = useState<"loading" | "fading" | "done">("loading");
 
   useEffect(() => {
+    // Only run once per browser session
+    if (sessionStorage.getItem("ranna:preloaded")) {
+      setPhase("done");
+      window.dispatchEvent(new CustomEvent("ranna:heroReady"));
+      return;
+    }
+    sessionStorage.setItem("ranna:preloaded", "1");
+
     let rafId: number;
     const start = performance.now();
     const dur = 1100;
@@ -82,6 +90,20 @@ export default function Preloader() {
         {String(pct)}
       </div>
 
+      {/* Logo — centered under the counter */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/logo.png"
+        alt="Ranna Studios"
+        style={{
+          marginTop: "clamp(24px, 3vw, 40px)",
+          height: 44,
+          width: "auto",
+          filter: "brightness(0) invert(1)",
+          opacity: 0.7,
+        }}
+      />
+
       {/* Progress bar */}
       <div
         style={{
@@ -103,22 +125,6 @@ export default function Preloader() {
           }}
         />
       </div>
-
-      {/* Logo — bottom right */}
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src="/logo.png"
-        alt="Ranna Studios"
-        style={{
-          position: "absolute",
-          bottom: 28,
-          right: "clamp(20px, 5vw, 88px)",
-          height: 48,
-          width: "auto",
-          filter: "brightness(0) invert(1)",
-          opacity: 0.7,
-        }}
-      />
 
       {/* Label — bottom left */}
       <div
