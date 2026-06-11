@@ -247,13 +247,13 @@ export default function CredibilitySection() {
             fontWeight: 700,
             letterSpacing: "-0.04em",
             lineHeight: 0.92,
-            color: "var(--pitch-black)",
+            color: "var(--ember-dawn)",
             margin: "0 0 clamp(40px, 6vw, 80px)",
             textAlign: "center",
             textTransform: "uppercase",
           }}
         >
-          {[["Trusted", "by"], ["the", "region's"], ["biggest", "events"]].map((lineWords, li) => (
+          {[["Trusted", "by"], ["the", "biggest"], ["events"]].map((lineWords, li) => (
             <span key={li} style={{ display: "flex", gap: "0.28em", justifyContent: "center", lineHeight: 1.0, overflow: "hidden" }}>
               {lineWords.map((w, wi) => (
                 <span key={wi} style={{ display: "inline-block", overflow: "hidden", lineHeight: 1.05 }}>

@@ -152,10 +152,10 @@ export default function RotatingStatementSection() {
             margin: 0,
           }}
         >
-          We don&apos;t manufacture events.{" "}
           <span style={{ color: "rgba(255,255,255,0.4)" }}>
-            We engineer moments that define regions.
-          </span>
+            We don&apos;t manufacture events.
+          </span>{" "}
+          We engineer moments that define regions.
         </p>
       </div>
     </section>
