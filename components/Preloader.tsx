@@ -92,17 +92,17 @@ export default function Preloader() {
         {String(pct)}
       </div>
 
-      {/* Logo — centered under the counter */}
+      {/* Logo — same visual weight as the counter */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src="/logo.png"
         alt="Ranna Studios"
         style={{
-          marginTop: "clamp(24px, 3vw, 40px)",
-          height: 44,
-          width: "auto",
+          marginTop: "clamp(16px, 2vw, 28px)",
+          width: "clamp(200px, 52vw, 580px)",
+          height: "auto",
           filter: "brightness(0) invert(1)",
-          opacity: 0.7,
+          opacity: 0.85,
         }}
       />
 

@@ -220,7 +220,7 @@ export default function CredibilitySection() {
                 fontSize: "clamp(28px, 3.5vw, 52px)",
                 fontWeight: 700,
                 letterSpacing: "-0.02em",
-                color: "var(--pitch-black)",
+                color: "var(--burnt-horizon)",
                 textDecoration: "none",
               }}
             >
@@ -247,7 +247,7 @@ export default function CredibilitySection() {
             fontWeight: 700,
             letterSpacing: "-0.04em",
             lineHeight: 0.92,
-            color: "var(--ember-dawn)",
+            color: "var(--pitch-black)",
             margin: "0 0 clamp(40px, 6vw, 80px)",
             textAlign: "center",
             textTransform: "uppercase",

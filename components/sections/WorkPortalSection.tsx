@@ -145,26 +145,28 @@ function WorkCard({ c, index }: { c: typeof PREVIEW[number]; index: number }) {
           </div>
         </div>
 
-        {/* Hover arrow */}
+        {/* 3 diagonal brand diamonds */}
         <div
           style={{
             position: "absolute",
             top: 52,
             right: 16,
-            width: 32,
-            height: 32,
-            background: "rgba(0,0,0,0.45)",
-            border: "1px solid rgba(255,255,255,0.18)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            fontSize: 14,
-            backdropFilter: "blur(4px)",
-            WebkitBackdropFilter: "blur(4px)",
+            width: 28,
+            height: 28,
             zIndex: 3,
           }}
         >
-          <span style={{ display: "inline-block", width: 8, height: 8, borderRight: "2px solid currentColor", borderTop: "2px solid currentColor", transform: "rotate(45deg)" }} />
+          {([[18, 0], [9, 9], [0, 18]] as const).map(([top, left], i) => (
+            <div key={i} style={{
+              position: "absolute",
+              top,
+              left,
+              width: 7,
+              height: 7,
+              background: "rgba(255,255,255,0.85)",
+              transform: "rotate(45deg)",
+            }} />
+          ))}
         </div>
       </div>
     </Link>
@@ -258,7 +260,7 @@ export default function WorkPortalSection() {
               fontSize: "clamp(28px, 3.8vw, 60px)",
               fontWeight: 700,
               letterSpacing: "-0.03em",
-              color: "var(--pitch-black)",
+              color: "var(--burnt-horizon)",
               textDecoration: "none",
             }}
           >

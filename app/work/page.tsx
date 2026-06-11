@@ -1,9 +1,19 @@
 "use client";
+import { useEffect } from "react";
 import SelectedWorkSection from "@/components/sections/SelectedWorkSection";
 import { MetaLabel } from "@/components/Primitives";
 import Link from "next/link";
 
 export default function WorkPage() {
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (!hash) return;
+    const t = setTimeout(() => {
+      const el = document.querySelector(hash);
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 350);
+    return () => clearTimeout(t);
+  }, []);
   return (
     <main>
       {/* Page hero */}
