@@ -1,18 +1,20 @@
 "use client";
 import { useEffect, useState } from "react";
 
+// Resets on hard reload, survives client-side navigation
+let hasPreloaded = false;
+
 export default function Preloader() {
   const [pct, setPct] = useState(100);
   const [phase, setPhase] = useState<"loading" | "fading" | "done">("loading");
 
   useEffect(() => {
-    // Only run once per browser session
-    if (sessionStorage.getItem("ranna:preloaded")) {
+    if (hasPreloaded) {
       setPhase("done");
       window.dispatchEvent(new CustomEvent("ranna:heroReady"));
       return;
     }
-    sessionStorage.setItem("ranna:preloaded", "1");
+    hasPreloaded = true;
 
     let rafId: number;
     const start = performance.now();
