@@ -1,6 +1,6 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
-import { MetaLabel, Reveal, Lz } from "@/components/Primitives";
+import { MetaLabel, Reveal } from "@/components/Primitives";
 import { useIsMobile } from "@/hooks/useIsMobile";
 
 interface Case {
@@ -374,19 +374,14 @@ function CaseCarousel({ c, i }: { c: Case; i: number }) {
     zIndex: 4,
     width: 36,
     height: 36,
-    background: "rgba(0,0,0,0.45)",
-    border: "1px solid rgba(255,255,255,0.2)",
+    background: "rgba(0,0,0,0.3)",
+    border: "none",
     color: "var(--dust-white)",
-    fontFamily: "var(--font-display)",
-    fontSize: 14,
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
     cursor: "pointer",
-    backdropFilter: "blur(4px)",
-    WebkitBackdropFilter: "blur(4px)",
     transition: "background 180ms",
-    lineHeight: 1,
     padding: 0,
   };
 
@@ -433,43 +428,30 @@ function CaseCarousel({ c, i }: { c: Case; i: number }) {
       {/* Grid texture */}
       <div style={{ position: "absolute", inset: 0, backgroundImage: "linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px) 0 0/ 60px 100%, linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px) 0 0/ 100% 60px", pointerEvents: "none", zIndex: 2 }} />
 
-      {/* Top label bar */}
-      <div style={{ position: "absolute", left: 16, right: 16, top: 16, display: "flex", justifyContent: "space-between", fontFamily: "var(--font-support)", fontSize: 10, letterSpacing: "0.18em", textTransform: "lowercase", color: "rgba(255,255,255,0.75)", zIndex: 4 }}>
-        <span style={{ color: "var(--burnt-horizon)", display: "inline-flex", alignItems: "center", gap: 8 }}>
-          <Lz color="var(--burnt-horizon)" />
-          {c.side || "case"}
-        </span>
-        <span>ranna · {String(i + 1).padStart(3, "0")} / {String(CASES.length).padStart(3, "0")}</span>
-      </div>
-
-      {/* Corner brackets */}
-      <div style={{ position: "absolute", inset: 16, pointerEvents: "none", zIndex: 3 }}>
-        <div style={{ position: "absolute", top: 0, left: 0, width: 16, height: 16, border: "1px solid rgba(255,255,255,0.4)", borderRight: 0, borderBottom: 0 }} />
-        <div style={{ position: "absolute", top: 0, right: 0, width: 16, height: 16, border: "1px solid rgba(255,255,255,0.4)", borderLeft: 0, borderBottom: 0 }} />
-        <div style={{ position: "absolute", bottom: 0, left: 0, width: 16, height: 16, border: "1px solid rgba(255,255,255,0.4)", borderRight: 0, borderTop: 0 }} />
-        <div style={{ position: "absolute", bottom: 0, right: 0, width: 16, height: 16, border: "1px solid rgba(255,255,255,0.4)", borderLeft: 0, borderTop: 0 }} />
-      </div>
-
       {/* Prev / Next arrows */}
       {total > 1 && (
         <>
-          <button onClick={prev} style={{ ...btnStyle, left: 16 }}
-            onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(0,0,0,0.7)"; }}
-            onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(0,0,0,0.45)"; }}
-            aria-label="Previous">←</button>
-          <button onClick={next} style={{ ...btnStyle, right: 16 }}
-            onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(0,0,0,0.7)"; }}
-            onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(0,0,0,0.45)"; }}
-            aria-label="Next">→</button>
+          <button onClick={prev} style={{ ...btnStyle, left: 0 }}
+            onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(0,0,0,0.55)"; }}
+            onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(0,0,0,0.3)"; }}
+            aria-label="Previous">
+            <span style={{ display: "inline-block", width: 8, height: 8, borderLeft: "2px solid currentColor", borderBottom: "2px solid currentColor", transform: "rotate(45deg)", marginLeft: 4 }} />
+          </button>
+          <button onClick={next} style={{ ...btnStyle, right: 0 }}
+            onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(0,0,0,0.55)"; }}
+            onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(0,0,0,0.3)"; }}
+            aria-label="Next">
+            <span style={{ display: "inline-block", width: 8, height: 8, borderRight: "2px solid currentColor", borderTop: "2px solid currentColor", transform: "rotate(45deg)", marginRight: 4 }} />
+          </button>
         </>
       )}
 
       {/* Dot indicators */}
       {total > 1 && (
-        <div style={{ position: "absolute", bottom: 16, left: 0, right: 0, display: "flex", alignItems: "center", justifyContent: "center", gap: 8, zIndex: 4 }}>
+        <div style={{ position: "absolute", bottom: 14, left: 0, right: 0, display: "flex", alignItems: "center", justifyContent: "center", gap: 8, zIndex: 4 }}>
           {c.media.map((_: string, j: number) => (
             <button key={j} onClick={() => setIdx(j)} aria-label={`Item ${j + 1}`}
-              style={{ width: 6, height: 6, background: j === idx ? "var(--dust-white)" : "rgba(255,255,255,0.3)", border: 0, padding: 0, cursor: "pointer", transform: "rotate(45deg)", transition: "background 200ms", flexShrink: 0 }}
+              style={{ width: 6, height: 6, borderRadius: "50%", background: j === idx ? "var(--dust-white)" : "rgba(255,255,255,0.35)", border: 0, padding: 0, cursor: "pointer", transition: "background 200ms", flexShrink: 0 }}
             />
           ))}
         </div>
@@ -552,8 +534,7 @@ export default function SelectedWorkSection() {
             {/* Info */}
             <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", gap: 24, paddingTop: 8, order: 2 }}>
               <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-                <span style={{ fontFamily: "var(--font-support)", fontSize: 11, letterSpacing: "0.16em", textTransform: "lowercase", color: "var(--burnt-horizon)", display: "inline-flex", gap: 14, alignItems: "center" }}>
-                  <span style={{ width: 28, height: 1, background: "var(--burnt-horizon)", display: "inline-block" }} />
+                <span style={{ fontFamily: "var(--font-support)", fontSize: 11, letterSpacing: "0.16em", textTransform: "lowercase", color: "var(--pitch-black)", opacity: 0.55 }}>
                   {c.super}
                 </span>
                 <h3 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(28px, 3.6vw, 52px)", fontWeight: 500, letterSpacing: "-0.02em", lineHeight: 1.0, margin: 0, color: "var(--pitch-black)" }}>

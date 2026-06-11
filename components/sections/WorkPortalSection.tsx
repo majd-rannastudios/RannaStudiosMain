@@ -101,8 +101,8 @@ function WorkCard({ c, index }: { c: typeof PREVIEW[number]; index: number }) {
             zIndex: 3,
           }}
         >
-          <span style={{ color: "var(--burnt-horizon)", display: "inline-flex", alignItems: "center", gap: 6 }}>
-            <Lz color="var(--burnt-horizon)" />
+          <span style={{ color: "rgba(255,255,255,0.85)", display: "inline-flex", alignItems: "center", gap: 6 }}>
+            <Lz color="rgba(255,255,255,0.85)" />
             {String(index + 1).padStart(2, "0")}
           </span>
           <span>{c.year}</span>
@@ -126,7 +126,7 @@ function WorkCard({ c, index }: { c: typeof PREVIEW[number]; index: number }) {
               fontSize: 10,
               letterSpacing: "0.16em",
               textTransform: "lowercase",
-              color: "var(--burnt-horizon)",
+              color: "rgba(255,255,255,0.75)",
               marginBottom: 8,
             }}
           >
@@ -164,7 +164,7 @@ function WorkCard({ c, index }: { c: typeof PREVIEW[number]; index: number }) {
             zIndex: 3,
           }}
         >
-          ↗
+          <span style={{ display: "inline-block", width: 8, height: 8, borderRight: "2px solid currentColor", borderTop: "2px solid currentColor", transform: "rotate(45deg)" }} />
         </div>
       </div>
     </Link>
