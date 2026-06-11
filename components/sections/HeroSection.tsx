@@ -3,6 +3,10 @@ import { useEffect, useRef } from "react";
 import { gsap } from "@/lib/gsap";
 import { useIsMobile } from "@/hooks/useIsMobile";
 
+const YT_VIDEO_ID  = "WiMQ5cDpKNE";
+const START_SEC    = 5;
+const END_OFFSET   = 5; // stop this many seconds before the end
+
 export default function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const line1Ref   = useRef<HTMLSpanElement>(null);
@@ -10,6 +14,74 @@ export default function HeroSection() {
   const videoRef   = useRef<HTMLDivElement>(null);
   const isMobile   = useIsMobile();
 
+  /* ── YouTube IFrame API player ── */
+  useEffect(() => {
+    let player: any;
+    let poll: ReturnType<typeof setInterval>;
+
+    const initPlayer = () => {
+      player = new (window as any).YT.Player("yt-hero-player", {
+        videoId: YT_VIDEO_ID,
+        playerVars: {
+          autoplay:       1,
+          mute:           1,
+          loop:           1,
+          playlist:       YT_VIDEO_ID,
+          controls:       0,
+          showinfo:       0,
+          rel:            0,
+          iv_load_policy: 3,
+          modestbranding: 1,
+          playsinline:    1,
+          start:          START_SEC,
+          disablekb:      1,
+          fs:             0,
+        },
+        events: {
+          onReady: (e: any) => {
+            e.target.playVideo();
+            poll = setInterval(() => {
+              const dur = player?.getDuration?.() ?? 0;
+              const cur = player?.getCurrentTime?.() ?? 0;
+              if (dur > 0 && cur >= dur - END_OFFSET) {
+                player.seekTo(START_SEC, true);
+              }
+            }, 500);
+          },
+          onStateChange: (e: any) => {
+            const YT = (window as any).YT;
+            if (e.data === YT?.PlayerState?.ENDED) {
+              player.seekTo(START_SEC, true);
+              player.playVideo();
+            }
+          },
+        },
+      });
+    };
+
+    const win = window as any;
+    if (win.YT?.Player) {
+      initPlayer();
+    } else {
+      if (!document.querySelector('script[src*="youtube.com/iframe_api"]')) {
+        const tag = document.createElement("script");
+        tag.src = "https://www.youtube.com/iframe_api";
+        document.head.appendChild(tag);
+      }
+      const prev = win.onYouTubeIframeAPIReady;
+      win.onYouTubeIframeAPIReady = () => {
+        prev?.();
+        initPlayer();
+      };
+    }
+
+    return () => {
+      clearInterval(poll);
+      try { player?.destroy(); } catch {}
+    };
+  }, []);
+
+  /* ── entrance animation ── */
   useEffect(() => {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ paused: true });
@@ -106,19 +178,17 @@ export default function HeroSection() {
             position: "relative",
           }}
         >
-          {/* Video */}
+          {/* Video — IFrame API target, oversized to hide YouTube chrome */}
           <div style={{ height: "100%", position: "relative", overflow: "hidden" }}>
-            <iframe
-              src="https://www.youtube.com/embed/WiMQ5cDpKNE?autoplay=1&mute=1&loop=1&playlist=WiMQ5cDpKNE&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&playsinline=1&enablejsapi=1&start=4&disablekb=1&fs=0"
-              allow="autoplay; encrypted-media"
+            <div
+              id="yt-hero-player"
               style={{
                 position: "absolute",
-                top: "-5%",
-                left: "-5%",
-                width: "110%",
-                height: "110%",
+                top: "-10%",
+                left: "-10%",
+                width: "120%",
+                height: "120%",
                 border: "none",
-                display: "block",
                 pointerEvents: "none",
               }}
             />
