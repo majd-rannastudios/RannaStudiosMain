@@ -107,17 +107,17 @@ export default function NavSection() {
           role="img"
           aria-label="Ranna Studios"
           style={{
-            height: isMobile ? (scrolled ? 36 : 48) : (scrolled ? 70 : 108),
-            aspectRatio: "5263 / 2959",
+            height: isMobile ? (scrolled ? 32 : 42) : (scrolled ? 56 : 80),
+            aspectRatio: "3934 / 1084",
             flexShrink: 0,
-            WebkitMaskImage: "url('/logo.png')",
+            WebkitMaskImage: "url('/logo-nav.png')",
             WebkitMaskRepeat: "no-repeat",
             WebkitMaskSize: "contain",
-            WebkitMaskPosition: "center",
-            maskImage: "url('/logo.png')",
+            WebkitMaskPosition: "center left",
+            maskImage: "url('/logo-nav.png')",
             maskRepeat: "no-repeat",
             maskSize: "contain",
-            maskPosition: "center",
+            maskPosition: "center left",
             background: (menuOpen || isScrolledOrInner) ? "var(--dust-white)" : "var(--pitch-black)",
             transition: "height 320ms cubic-bezier(.6,0,.2,1), background 320ms cubic-bezier(.6,0,.2,1)",
           }}

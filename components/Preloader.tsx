@@ -95,13 +95,12 @@ export default function Preloader() {
       {/* Wordmark — centered under the counter */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src="/logo.png"
+        src="/logo-nav.png"
         alt="Ranna Studios"
         style={{
-          marginTop: "clamp(20px, 3vw, 40px)",
-          width: "clamp(180px, 42vw, 480px)",
+          marginTop: "clamp(16px, 2.5vw, 32px)",
+          width: "clamp(160px, 30vw, 340px)",
           height: "auto",
-          filter: "brightness(0) invert(1)",
           opacity: 0.9,
         }}
       />
