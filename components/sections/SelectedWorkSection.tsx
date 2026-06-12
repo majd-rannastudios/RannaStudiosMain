@@ -23,7 +23,7 @@ const CASES: Case[] = [
     name: "Formula 1 STC Saudi Arabian Grand Prix",
     desc: "Fan zone activations and entertainment programming across the Jeddah Corniche Circuit — interactive zones, live artist bookings, and four-day operational delivery for the Kingdom's marquee motorsport weekend.",
     tint: "linear-gradient(160deg, rgba(8,0,53,0.45) 0%, rgba(227,80,10,0.35) 100%)",
-    media: ["/cases/f1/sagp-1.jpg", "/cases/f1/sagp-2.jpg", "/cases/f1/sagp-3.jpg"],
+    media: ["/cases/f1/f1-1.jpg", "/cases/f1/f1-2.jpg", "/cases/f1/f1-3.jpg"],
     specs: [
       { k: "location", v: "Jeddah, Saudi Arabia" },
       { k: "year",     v: "2025" },
@@ -40,7 +40,7 @@ const CASES: Case[] = [
     name: "Rolls Royce — Phantom 100",
     desc: "A curated anniversary evening celebrating 100 years of the Phantom — bespoke entertainment, spatial décor design, on-ground staffing, and full event build for an ultra-exclusive Riyadh gathering.",
     tint: "linear-gradient(160deg, rgba(15,15,15,0.55) 0%, rgba(63,24,77,0.45) 100%)",
-    media: ["/cases/rolls-royce/rollsroyce-1.jpg", "/cases/rolls-royce/rollsroyce-2.jpg"],
+    media: ["/cases/rolls-royce/rr-1.mp4", "/cases/rolls-royce/rr-2.mp4", "/cases/rolls-royce/rr-3.mp4", "/cases/rolls-royce/rr-1.jpg", "/cases/rolls-royce/rr-2.jpg"],
     specs: [
       { k: "location", v: "Riyadh, Saudi Arabia" },
       { k: "year",     v: "2025" },
@@ -56,7 +56,7 @@ const CASES: Case[] = [
     name: "The Saudi Games '24",
     desc: "Fan activations and entertainment programming across multiple sport venues for the Saudi Games — engagement zones, crowd programming, and multi-venue operational support over 17 competition days.",
     tint: "linear-gradient(160deg, rgba(63,24,77,0.5) 0%, rgba(201,27,122,0.35) 100%)",
-    media: ["/cases/saudi-games/sg-1.jpg", "/cases/saudi-games/sg-2.jpg", "/cases/saudi-games/sg-3.jpg", "/cases/saudi-games/sg-4.jpg"],
+    media: ["/cases/saudi-games/sg-1.jpg", "/cases/saudi-games/sg-2.jpg", "/cases/saudi-games/sg-3.jpg", "/cases/saudi-games/sg-4.jpg", "/cases/saudi-games/sg-5.jpg"],
     specs: [
       { k: "location", v: "Riyadh, Saudi Arabia" },
       { k: "year",     v: "2024" },
@@ -88,7 +88,7 @@ const CASES: Case[] = [
     name: "Islamic Solidarity Games — Athlete Village",
     desc: "Activations and entertainment programming within the Athlete Village for the 25th Islamic Solidarity Games — 25 days of programming designed to welcome and engage competing athletes from 57 nations.",
     tint: "linear-gradient(160deg, rgba(8,0,53,0.5) 0%, rgba(227,80,10,0.3) 100%)",
-    media: ["/cases/isg/isg-1.jpg", "/cases/isg/isg-2.jpg", "/cases/isg/isg-3.jpg", "/cases/isg/isg-4.jpg"],
+    media: ["/cases/isg/isg-1.jpg", "/cases/isg/isg-2.jpg", "/cases/isg/isg-3.jpg", "/cases/isg/isg-4.jpg", "/cases/isg/isg-5.jpg"],
     specs: [
       { k: "location", v: "Riyadh, Saudi Arabia" },
       { k: "year",     v: "2025" },
@@ -104,7 +104,7 @@ const CASES: Case[] = [
     name: "Range Rover — Gala Dinner",
     desc: "An exclusive brand gala dinner for Range Rover — curated entertainment, bespoke décor design, and custom product integration for an invite-only Riyadh audience.",
     tint: "linear-gradient(160deg, rgba(15,15,15,0.5) 0%, rgba(63,24,77,0.45) 100%)",
-    media: ["/cases/range-rover/rr-1.jpg", "/cases/range-rover/rr-2.jpg", "/cases/range-rover/rr-3.jpg"],
+    media: ["/cases/range-rover/rv-1.mp4", "/cases/range-rover/rv-2.mp4", "/cases/range-rover/rv-1.jpg", "/cases/range-rover/rv-2.jpg", "/cases/range-rover/rv-3.jpg"],
     specs: [
       { k: "location", v: "Riyadh, Saudi Arabia" },
       { k: "year",     v: "2025" },
@@ -120,7 +120,7 @@ const CASES: Case[] = [
     name: "The 1001 Seasons of Elie Saab",
     desc: "Project management and consultancy for a landmark Riyadh Season exhibition — a three-month cultural showcase of Elie Saab's creative legacy, delivered within one of the Kingdom's most prestigious seasonal programmes.",
     tint: "linear-gradient(160deg, rgba(30,15,50,0.6) 0%, rgba(90,45,100,0.4) 100%)",
-    media: [],
+    media: ["/cases/elie-saab/es-1.jpg", "/cases/elie-saab/es-2.jpg", "/cases/elie-saab/es-3.png", "/cases/elie-saab/es-5.jpg"],
     specs: [
       { k: "location", v: "Riyadh, Saudi Arabia" },
       { k: "year",     v: "2024" },
@@ -136,7 +136,7 @@ const CASES: Case[] = [
     name: "Riyadh Tours & Saudi Jump",
     desc: "Month-long activations and entertainment delivery for Riyadh Season's equestrian and motorsport programming — audience engagement across multiple event days and a city-wide entertainment footprint.",
     tint: "linear-gradient(160deg, rgba(20,8,60,0.55) 0%, rgba(227,80,10,0.4) 100%)",
-    media: ["/cases/riyadh-tours/rt-1.jpg", "/cases/riyadh-tours/rt-2.jpg", "/cases/riyadh-tours/rt-3.jpg", "/cases/riyadh-tours/rt-4.jpg"],
+    media: ["/cases/riyadh-tours/rt-1.jpg", "/cases/riyadh-tours/rt-2.jpg", "/cases/riyadh-tours/rt-3.jpg", "/cases/riyadh-tours/rt-4.jpg", "/cases/riyadh-tours/rt-5.jpg"],
     specs: [
       { k: "location", v: "Riyadh, Saudi Arabia" },
       { k: "year",     v: "2025" },
@@ -168,7 +168,7 @@ const CASES: Case[] = [
     name: "Saudi Arabia Snooker Masters",
     desc: "Nine days of fan activations and entertainment programming surrounding the Saudi Arabia Snooker Masters in Jeddah — audience engagement zones and on-ground operational support for a growing international sporting event.",
     tint: "linear-gradient(160deg, rgba(8,30,55,0.6) 0%, rgba(10,80,120,0.4) 100%)",
-    media: [],
+    media: ["/cases/snooker/snooker-1.jpg", "/cases/snooker/snooker-2.jpg", "/cases/snooker/snooker-3.jpg"],
     specs: [
       { k: "location", v: "Jeddah, Saudi Arabia" },
       { k: "year",     v: "2025" },
@@ -184,7 +184,7 @@ const CASES: Case[] = [
     name: "Saudi Media Forum 2026",
     desc: "Consultancy and project management dashboard delivery for the Saudi Media Forum — operational planning support and a custom digital management tool built to coordinate a large-scale national media industry gathering.",
     tint: "linear-gradient(160deg, rgba(8,0,53,0.6) 0%, rgba(40,20,80,0.45) 100%)",
-    media: [],
+    media: ["/cases/smf-2026/smf-1.jpg", "/cases/smf-2026/smf-2.jpg", "/cases/smf-2026/smf-3.jpg"],
     specs: [
       { k: "location", v: "Riyadh, Saudi Arabia" },
       { k: "year",     v: "2025 – 2026" },
@@ -200,7 +200,7 @@ const CASES: Case[] = [
     name: "Beesline — Supercharged Serums (Riyadh)",
     desc: "Full-service pop-up event management for Beesline's Supercharged Serums product launch in Riyadh — project management consultancy, catering delivery, and photo and video production across three activation days.",
     tint: "linear-gradient(160deg, rgba(15,40,15,0.55) 0%, rgba(30,100,40,0.35) 100%)",
-    media: ["/cases/beesline-riyadh/br-1.jpg", "/cases/beesline-riyadh/br-2.jpg", "/cases/beesline-riyadh/br-3.jpg", "/cases/beesline-riyadh/br-4.jpg"],
+    media: ["/cases/beesline-riyadh/br-1.jpg", "/cases/beesline-riyadh/br-2.jpg", "/cases/beesline-riyadh/br-3.jpg", "/cases/beesline-riyadh/br-4.jpg", "/cases/beesline-riyadh/br-5.jpg"],
     specs: [
       { k: "location", v: "Riyadh, Saudi Arabia" },
       { k: "year",     v: "2025" },
@@ -216,7 +216,7 @@ const CASES: Case[] = [
     name: "Beesline — Supercharged Serums (Jeddah)",
     desc: "Logistics management and project management consultancy for the Jeddah leg of Beesline's Supercharged Serums pop-up tour — replicating the Riyadh activation format with city-specific operational planning.",
     tint: "linear-gradient(160deg, rgba(15,40,15,0.5) 0%, rgba(40,110,50,0.35) 100%)",
-    media: [],
+    media: ["/cases/beesline-jeddah/bj-1.jpg", "/cases/beesline-jeddah/bj-2.jpg", "/cases/beesline-jeddah/bj-3.jpg", "/cases/beesline-jeddah/bj-4.jpg"],
     specs: [
       { k: "location", v: "Jeddah, Saudi Arabia" },
       { k: "year",     v: "2026" },
@@ -232,7 +232,7 @@ const CASES: Case[] = [
     name: "Azzal Street Food Market",
     desc: "Consultancy and advisory for the Azzal Street Food Market concept — strategic guidance on event format, vendor curation, and operational structure for a community-driven food and culture destination in Riyadh.",
     tint: "linear-gradient(160deg, rgba(50,25,10,0.6) 0%, rgba(120,60,20,0.4) 100%)",
-    media: [],
+    media: ["/cases/azzal/azzal-1.png", "/cases/azzal/azzal-2.png"],
     specs: [
       { k: "location", v: "Riyadh, Saudi Arabia" },
       { k: "year",     v: "2025" },
@@ -248,7 +248,7 @@ const CASES: Case[] = [
     name: "Riyadh Motorshow",
     desc: "Staffing management for the Riyadh Motorshow — end-to-end staff deployment across a three-day automotive showcase, covering floor staff, coordinators, and on-ground support for a major national consumer event.",
     tint: "linear-gradient(160deg, rgba(20,20,20,0.65) 0%, rgba(60,60,70,0.5) 100%)",
-    media: [],
+    media: ["/cases/motorshow/ms-1.jpg", "/cases/motorshow/ms-2.jpg", "/cases/motorshow/ms-3.jpg"],
     specs: [
       { k: "location", v: "Riyadh, Saudi Arabia" },
       { k: "year",     v: "2025" },
@@ -264,7 +264,7 @@ const CASES: Case[] = [
     name: "AFC Asian Cup 2027 — Draw Ceremony",
     desc: "Guest experience and VIP hospitality services for the AFC Asian Cup 2027 Draw Ceremony in Riyadh — curating arrival, welcome, and engagement moments for international stakeholders at a milestone event in Asian football.",
     tint: "linear-gradient(160deg, rgba(8,0,53,0.6) 0%, rgba(180,140,0,0.3) 100%)",
-    media: [],
+    media: ["/cases/afc27/afc-1.mp4", "/cases/afc27/afc-2.mp4", "/cases/afc27/afc-3.mp4", "/cases/afc27/afc-4.mp4", "/cases/afc27/afc-1.jpg", "/cases/afc27/afc-3.jpg"],
     specs: [
       { k: "location", v: "Riyadh, Saudi Arabia" },
       { k: "year",     v: "2026" },
@@ -296,7 +296,7 @@ const CASES: Case[] = [
     name: "SIFI — Team Building",
     desc: "Team building activation delivered for SIFI — a private corporate event featuring interactive engagement activities, group challenges, and on-site event management designed to strengthen collaboration and employee engagement.",
     tint: "linear-gradient(160deg, rgba(10,10,30,0.65) 0%, rgba(40,10,60,0.5) 100%)",
-    media: ["/cases/sifi/sifi-2.mp4", "/cases/sifi/sifi-3.mp4", "/cases/sifi/sifi-1.jpg"],
+    media: ["/cases/sifi/sifi-1.mp4", "/cases/sifi/sifi-2.mp4", "/cases/sifi/sifi-3.mp4", "/cases/sifi/sifi-4.mp4", "/cases/sifi/sifi-1.jpg"],
     specs: [
       { k: "location", v: "Riyadh, Saudi Arabia" },
       { k: "year",     v: "2026" },
@@ -312,7 +312,7 @@ const CASES: Case[] = [
     name: "Red Sea Gala Dinner",
     desc: "Customized product design and sourcing for a prestige gala dinner — bespoke branded elements crafted to the ultra-premium standard expected at an international cultural event.",
     tint: "linear-gradient(160deg, rgba(5,25,55,0.6) 0%, rgba(20,80,120,0.4) 100%)",
-    media: [],
+    media: ["/cases/red-sea-gala/rsg-1.jpg", "/cases/red-sea-gala/rsg-2.jpg", "/cases/red-sea-gala/rsg-3.jpg"],
     specs: [
       { k: "location", v: "Dubai, UAE" },
       { k: "year",     v: "2026" },
@@ -328,7 +328,7 @@ const CASES: Case[] = [
     name: "ISG Gala Dinner",
     desc: "Entertainment management for the Islamic Games Gala Dinner — greeting entertainment, live performance programming, and general entertainment delivery, creating a welcoming and engaging guest experience for athletes, delegates, and VIP attendees.",
     tint: "linear-gradient(160deg, rgba(8,0,53,0.55) 0%, rgba(227,80,10,0.35) 100%)",
-    media: ["/cases/isg-gala/isg-gala-4-compressed.mp4", "/cases/isg-gala/isg-gala-1.jpg", "/cases/isg-gala/isg-gala-2.jpg", "/cases/isg-gala/isg-gala-3.jpg"],
+    media: ["/cases/isg-gala/isg-gala-1.mp4", "/cases/isg-gala/isg-gala-4-compressed.mp4", "/cases/isg-gala/isg-gala-1.jpg", "/cases/isg-gala/isg-gala-2.jpg", "/cases/isg-gala/isg-gala-3.jpg"],
     specs: [
       { k: "location", v: "Riyadh, Saudi Arabia" },
       { k: "year",     v: "2025" },

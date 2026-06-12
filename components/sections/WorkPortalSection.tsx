@@ -333,7 +333,7 @@ export default function WorkPortalSection() {
               fontSize: "clamp(28px, 3.5vw, 52px)",
               fontWeight: 700,
               letterSpacing: "-0.02em",
-              color: "var(--pitch-black)",
+              color: "var(--burnt-horizon)",
               textDecoration: "none",
             }}
           >
