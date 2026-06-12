@@ -92,14 +92,14 @@ export default function Preloader() {
         {String(pct)}
       </div>
 
-      {/* Icon mark — centered under the counter */}
+      {/* Wordmark — centered under the counter */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src="/icon-mark.png"
+        src="/logo.png"
         alt="Ranna Studios"
         style={{
           marginTop: "clamp(20px, 3vw, 40px)",
-          width: "clamp(120px, 28vw, 320px)",
+          width: "clamp(180px, 42vw, 480px)",
           height: "auto",
           filter: "brightness(0) invert(1)",
           opacity: 0.9,

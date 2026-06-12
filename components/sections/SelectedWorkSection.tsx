@@ -423,6 +423,20 @@ function CaseCarousel({ c, i }: { c: Case; i: number }) {
       {/* Grid texture */}
       <div style={{ position: "absolute", inset: 0, backgroundImage: "linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px) 0 0/ 60px 100%, linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px) 0 0/ 100% 60px", pointerEvents: "none", zIndex: 2 }} />
 
+      {/* 3 brand diamonds — top right */}
+      <div style={{ position: "absolute", top: 14, right: 14, width: 22, height: 22, zIndex: 4, pointerEvents: "none" }}>
+        {([[0, 14], [7, 7], [14, 0]] as const).map(([top, left], k) => (
+          <div key={k} style={{ position: "absolute", top, left, width: 7, height: 7, background: "rgba(255,255,255,0.8)", transform: "rotate(45deg)" }} />
+        ))}
+      </div>
+
+      {/* Year — bottom right */}
+      {(() => { const yr = c.specs.find(s => s.k === "year")?.v; return yr ? (
+        <div style={{ position: "absolute", bottom: 14, right: 14, zIndex: 4, fontFamily: "var(--font-support)", fontSize: 10, letterSpacing: "0.16em", color: "rgba(255,255,255,0.7)", pointerEvents: "none" }}>
+          {yr}
+        </div>
+      ) : null; })()}
+
       {/* Prev / Next — orange diamonds */}
       {total > 1 && (
         <>
@@ -437,21 +451,14 @@ function CaseCarousel({ c, i }: { c: Case; i: number }) {
         </>
       )}
 
-      {/* Dot indicators */}
+      {/* Dot indicators — centered bottom, clear of year label */}
       {total > 1 && (
-        <div style={{ position: "absolute", bottom: 14, left: 0, right: 0, display: "flex", alignItems: "center", justifyContent: "center", gap: 8, zIndex: 4 }}>
+        <div style={{ position: "absolute", bottom: 14, left: 0, right: 60, display: "flex", alignItems: "center", justifyContent: "center", gap: 8, zIndex: 4 }}>
           {c.media.map((_: string, j: number) => (
             <button key={j} onClick={() => setIdx(j)} aria-label={`Item ${j + 1}`}
               style={{ width: 6, height: 6, background: j === idx ? "var(--dust-white)" : "rgba(255,255,255,0.35)", border: 0, padding: 0, cursor: "pointer", transform: "rotate(45deg)", transition: "background 200ms", flexShrink: 0 }}
             />
           ))}
-        </div>
-      )}
-
-      {/* Counter */}
-      {total > 1 && (
-        <div style={{ position: "absolute", bottom: 14, right: 20, zIndex: 4, fontFamily: "var(--font-support)", fontSize: 10, letterSpacing: "0.14em", color: "rgba(255,255,255,0.5)" }}>
-          {String(idx + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
         </div>
       )}
     </div>

@@ -82,6 +82,64 @@ const STATS: { v: number | string; plus?: boolean; k: string }[] = [
   { v: "500K+",plus: false, k: "Event Attendees" },
 ];
 
+const LOGO_GAP = 72; // fixed gap in px — stable width for GSAP measurement
+
+function LogoMarquee() {
+  const trackRef = useRef<HTMLDivElement>(null);
+  const setRef   = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const track = trackRef.current;
+    const set   = setRef.current;
+    if (!track || !set) return;
+
+    // Double-RAF so fonts + images have settled before we measure
+    let raf1: number, raf2: number;
+    raf1 = requestAnimationFrame(() => {
+      raf2 = requestAnimationFrame(() => {
+        const w = set.offsetWidth + LOGO_GAP; // one full set + trailing gap
+        if (!w) return;
+        gsap.fromTo(track, { x: 0 }, {
+          x: -w,
+          duration: 40,
+          ease: "none",
+          repeat: -1,
+        });
+      });
+    });
+
+    return () => {
+      cancelAnimationFrame(raf1);
+      cancelAnimationFrame(raf2);
+      gsap.killTweensOf(track);
+    };
+  }, []);
+
+  const logoItem = (logo: typeof LOGOS[number], i: number) => (
+    <Image
+      key={i}
+      src={`/logos/${logo.file}`}
+      alt={logo.label}
+      width={240}
+      height={128}
+      style={{ height: "clamp(80px, 9vw, 128px)", width: "auto", maxWidth: 240, objectFit: "contain", opacity: 0.55, filter: "grayscale(1)", mixBlendMode: "multiply", flexShrink: 0 }}
+    />
+  );
+
+  return (
+    <div ref={trackRef} style={{ display: "inline-flex", alignItems: "center" }}>
+      {/* Set 1 — measured */}
+      <div ref={setRef} style={{ display: "inline-flex", alignItems: "center", gap: LOGO_GAP, paddingRight: LOGO_GAP, flexShrink: 0 }}>
+        {LOGOS.map(logoItem)}
+      </div>
+      {/* Set 2 — identical clone */}
+      <div style={{ display: "inline-flex", alignItems: "center", gap: LOGO_GAP, paddingRight: LOGO_GAP, flexShrink: 0 }}>
+        {LOGOS.map(logoItem)}
+      </div>
+    </div>
+  );
+}
+
 export default function CredibilitySection() {
   const isMobile  = useIsMobile();
   const statsRef  = useRef<HTMLDivElement>(null);
@@ -264,7 +322,7 @@ export default function CredibilitySection() {
           ))}
         </h3>
 
-        {/* Logo carousel */}
+        {/* Logo carousel — GSAP-driven for glitch-free loop */}
         <div
           style={{
             overflow: "hidden",
@@ -273,40 +331,7 @@ export default function CredibilitySection() {
           }}
           aria-hidden="true"
         >
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              width: "max-content",
-              animation: "marquee 40s linear infinite",
-              willChange: "transform",
-            }}
-          >
-            {[0, 1].map((track) => (
-              <div
-                key={track}
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "clamp(40px, 6vw, 96px)",
-                  paddingRight: "clamp(40px, 6vw, 96px)",
-                  flexShrink: 0,
-                }}
-              >
-                {LOGOS.map((logo, i) => (
-                  <Image
-                    key={i}
-                    src={`/logos/${logo.file}`}
-                    alt={logo.label}
-                    width={240}
-                    height={128}
-                    style={{ height: "clamp(80px, 9vw, 128px)", width: "auto", maxWidth: 240, objectFit: "contain", opacity: 0.55, filter: "grayscale(1)", mixBlendMode: "multiply" }}
-                  />
-                ))}
-              </div>
-            ))}
-          </div>
-        </div>
+          <LogoMarquee /></div>
       </div>
     </section>
   );
