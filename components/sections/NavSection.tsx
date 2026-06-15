@@ -19,15 +19,10 @@ const NAV_LINKS = [
 ];
 
 export default function NavSection() {
-  const [scrolled, setScrolled]           = useState(false);
-  const [megaOpen, setMegaOpen]           = useState(false);
-  const [menuOpen, setMenuOpen]           = useState(false);
-  const [studiosExpanded, setStudiosExpanded] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
-  const isMobile       = useIsMobile();
-  const megaRef        = useRef<HTMLDivElement>(null);
-  const studiosTrigger = useRef<HTMLDivElement>(null);
-  const closeMegaTimer  = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const isMobile = useIsMobile();
 
   const pathname        = usePathname();
   const isHomePage      = pathname === "/";
@@ -51,10 +46,7 @@ export default function NavSection() {
   }, []);
 
   // Close mobile menu on navigation
-  useEffect(() => {
-    setMenuOpen(false);
-    setStudiosExpanded(false);
-  }, [pathname]);
+  useEffect(() => { setMenuOpen(false); }, [pathname]);
 
   // Lock body scroll when mobile menu open
   useEffect(() => {
@@ -62,11 +54,7 @@ export default function NavSection() {
     return () => { document.body.style.overflow = ""; };
   }, [menuOpen, isMobile]);
 
-  function openMega()  { if (closeMegaTimer.current)  clearTimeout(closeMegaTimer.current);  setMegaOpen(true); }
-  function closeMega() { closeMegaTimer.current  = setTimeout(() => setMegaOpen(false), 160); }
-
-  const navTop     = scrolled ? 95 : 132;
-  const mobileTop  = scrolled ? 62 : 94;
+  const mobileTop = scrolled ? 62 : 94;
 
   const chevron = (open: boolean, size = 8) => ({
     display: "inline-block" as const,
@@ -127,63 +115,24 @@ export default function NavSection() {
       {/* ── Desktop nav ───────────────────────────────────────── */}
       {!isMobile && (
         <nav style={{ display: "flex", gap: 36, alignItems: "center" }}>
-          {/* Studios mega-menu trigger */}
-          <div ref={studiosTrigger} style={{ position: "relative" }} onMouseEnter={openMega} onMouseLeave={closeMega}>
-            <button
-              style={{
-                fontFamily: "var(--font-support)", fontSize: 15, fontWeight: 700,
-                letterSpacing: "0.12em", textTransform: "lowercase",
-                display: "inline-flex", alignItems: "center", gap: 6,
-                background: "none", border: "none",
-                borderBottom: studiosActive ? "2px solid currentColor" : "2px solid transparent",
-                cursor: "pointer",
-                color: isScrolledOrInner ? "var(--dust-white)" : "var(--ember-dawn)",
-                transition: "color 320ms cubic-bezier(.6,0,.2,1)",
-                padding: 0, paddingBottom: 2,
-              }}
-            >
-              studios
-              <span style={chevron(megaOpen)} />
-            </button>
-
-            <div
-              ref={megaRef}
-              onMouseEnter={openMega}
-              onMouseLeave={closeMega}
-              style={{
-                position: "fixed", top: navTop, left: 0, right: 0,
-                background: "var(--abyssal-black)",
-                borderTop: "1px solid var(--rule-on-dark)",
-                borderBottom: "1px solid var(--rule-on-dark)",
-                padding: "clamp(28px, 3vw, 48px) clamp(20px, 5vw, 88px)",
-                display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 0,
-                transition: "opacity 220ms cubic-bezier(.6,0,.2,1), transform 220ms cubic-bezier(.6,0,.2,1)",
-                opacity: megaOpen ? 1 : 0,
-                transform: megaOpen ? "translateY(0)" : "translateY(-8px)",
-                pointerEvents: megaOpen ? "all" : "none",
-                zIndex: 99,
-              }}
-            >
-              {STUDIOS.map((s, i) => (
-                <Link
-                  key={s.code} href={s.href}
-                  onClick={() => setMegaOpen(false)}
-                  style={{
-                    padding: "20px 24px 20px 20px",
-                    borderRight: i < 3 ? "1px solid var(--rule-on-dark)" : "none",
-                    textDecoration: "none", color: "var(--dust-white)", display: "block",
-                    transition: "background 180ms",
-                  }}
-                  onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = `color-mix(in oklab, ${s.accent} 14%, transparent)`; }}
-                  onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = "transparent"; }}
-                >
-                  <div style={{ fontFamily: "var(--font-support)", fontSize: 10, letterSpacing: "0.18em", color: s.accent, marginBottom: 8 }}>{s.code}</div>
-                  <div style={{ fontFamily: "var(--font-display)", fontSize: 18, fontWeight: 500, letterSpacing: "-0.015em", marginBottom: 8 }}>{s.name}</div>
-                  <div style={{ fontFamily: "var(--font-support)", fontSize: 15, lineHeight: 1.5, color: "var(--fg-muted-on-dark)" }}>{s.desc}</div>
-                </Link>
-              ))}
-            </div>
-          </div>
+          {/* Studios — plain link */}
+          <Link
+            href="/services"
+            style={{
+              fontFamily: "var(--font-support)", fontSize: 15, fontWeight: 700,
+              letterSpacing: "0.12em", textTransform: "lowercase",
+              display: "inline-flex", alignItems: "center",
+              transition: "color 320ms cubic-bezier(.6,0,.2,1)",
+              color: isScrolledOrInner ? "var(--dust-white)" : "var(--ember-dawn)",
+              textDecoration: "none",
+              borderBottom: studiosActive ? "2px solid currentColor" : "2px solid transparent",
+              paddingBottom: 2,
+            }}
+            onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = isScrolledOrInner ? "rgba(255,255,255,0.6)" : "rgba(8,0,53,0.4)"; }}
+            onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = isScrolledOrInner ? "var(--dust-white)" : "var(--ember-dawn)"; }}
+          >
+            studios
+          </Link>
 
           {/* Plain nav links */}
           {NAV_LINKS.map((item) => (
@@ -278,45 +227,20 @@ export default function NavSection() {
             Home
           </Link>
 
-          {/* Studios accordion */}
-          <div style={{ borderBottom: "1px solid var(--rule-on-dark)" }}>
-            <button
-              onClick={() => setStudiosExpanded((e) => !e)}
-              style={{
-                display: "flex", width: "100%", justifyContent: "space-between", alignItems: "center",
-                background: "transparent", border: "none", padding: "20px 0",
-                cursor: "pointer", color: "var(--dust-white)",
-                fontFamily: "var(--font-display)", fontSize: "clamp(26px, 7vw, 36px)",
-                fontWeight: 500, letterSpacing: "-0.025em",
-              }}
-            >
-              Studios
-              <span style={chevron(studiosExpanded, 10)} />
-            </button>
-            <div style={{
-              maxHeight: studiosExpanded ? 400 : 0,
-              overflow: "hidden",
-              transition: "max-height 320ms cubic-bezier(.6,0,.2,1)",
-            }}>
-              {STUDIOS.map((s) => (
-                <Link
-                  key={s.code} href={s.href}
-                  onClick={() => setMenuOpen(false)}
-                  style={{
-                    display: "flex", alignItems: "center", gap: 16,
-                    padding: "14px 0 14px 12px",
-                    borderTop: "1px solid var(--rule-on-dark)",
-                    textDecoration: "none", color: "var(--dust-white)",
-                  }}
-                >
-                  <span style={{ fontFamily: "var(--font-support)", fontSize: 10, letterSpacing: "0.2em", color: s.accent, flexShrink: 0 }}>{s.code}</span>
-                  <span style={{ fontFamily: "var(--font-display)", fontSize: 18, fontWeight: 500, letterSpacing: "-0.01em" }}>{s.name}</span>
-                  <span style={{ marginLeft: "auto", color: s.accent, fontSize: 16 }}>→</span>
-                </Link>
-              ))}
-              <div style={{ height: 12 }} />
-            </div>
-          </div>
+          {/* Studios — plain link */}
+          <Link
+            href="/services" onClick={() => setMenuOpen(false)}
+            style={{
+              display: "block", padding: "20px 0",
+              borderBottom: "1px solid var(--rule-on-dark)",
+              fontFamily: "var(--font-display)", fontSize: "clamp(26px, 7vw, 36px)",
+              fontWeight: 500, letterSpacing: "-0.025em",
+              color: studiosActive ? "var(--ember-dawn)" : "var(--dust-white)",
+              textDecoration: "none",
+            }}
+          >
+            Studios
+          </Link>
 
           {/* Work */}
           <Link

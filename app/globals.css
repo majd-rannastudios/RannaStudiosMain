@@ -222,6 +222,9 @@ button { font-family: inherit; }
   100% { transform: scale(2.6); opacity: 0; }
 }
 
+/* ---- Spin (video loader) ---- */
+@keyframes spin { to { transform: rotate(360deg); } }
+
 /* ---- Scan line ---- */
 @keyframes scan {
   0%   { transform: translateY(0); }

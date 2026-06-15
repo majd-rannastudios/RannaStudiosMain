@@ -76,97 +76,51 @@ function WorkCard({ c, index }: { c: typeof PREVIEW[number]; index: number }) {
             src={c.photo}
             alt={c.name}
             fill
+            priority
             style={{ objectFit: "cover", transformOrigin: "center" }}
-            sizes="(max-width: 768px) 100vw, 33vw"
+            sizes="(max-width: 768px) 50vw, 33vw"
           />
         </div>
 
         {/* Brand tint */}
         <div style={{ position: "absolute", inset: 0, background: c.tint, pointerEvents: "none", zIndex: 1 }} />
 
-        {/* Top label */}
-        <div
-          style={{
-            position: "absolute",
-            top: 16,
-            left: 16,
-            right: 16,
-            display: "flex",
-            justifyContent: "space-between",
-            fontFamily: "var(--font-support)",
-            fontSize: 10,
-            letterSpacing: "0.16em",
-            textTransform: "lowercase",
-            color: "rgba(255,255,255,0.65)",
-            zIndex: 3,
-          }}
-        >
+        {/* Top label — number only */}
+        <div style={{ position: "absolute", top: 16, left: 16, fontFamily: "var(--font-support)", fontSize: 10, letterSpacing: "0.16em", zIndex: 3 }}>
           <span style={{ color: "rgba(255,255,255,0.85)", display: "inline-flex", alignItems: "center", gap: 6 }}>
             <Lz color="rgba(255,255,255,0.85)" />
             {String(index + 1).padStart(2, "0")}
           </span>
-          <span>{c.year}</span>
+        </div>
+
+        {/* 3 brand diamonds — top right corner */}
+        <div style={{ position: "absolute", top: 14, right: 14, width: 22, height: 22, zIndex: 3 }}>
+          {([[0, 14], [7, 7], [14, 0]] as const).map(([top, left], i) => (
+            <div key={i} style={{ position: "absolute", top, left, width: 7, height: 7, background: "rgba(255,255,255,0.85)", transform: "rotate(45deg)" }} />
+          ))}
         </div>
 
         {/* Bottom info */}
         <div
           style={{
             position: "absolute",
-            bottom: 0,
-            left: 0,
-            right: 0,
+            bottom: 0, left: 0, right: 0,
             padding: "clamp(16px, 2.5vw, 28px)",
             background: "linear-gradient(to top, rgba(8,0,53,0.88) 0%, transparent 100%)",
             zIndex: 3,
           }}
         >
-          <div
-            style={{
-              fontFamily: "var(--font-support)",
-              fontSize: 10,
-              letterSpacing: "0.16em",
-              textTransform: "lowercase",
-              color: "rgba(255,255,255,0.75)",
-              marginBottom: 8,
-            }}
-          >
+          <div style={{ fontFamily: "var(--font-support)", fontSize: 10, letterSpacing: "0.16em", textTransform: "lowercase", color: "rgba(255,255,255,0.75)", marginBottom: 8 }}>
             {c.tag}
           </div>
-          <div
-            style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "clamp(16px, 1.8vw, 22px)",
-              fontWeight: 500,
-              letterSpacing: "-0.015em",
-              lineHeight: 1.2,
-            }}
-          >
+          <div style={{ fontFamily: "var(--font-display)", fontSize: "clamp(16px, 1.8vw, 22px)", fontWeight: 500, letterSpacing: "-0.015em", lineHeight: 1.2 }}>
             {c.name}
           </div>
         </div>
 
-        {/* 3 diagonal brand diamonds */}
-        <div
-          style={{
-            position: "absolute",
-            top: 52,
-            right: 16,
-            width: 28,
-            height: 28,
-            zIndex: 3,
-          }}
-        >
-          {([[18, 0], [9, 9], [0, 18]] as const).map(([top, left], i) => (
-            <div key={i} style={{
-              position: "absolute",
-              top,
-              left,
-              width: 7,
-              height: 7,
-              background: "rgba(255,255,255,0.85)",
-              transform: "rotate(45deg)",
-            }} />
-          ))}
+        {/* Year — bottom right */}
+        <div style={{ position: "absolute", bottom: "clamp(16px, 2.5vw, 28px)", right: "clamp(16px, 2.5vw, 28px)", fontFamily: "var(--font-support)", fontSize: 10, letterSpacing: "0.16em", color: "rgba(255,255,255,0.65)", zIndex: 4 }}>
+          {c.year}
         </div>
       </div>
     </Link>

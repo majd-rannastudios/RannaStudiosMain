@@ -342,6 +342,7 @@ const CASES: Case[] = [
 
 function CaseCarousel({ c, i }: { c: Case; i: number }) {
   const [idx, setIdx] = useState(0);
+  const [videoLoading, setVideoLoading] = useState(false);
   const total = c.media.length;
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
   const touchStartX = useRef<number | null>(null);
@@ -351,9 +352,16 @@ function CaseCarousel({ c, i }: { c: Case; i: number }) {
       if (!isVideo(src)) return;
       const v = videoRefs.current[j];
       if (!v) return;
-      if (j === idx) { v.currentTime = 0; v.play().catch(() => {}); }
-      else { v.pause(); }
+      if (j === idx) {
+        v.currentTime = 0;
+        const ready = v.readyState >= 3;
+        setVideoLoading(!ready);
+        v.play().catch(() => {});
+      } else {
+        v.pause();
+      }
     });
+    if (!isVideo(c.media[idx])) setVideoLoading(false);
   }, [idx, c.media]);
 
   const prev = () => setIdx((idx - 1 + total) % total);
@@ -394,6 +402,9 @@ function CaseCarousel({ c, i }: { c: Case; i: number }) {
             ref={(el) => { videoRefs.current[j] = el; }}
             src={src}
             muted loop playsInline preload="auto"
+            onWaiting={() => { if (j === idx) setVideoLoading(true); }}
+            onCanPlay={() => { if (j === idx) setVideoLoading(false); }}
+            onPlaying={() => { if (j === idx) setVideoLoading(false); }}
             style={{
               position: "absolute", inset: 0, width: "100%", height: "100%",
               objectFit: "cover", objectPosition: "center",
@@ -422,6 +433,19 @@ function CaseCarousel({ c, i }: { c: Case; i: number }) {
 
       {/* Grid texture */}
       <div style={{ position: "absolute", inset: 0, backgroundImage: "linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px) 0 0/ 60px 100%, linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px) 0 0/ 100% 60px", pointerEvents: "none", zIndex: 2 }} />
+
+      {/* Video loading indicator */}
+      {videoLoading && (
+        <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", zIndex: 5, pointerEvents: "none" }}>
+          <div style={{
+            width: 18, height: 18,
+            border: "2px solid rgba(255,255,255,0.2)",
+            borderTop: "2px solid rgba(255,255,255,0.85)",
+            borderRadius: "50%",
+            animation: "spin 700ms linear infinite",
+          }} />
+        </div>
+      )}
 
       {/* 3 brand diamonds — top right */}
       <div style={{ position: "absolute", top: 14, right: 14, width: 22, height: 22, zIndex: 4, pointerEvents: "none" }}>
