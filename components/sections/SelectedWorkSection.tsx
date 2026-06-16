@@ -447,13 +447,6 @@ function CaseCarousel({ c, i }: { c: Case; i: number }) {
         </div>
       )}
 
-      {/* 3 brand diamonds — top right */}
-      <div style={{ position: "absolute", top: 14, right: 14, width: 22, height: 22, zIndex: 4, pointerEvents: "none" }}>
-        {([[0, 14], [7, 7], [14, 0]] as const).map(([top, left], k) => (
-          <div key={k} style={{ position: "absolute", top, left, width: 7, height: 7, background: "rgba(255,255,255,0.8)", transform: "rotate(45deg)" }} />
-        ))}
-      </div>
-
       {/* Year — bottom right */}
       {(() => { const yr = c.specs.find(s => s.k === "year")?.v; return yr ? (
         <div style={{ position: "absolute", bottom: 14, right: 14, zIndex: 4, fontFamily: "var(--font-support)", fontSize: 10, letterSpacing: "0.16em", color: "rgba(255,255,255,0.7)", pointerEvents: "none" }}>
