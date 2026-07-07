@@ -66,6 +66,9 @@ export default function TeamSection() {
       </div>
 
       <div
+        tabIndex={isMobile ? 0 : undefined}
+        role={isMobile ? "region" : undefined}
+        aria-label={isMobile ? "Team members (scrollable)" : undefined}
         style={isMobile ? {
           display: "flex",
           overflowX: "auto",

@@ -94,7 +94,7 @@ export default function FooterSection() {
 function FooterCol({ title, links }: { title: string; links: { label: string; href: string }[] }) {
   return (
     <div>
-      <h4
+      <h3
         style={{
           fontFamily: "var(--font-support)",
           fontSize: 11,
@@ -105,7 +105,7 @@ function FooterCol({ title, links }: { title: string; links: { label: string; hr
         }}
       >
         {title}
-      </h4>
+      </h3>
       <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 10 }}>
         {links.map((link) => (
           <li key={link.label}>
