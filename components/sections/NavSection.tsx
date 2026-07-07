@@ -21,6 +21,8 @@ const NAV_LINKS = [
 export default function NavSection() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
 
   const isMobile = useIsMobile();
 
@@ -53,6 +55,38 @@ export default function NavSection() {
     document.body.style.overflow = (isMobile && menuOpen) ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
   }, [menuOpen, isMobile]);
+
+  // Focus trap + Escape-to-close for the mobile dropdown
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    const focusables = panelRef.current?.querySelectorAll<HTMLElement>(
+      'a[href], button, [tabindex]:not([tabindex="-1"])'
+    );
+    focusables?.[0]?.focus();
+
+    function onKeyDown(e: KeyboardEvent) {
+      if (e.key === "Escape") {
+        setMenuOpen(false);
+        triggerRef.current?.focus();
+        return;
+      }
+      if (e.key === "Tab" && focusables && focusables.length > 0) {
+        const first = focusables[0];
+        const last = focusables[focusables.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    }
+
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [menuOpen]);
 
   const mobileTop = scrolled ? 62 : 94;
 
@@ -112,9 +146,10 @@ export default function NavSection() {
         />
       </Link>
 
-      {/* ── Desktop nav ───────────────────────────────────────── */}
-      {!isMobile && (
-        <nav style={{ display: "flex", gap: 36, alignItems: "center" }}>
+      {/* ── Desktop nav — always rendered; CSS (not isMobile) controls visibility
+           so the SSR payload is correct before hydration. See .nav-desktop-links
+           / .nav-mobile-trigger rules in globals.css. ── */}
+      <nav className="nav-desktop-links" style={{ display: "flex", gap: 36, alignItems: "center" }}>
           {/* Studios — plain link */}
           <Link
             href="/services"
@@ -154,45 +189,52 @@ export default function NavSection() {
               {item.label}
             </Link>
           ))}
-        </nav>
-      )}
+      </nav>
 
 
-      {/* ── Mobile hamburger — 3 brand diamonds ─────────────── */}
-      {isMobile && (
-        <button
-          onClick={() => setMenuOpen((o) => !o)}
-          aria-label={menuOpen ? "Close menu" : "Open menu"}
-          style={{
-            background: "transparent", border: "none", cursor: "pointer",
-            padding: "8px 4px", zIndex: 101, position: "relative",
-            display: "flex", alignItems: "center", justifyContent: "center",
-            minWidth: 44, minHeight: 44,
-          }}
-        >
-          {menuOpen ? (
-            <span style={{
-              fontFamily: "var(--font-display)", fontSize: 20, lineHeight: 1,
-              color: "var(--dust-white)", fontWeight: 300,
-            }}>✕</span>
-          ) : (
-            <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
-              {(["var(--ember-dawn)", "var(--burnt-horizon)", "var(--crimson-bloom)"] as const).map((color, i) => (
-                <span key={i} style={{
-                  display: "inline-block", width: 9, height: 9,
-                  background: color, transform: "rotate(45deg)", flexShrink: 0,
-                  transition: "opacity 200ms",
-                }} />
-              ))}
-            </div>
-          )}
-        </button>
-      )}
+      {/* ── Mobile hamburger — 3 brand diamonds — always rendered; CSS hides it
+           at >=768px so the SSR payload always includes a mobile-safe trigger. ── */}
+      <button
+        ref={triggerRef}
+        className="nav-mobile-trigger"
+        onClick={() => setMenuOpen((o) => !o)}
+        aria-label={menuOpen ? "Close menu" : "Open menu"}
+        aria-expanded={menuOpen}
+        aria-controls="mobile-nav-panel"
+        style={{
+          background: "transparent", border: "none", cursor: "pointer",
+          padding: "8px 4px", zIndex: 101, position: "relative",
+          display: "flex", alignItems: "center", justifyContent: "center",
+          minWidth: 44, minHeight: 44,
+        }}
+      >
+        {menuOpen ? (
+          <span style={{
+            fontFamily: "var(--font-display)", fontSize: 20, lineHeight: 1,
+            color: "var(--dust-white)", fontWeight: 300,
+          }}>✕</span>
+        ) : (
+          <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
+            {(["var(--ember-dawn)", "var(--burnt-horizon)", "var(--crimson-bloom)"] as const).map((color, i) => (
+              <span key={i} style={{
+                display: "inline-block", width: 9, height: 9,
+                background: color, transform: "rotate(45deg)", flexShrink: 0,
+                transition: "opacity 200ms",
+              }} />
+            ))}
+          </div>
+        )}
+      </button>
     </header>
 
     {/* ── Mobile full-screen dropdown — outside <header> to prevent backdrop-filter containment ── */}
     {isMobile && (
         <div
+          ref={panelRef}
+          id="mobile-nav-panel"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Mobile navigation"
           style={{
             position: "fixed",
             top: 0,
@@ -224,7 +266,7 @@ export default function NavSection() {
               textDecoration: "none",
             }}
           >
-            Home
+            home
           </Link>
 
           {/* Studios — plain link */}
@@ -239,7 +281,7 @@ export default function NavSection() {
               textDecoration: "none",
             }}
           >
-            Studios
+            studios
           </Link>
 
           {/* Work */}
@@ -254,7 +296,7 @@ export default function NavSection() {
               textDecoration: "none",
             }}
           >
-            Work
+            work
           </Link>
 
           {/* About */}
@@ -269,7 +311,7 @@ export default function NavSection() {
               textDecoration: "none",
             }}
           >
-            About
+            about
           </Link>
 
           {/* News */}
@@ -284,7 +326,7 @@ export default function NavSection() {
               textDecoration: "none",
             }}
           >
-            News
+            news
           </Link>
 
           {/* Contact */}
@@ -299,7 +341,7 @@ export default function NavSection() {
               textDecoration: "none",
             }}
           >
-            Contact
+            contact
           </Link>
 
         </div>

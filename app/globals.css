@@ -271,6 +271,13 @@ button { font-family: inherit; }
 .nav-cta { white-space: nowrap; }
 @media (max-width: 1000px) { .nav-cta { display: none !important; } }
 
+/* Desktop nav vs. mobile hamburger trigger: both are always rendered in the
+   markup (fixing an SSR flash where the desktop nav shipped on every mobile
+   pageview before useIsMobile() resolved client-side) — CSS alone decides
+   which is visible, since that's evaluated at paint time, not after hydration. */
+@media (max-width: 767px) { .nav-desktop-links { display: none !important; } }
+@media (min-width: 768px) { .nav-mobile-trigger { display: none !important; } }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
