@@ -73,7 +73,7 @@ export default function ExperiencesSection() {
             return (
               <a
                 key={i}
-                href="#proposal"
+                href="/contact#proposal"
                 style={{
                   position: "relative",
                   background: `color-mix(in oklab, ${palette.bg} 20%, var(--dust-white))`,
