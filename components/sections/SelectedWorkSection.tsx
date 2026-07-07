@@ -468,9 +468,9 @@ function CaseCarousel({ c, i }: { c: Case; i: number }) {
         </>
       )}
 
-      {/* Dot indicators — centered bottom, clear of year label */}
+      {/* Dot indicators — centered bottom */}
       {total > 1 && (
-        <div style={{ position: "absolute", bottom: 14, left: 0, right: 60, display: "flex", alignItems: "center", justifyContent: "center", gap: 8, zIndex: 4 }}>
+        <div style={{ position: "absolute", bottom: 14, left: 0, right: 0, display: "flex", alignItems: "center", justifyContent: "center", gap: 8, zIndex: 4 }}>
           {c.media.map((_: string, j: number) => (
             <button key={j} onClick={() => setIdx(j)} aria-label={`Item ${j + 1}`}
               style={{ width: 6, height: 6, background: j === idx ? "var(--dust-white)" : "rgba(255,255,255,0.35)", border: 0, padding: 0, cursor: "pointer", transform: "rotate(45deg)", transition: "background 200ms", flexShrink: 0 }}
