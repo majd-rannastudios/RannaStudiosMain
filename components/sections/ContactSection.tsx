@@ -34,7 +34,7 @@ export default function ContactSection() {
     borderBottom: "1px solid var(--rule-on-light)",
     color: "var(--pitch-black)",
     fontFamily: "var(--font-display)",
-    fontSize: 15,
+    fontSize: 16,
     padding: "10px 0",
     outline: "none",
     width: "100%",
@@ -135,41 +135,42 @@ export default function ContactSection() {
           ) : (
             <>
               {[
-                { label: "your name", type: "text", placeholder: "Full name", required: true },
-                { label: "company / entity", type: "text", placeholder: "Organization", required: true },
-                { label: "email", type: "email", placeholder: "you@org.com", required: true },
-                { label: "phone", type: "tel", placeholder: "+966", required: false },
+                { id: "field-name", label: "your name", type: "text", placeholder: "Full name", required: true },
+                { id: "field-company", label: "company / entity", type: "text", placeholder: "Organization", required: true },
+                { id: "field-email", label: "email", type: "email", placeholder: "you@org.com", required: true },
+                { id: "field-phone", label: "phone", type: "tel", placeholder: "+966", required: false },
               ].map((f) => (
                 <div key={f.label} style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                  <label style={{ fontFamily: "var(--font-support)", fontSize: 10, letterSpacing: "0.18em", textTransform: "lowercase", color: "var(--fg-muted-on-light)" }}>
+                  <label htmlFor={f.id} style={{ fontFamily: "var(--font-support)", fontSize: 10, letterSpacing: "0.18em", textTransform: "lowercase", color: "var(--fg-muted-on-light)" }}>
                     {f.label}<span style={{ opacity: 0.4 }}>_</span>
                   </label>
-                  <input type={f.type} placeholder={f.placeholder} required={f.required} style={inputStyle} />
+                  <input id={f.id} type={f.type} placeholder={f.placeholder} required={f.required} style={inputStyle} />
                 </div>
               ))}
 
               <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                <label style={{ fontFamily: "var(--font-support)", fontSize: 10, letterSpacing: "0.18em", textTransform: "lowercase", color: "var(--fg-muted-on-light)" }}>project type<span style={{ opacity: 0.4 }}>_</span></label>
-                <select value={type} onChange={(e) => setType(e.target.value)} style={{ ...inputStyle, appearance: "none", cursor: "pointer" }}>
+                <label htmlFor="field-project-type" style={{ fontFamily: "var(--font-support)", fontSize: 10, letterSpacing: "0.18em", textTransform: "lowercase", color: "var(--fg-muted-on-light)" }}>project type<span style={{ opacity: 0.4 }}>_</span></label>
+                <select id="field-project-type" value={type} onChange={(e) => setType(e.target.value)} style={{ ...inputStyle, appearance: "none", cursor: "pointer" }}>
                   {PROJECT_TYPES.map((t) => <option key={t} style={{ background: "var(--dust-white)", color: "var(--pitch-black)" }}>{t}</option>)}
                 </select>
               </div>
 
               <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                <label style={{ fontFamily: "var(--font-support)", fontSize: 10, letterSpacing: "0.18em", textTransform: "lowercase", color: "var(--fg-muted-on-light)" }}>location<span style={{ opacity: 0.4 }}>_</span></label>
-                <input type="text" placeholder="Country · city" value={location} onChange={(e) => setLocation(e.target.value)} style={inputStyle} />
+                <label htmlFor="field-location" style={{ fontFamily: "var(--font-support)", fontSize: 10, letterSpacing: "0.18em", textTransform: "lowercase", color: "var(--fg-muted-on-light)" }}>location<span style={{ opacity: 0.4 }}>_</span></label>
+                <input id="field-location" type="text" placeholder="Country · city" value={location} onChange={(e) => setLocation(e.target.value)} style={inputStyle} />
               </div>
 
               <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                <label style={{ fontFamily: "var(--font-support)", fontSize: 10, letterSpacing: "0.18em", textTransform: "lowercase", color: "var(--fg-muted-on-light)" }}>timeline<span style={{ opacity: 0.4 }}>_</span></label>
-                <select value={timeline} onChange={(e) => setTimeline(e.target.value)} style={{ ...inputStyle, appearance: "none", cursor: "pointer" }}>
+                <label htmlFor="field-timeline" style={{ fontFamily: "var(--font-support)", fontSize: 10, letterSpacing: "0.18em", textTransform: "lowercase", color: "var(--fg-muted-on-light)" }}>timeline<span style={{ opacity: 0.4 }}>_</span></label>
+                <select id="field-timeline" value={timeline} onChange={(e) => setTimeline(e.target.value)} style={{ ...inputStyle, appearance: "none", cursor: "pointer" }}>
                   {TIMELINES.map((t) => <option key={t} style={{ background: "var(--dust-white)", color: "var(--pitch-black)" }}>{t}</option>)}
                 </select>
               </div>
 
               <div style={{ gridColumn: "1 / -1", display: "flex", flexDirection: "column", gap: 8 }}>
-                <label style={{ fontFamily: "var(--font-support)", fontSize: 10, letterSpacing: "0.18em", textTransform: "lowercase", color: "var(--fg-muted-on-light)" }}>tell us about the experience<span style={{ opacity: 0.4 }}>_</span></label>
+                <label htmlFor="field-brief" style={{ fontFamily: "var(--font-support)", fontSize: 10, letterSpacing: "0.18em", textTransform: "lowercase", color: "var(--fg-muted-on-light)" }}>tell us about the experience<span style={{ opacity: 0.4 }}>_</span></label>
                 <textarea
+                  id="field-brief"
                   placeholder="What's the moment, the audience, and the ambition? Anything you can share about scope, partners, or constraints helps us come back with the right team and direction."
                   style={{ ...inputStyle, minHeight: 120, resize: "vertical" }}
                 />

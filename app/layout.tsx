@@ -107,7 +107,7 @@ export default function RootLayout({
         <SmoothScrollProvider>
           <PageTransition />
           <NavSection />
-          {children}
+          <main>{children}</main>
           <FooterSection />
           <WhatsAppCTA />
           <ScrollIndicator />
