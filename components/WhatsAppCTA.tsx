@@ -6,6 +6,7 @@ export default function WhatsAppCTA() {
       href="https://wa.me/966551520499"
       target="_blank"
       rel="noopener noreferrer"
+      role="complementary"
       aria-label="Request a proposal via WhatsApp"
       style={{
         position: "fixed",
