@@ -95,12 +95,12 @@
     },
     {
       "selector": "a(\"linkedin →\")",
-      "width": 69,
+      "width": 73,
       "height": 20
     },
     {
       "selector": "a(\"request a proposal →\")",
-      "width": 148,
+      "width": 152,
       "height": 20
     }
   ],
@@ -112,31 +112,47 @@
       "borderRadius": "50%"
     }
   ],
-  "fontFamilyOutliers": [],
+  "fontFamilyOutliers": [
+    {
+      "selector": "h3",
+      "fontFamily": "Prompt, \"Prompt Fallback\"",
+      "text": "navigate"
+    },
+    {
+      "selector": "h3",
+      "fontFamily": "Prompt, \"Prompt Fallback\"",
+      "text": "regional"
+    },
+    {
+      "selector": "h3",
+      "fontFamily": "Prompt, \"Prompt Fallback\"",
+      "text": "contact"
+    }
+  ],
   "axeViolations": [
+    {
+      "id": "aria-allowed-role",
+      "impact": "minor",
+      "help": "ARIA role should be appropriate for the element",
+      "nodes": [
+        "a[target=\"_blank\"]"
+      ]
+    },
     {
       "id": "color-contrast",
       "impact": "serious",
       "help": "Elements must meet minimum color contrast ratio thresholds",
       "nodes": [
-        "a[href$=\"#proposal\"]:nth-child(1) > div[data-meta=\"true\"]",
-        "a[href$=\"#proposal\"]:nth-child(2) > div[data-meta=\"true\"]",
-        "a[href$=\"#proposal\"]:nth-child(3) > div[data-meta=\"true\"]",
-        "a[href$=\"#proposal\"]:nth-child(4) > div[data-meta=\"true\"]",
-        "a[href$=\"#proposal\"]:nth-child(5) > div[data-meta=\"true\"]",
-        "a[href$=\"#proposal\"]:nth-child(6) > div:nth-child(3) > span[data-sub=\"true\"]",
-        "a[href$=\"#proposal\"]:nth-child(6) > div[data-meta=\"true\"]",
-        "a[href$=\"#proposal\"]:nth-child(7) > div[data-meta=\"true\"]",
-        "a[href$=\"#proposal\"]:nth-child(8) > div[data-meta=\"true\"]",
-        "a[href$=\"#proposal\"]:nth-child(9) > div[data-meta=\"true\"]"
-      ]
-    },
-    {
-      "id": "region",
-      "impact": "moderate",
-      "help": "All page content should be contained by landmarks",
-      "nodes": [
-        "a[target=\"_blank\"]"
+        "a[href$=\"contact#proposal\"]:nth-child(1) > div[data-meta=\"true\"]",
+        "a[href$=\"contact#proposal\"]:nth-child(2) > div[data-meta=\"true\"]",
+        "a[href$=\"contact#proposal\"]:nth-child(3) > div[data-meta=\"true\"]",
+        "a[href$=\"contact#proposal\"]:nth-child(4) > div[data-meta=\"true\"]",
+        "a[href$=\"contact#proposal\"]:nth-child(5) > div[data-meta=\"true\"]",
+        "a[href$=\"contact#proposal\"]:nth-child(6) > div:nth-child(3) > span[data-sub=\"true\"]",
+        "a[href$=\"contact#proposal\"]:nth-child(6) > div[data-meta=\"true\"]",
+        "a[href$=\"contact#proposal\"]:nth-child(7) > div[data-meta=\"true\"]",
+        "a[href$=\"contact#proposal\"]:nth-child(8) > div[data-meta=\"true\"]",
+        "a[href$=\"contact#proposal\"]:nth-child(9) > div[data-meta=\"true\"]"
       ]
     }
   ],

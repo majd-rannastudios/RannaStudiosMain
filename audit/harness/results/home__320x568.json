@@ -90,7 +90,7 @@
     },
     {
       "selector": "a(\"linkedin →\")",
-      "width": 69,
+      "width": 73,
       "height": 20
     },
     {
@@ -107,23 +107,47 @@
       "borderRadius": "50%"
     }
   ],
-  "fontFamilyOutliers": [],
+  "fontFamilyOutliers": [
+    {
+      "selector": "h3",
+      "fontFamily": "Prompt, \"Prompt Fallback\"",
+      "text": "navigate"
+    },
+    {
+      "selector": "h3",
+      "fontFamily": "Prompt, \"Prompt Fallback\"",
+      "text": "regional"
+    },
+    {
+      "selector": "h3",
+      "fontFamily": "Prompt, \"Prompt Fallback\"",
+      "text": "contact"
+    }
+  ],
   "axeViolations": [
+    {
+      "id": "aria-allowed-role",
+      "impact": "minor",
+      "help": "ARIA role should be appropriate for the element",
+      "nodes": [
+        "a[target=\"_blank\"]"
+      ]
+    },
     {
       "id": "color-contrast",
       "impact": "serious",
       "help": "Elements must meet minimum color contrast ratio thresholds",
       "nodes": [
-        "div[data-stat=\"true\"]:nth-child(1) > span:nth-child(2)",
-        "div[data-stat=\"true\"]:nth-child(2) > span:nth-child(2)",
-        "div[data-stat=\"true\"]:nth-child(3) > span:nth-child(2)",
-        "div[data-stat=\"true\"]:nth-child(4) > span:nth-child(2)",
         "button:nth-child(1) > span:nth-child(1)",
         "button:nth-child(1) > span:nth-child(2)",
         "button:nth-child(2) > span:nth-child(1)",
         "button:nth-child(2) > span:nth-child(2)",
         "button:nth-child(3) > span:nth-child(1)",
-        "button:nth-child(3) > span:nth-child(2)"
+        "button:nth-child(3) > span:nth-child(2)",
+        "button:nth-child(4) > span:nth-child(1)",
+        "button:nth-child(4) > span:nth-child(2)",
+        "div[data-portal-studio=\"0\"] > div:nth-child(1) > div",
+        "div[data-portal-studio=\"0\"] > div:nth-child(2) > span"
       ]
     },
     {
@@ -131,48 +155,38 @@
       "impact": "moderate",
       "help": "Heading levels should only increase by one",
       "nodes": [
-        "h3",
-        "div:nth-child(2) > h4"
-      ]
-    },
-    {
-      "id": "region",
-      "impact": "moderate",
-      "help": "All page content should be contained by landmarks",
-      "nodes": [
-        "body > div:nth-child(4)",
-        "a[target=\"_blank\"]"
+        "section:nth-child(2) > div:nth-child(2) > h3"
       ]
     }
   ],
   "consoleErrors": [],
   "networkFailures": [
     {
-      "url": "https://www.youtube.com/api/stats/qoe?fmt=134&cpn=Mh2cx6WNRnXCEBiI&el=embedded&ns=yt&fexp=v1%2C24004644%2C27058999%2C34656%2C124674%2C117689%2C9252%2C3479%2C13030%2C23206%2C68547%2C32155%2C2878%2C9729%2C2498%2C25059%2C4174%2C30447%2C18705%2C21437%2C4571%2C13016%2C16087%2C7516%2C1888%2C23826%2C9500%2C1840%2C18113%2C22488%2C5115%2C10929%2C2230%2C452%2C30489%2C5022%2C9969%2C3325%2C7294%2C4199%2C460%2C13549%2C11834%2C4271%2C24597%2C82%2C2539%2C1866%2C12971%2C12584%2C3228%2C4297%2C6032%2C1168%2C372%2C490%2C2324%2C2630%2C2314%2C16625%2C8868%2C3475%2C5353%2C1899%2C2286%2C5682%2C1095%2C500%2C927%2C191%2C2058%2C114%2C159%2C2285%2C5832%2C1142%2C2550%2C9222%2C236%2C2129%2C2220%2C22969%2C3971%2C3155%2C458%2C1132%2C8737%2C188%2C905%2C652%2C2%2C4547%2C773&cl=940135309&seq=1&docid=WiMQ5cDpKNE&ei=f6xMau2-E5GAp-oPl_eywAU&event=streamingstats&plid=AAZWAHMZ4Jk6iEBX&cbr=HeadlessChrome&cbrver=149.0.7827.55&c=WEB_EMBEDDED_PLAYER&cver=2.20260630.09.00&cplayer=UNIPLAYER&cos=Windows&cosver=10.0&cplatform=DESKTOP&vps=0.000:N,0.027:B,0.176:S:ss.15,0.354:S,0.354:S&ctmp=dttg:t.0;dtt.1;gl.0,user_intent_bh:t.7;bh.0.000;th.0.000,esfw:usbc.1;hsu.1&cat=streaming,sabr&cmt=0.027:0.000,0.176:5.000,0.354:5.000&vfs=0.354:134:134::a:sms.2:CAEoAQ&view=0.354:346:194&bwm=0.354:1211:0.179&bwe=0.354:596378&bat=0.354:0.87:1&vis=0.354:0&bh=0.354:0.000&qclc=ChBNaDJjeDZXTlJuWENFQmlJEAE",
+      "url": "https://www.youtube.com/api/stats/qoe?fmt=134&afmt=251&cpn=l6sAjFQh3A730xUD&el=embedded&ns=yt&fexp=v1%2C24004644%2C27058999%2C34656%2C124674%2C117689%2C9252%2C3479%2C13030%2C23206%2C68547%2C32155%2C2877%2C12228%2C25059%2C4174%2C30447%2C18705%2C21437%2C4571%2C5239%2C7776%2C16088%2C9404%2C23826%2C9500%2C1840%2C45715%2C7917%2C3014%2C2229%2C451%2C30490%2C5021%2C9970%2C10619%2C4199%2C460%2C29654%2C24597%2C82%2C4405%2C12972%2C5%2C12578%2C7524%2C6033%2C1168%2C372%2C490%2C2325%2C2629%2C2315%2C16624%2C8868%2C3475%2C27%2C5326%2C1900%2C7967%2C1595%2C927%2C193%2C2056%2C115%2C158%2C8117%2C1142%2C2550%2C11591%2C1351%2C862%2C22972%2C3971%2C913%2C2700%2C1011%2C121%2C8260%2C665%2C1558%2C2%2C4546%2C7829&cl=940135309&seq=1&docid=WiMQ5cDpKNE&ei=sMRMasjCCdiBp-oPrPDq8As&event=streamingstats&plid=AAZWAeQ5FfNO4Syp&cbr=HeadlessChrome&cbrver=149.0.7827.55&c=WEB_EMBEDDED_PLAYER&cver=2.20260630.09.00&cplayer=UNIPLAYER&cos=Windows&cosver=10.0&cplatform=DESKTOP&vps=0.000:N,0.030:B,0.190:S:ss.15,0.241:S,0.241:S&cat=streaming,sabr&cmt=0.030:0.000,0.190:5.000,0.241:5.000&afs=0.211:251::i:fl.-14.17;tl.-14;vg.0;nm.1;sms.2:CAEoAQ&vfs=0.241:134:134::a:sms.2:CAEoAQ&view=0.241:346:194&bwm=0.241:100080:0.056&bwe=0.241:596378&bat=0.241:1:1&vis=0.241:0&bh=0.241:0.000&qclc=ChBsNnNBakZRaDNBNzMweFVEEAE",
       "reason": "net::ERR_ABORTED"
     },
     {
-      "url": "https://www.youtube.com/ptracking?html5=1&video_id=WiMQ5cDpKNE&cpn=Mh2cx6WNRnXCEBiI&ei=f6xMau2-E5GAp-oPl_eywAU&ptk=youtube_none&pltype=contentugc",
+      "url": "https://www.youtube.com/ptracking?html5=1&video_id=WiMQ5cDpKNE&cpn=l6sAjFQh3A730xUD&ei=sMRMasjCCdiBp-oPrPDq8As&ptk=youtube_none&pltype=contentugc",
       "reason": "net::ERR_ABORTED"
     },
     {
-      "url": "https://www.youtube.com/api/stats/playback?ns=yt&el=embedded&cpn=Mh2cx6WNRnXCEBiI&ver=2&cmt=5.018&fmt=134&fs=0&rt=1.382&euri=http%3A%2F%2Flocalhost%3A3000%2F&lact=1402&cl=940135309&mos=1&volume=100&cbr=HeadlessChrome&cbrver=149.0.7827.55&c=WEB_EMBEDDED_PLAYER&cver=2.20260630.09.00&cplayer=UNIPLAYER&cos=Windows&cosver=10.0&cplatform=DESKTOP&autoplay=1&epm=1&splay=1&delay=4&hl=en_US&cr=LB&len=39.421&fexp=v1%2C24004644%2C27058999%2C34656%2C124674%2C117689%2C9252%2C3479%2C13030%2C23206%2C68547%2C32155%2C2878%2C9729%2C2498%2C25059%2C4174%2C30447%2C18705%2C21437%2C4571%2C13016%2C16087%2C7516%2C1888%2C23826%2C9500%2C1840%2C18113%2C22488%2C5115%2C10929%2C2230%2C452%2C30489%2C5022%2C9969%2C3325%2C7294%2C4199%2C460%2C13549%2C11834%2C4271%2C24597%2C82%2C2539%2C1866%2C12971%2C12584%2C3228%2C4297%2C6032%2C1168%2C372%2C490%2C2324%2C2630%2C2314%2C16625%2C8868%2C3475%2C5353%2C1899%2C2286%2C5682%2C1095%2C500%2C927%2C191%2C2058%2C114%2C159%2C2285%2C5832%2C1142%2C2550%2C9222%2C236%2C2129%2C2220%2C22969%2C3971%2C3155%2C458%2C1132%2C8737%2C188%2C905%2C652%2C2%2C4547%2C773&rtn=3&afmt=251&size=346%3A194&inview=0.7&muted=1&cc=a.en&docid=WiMQ5cDpKNE&ei=f6xMau2-E5GAp-oPl_eywAU&plid=AAZWAHMZ4Jk6iEBX&referrer=https%3A%2F%2Fwww.youtube.com%2Fembed%2FWiMQ5cDpKNE%3Fautoplay%3D1%26mute%3D1%26loop%3D1%26playlist%3DWiMQ5cDpKNE%26controls%3D0%26showinfo%3D0%26rel%3D0%26iv_load_policy%3D3%26modestbranding%3D1%26playsinline%3D1%26start%3D5%26disablekb%3D1%26fs%3D0%26enablejsapi%3D1%26origin%3Dhttp%253A%252F%252Flocalhost%253A3000%26widgetid%3D1%26forigin%3Dhttp%253A%252F%252Flocalhost%253A3000%252F%26aoriginsup%3D1%26vf%3D4&list=TLGG1E2nM8IEOeswNzA3MjAyNg&of=jZF5NqmMoR5oFAvMWCGmdQ&vm=CAEQABgEOjJBSHFpSlRJUDhYQ1g0ZVhTeUtYcmxqd2JfTjJvRVJLaTZDSHJzYjBFWjJkVkhXN0NaQWJsQUxkcUFQSjhvbEFoa3FMVFNaMzhqUzZrcGRLTHhQSFROSlAzLU10WWNrNnJRRDMzeXZzRVluMkJveDhTUko3MFRETlNhd0JleGNqZUxFNVBEX3BLUU1mR0g4djNvUXRHRW9XaGlnRkNKb05t",
+      "url": "https://www.youtube.com/api/stats/playback?ns=yt&el=embedded&cpn=l6sAjFQh3A730xUD&ver=2&cmt=5.008&fmt=134&fs=0&rt=0.402&euri=http%3A%2F%2Flocalhost%3A3000%2F&lact=423&cl=940135309&mos=1&volume=100&cbr=HeadlessChrome&cbrver=149.0.7827.55&c=WEB_EMBEDDED_PLAYER&cver=2.20260630.09.00&cplayer=UNIPLAYER&cos=Windows&cosver=10.0&cplatform=DESKTOP&autoplay=1&epm=1&splay=1&delay=4&hl=en_US&cr=LB&len=39.421&fexp=v1%2C24004644%2C27058999%2C34656%2C124674%2C117689%2C9252%2C3479%2C13030%2C23206%2C68547%2C32155%2C2877%2C12228%2C25059%2C4174%2C30447%2C18705%2C21437%2C4571%2C5239%2C7776%2C16088%2C9404%2C23826%2C9500%2C1840%2C45715%2C7917%2C3014%2C2229%2C451%2C30490%2C5021%2C9970%2C10619%2C4199%2C460%2C29654%2C24597%2C82%2C4405%2C12972%2C5%2C12578%2C7524%2C6033%2C1168%2C372%2C490%2C2325%2C2629%2C2315%2C16624%2C8868%2C3475%2C27%2C5326%2C1900%2C7967%2C1595%2C927%2C193%2C2056%2C115%2C158%2C8117%2C1142%2C2550%2C11591%2C1351%2C862%2C22972%2C3971%2C913%2C2700%2C1011%2C121%2C8260%2C665%2C1558%2C2%2C4546%2C7829&rtn=4&afmt=251&size=346%3A194&inview=0&muted=1&docid=WiMQ5cDpKNE&ei=sMRMasjCCdiBp-oPrPDq8As&plid=AAZWAeQ5FfNO4Syp&referrer=https%3A%2F%2Fwww.youtube.com%2Fembed%2FWiMQ5cDpKNE%3Fautoplay%3D1%26mute%3D1%26loop%3D1%26playlist%3DWiMQ5cDpKNE%26controls%3D0%26showinfo%3D0%26rel%3D0%26iv_load_policy%3D3%26modestbranding%3D1%26playsinline%3D1%26start%3D5%26disablekb%3D1%26fs%3D0%26enablejsapi%3D1%26origin%3Dhttp%253A%252F%252Flocalhost%253A3000%26widgetid%3D1%26forigin%3Dhttp%253A%252F%252Flocalhost%253A3000%252F%26aoriginsup%3D1%26vf%3D4&list=TLGG1E2nM8IEOeswNzA3MjAyNg&of=jZF5NqmMoR5oFAvMWCGmdQ&vm=CAEQABgEOjJBSHFpSlRJalVzTnZ4RFdkVjRoZVliVFV1NDFESnhQX0RnbHNoVTlTRUxfSThNa2YxUWJoQUxkcUFQSXI0Ukhhd25DNFFtUmU4Vk1ncnZwdHRyUnJrS3prOGZfU3RlRlR5NVVGRXlkVVQ1djZxZlFGMzVCSDNyakIwbm5PeU1QazhRNnpGd1JkWVIwQUgwWGJYUmNsbnJSY2N6WDc",
       "reason": "net::ERR_ABORTED"
     },
     {
-      "url": "https://www.youtube.com/api/stats/watchtime?ns=yt&el=embedded&cpn=Mh2cx6WNRnXCEBiI&ver=2&cmt=6.643&fmt=134&fs=0&rt=3.006&euri=http%3A%2F%2Flocalhost%3A3000%2F&lact=3026&cl=940135309&state=playing&volume=100&cbr=HeadlessChrome&cbrver=149.0.7827.55&c=WEB_EMBEDDED_PLAYER&cver=2.20260630.09.00&cplayer=UNIPLAYER&cos=Windows&cosver=10.0&cplatform=DESKTOP&autoplay=1&splay=1&delay=4&hl=en_US&cr=LB&len=39.421&rtn=13&afmt=251&idpj=-9&ldpj=-25&rti=3&size=346%3A194&inview=0.7&st=5.018&et=6.643&muted=1&cc=a.en&docid=WiMQ5cDpKNE&ei=f6xMau2-E5GAp-oPl_eywAU&plid=AAZWAHMZ4Jk6iEBX&referrer=https%3A%2F%2Fwww.youtube.com%2Fembed%2FWiMQ5cDpKNE%3Fautoplay%3D1%26mute%3D1%26loop%3D1%26playlist%3DWiMQ5cDpKNE%26controls%3D0%26showinfo%3D0%26rel%3D0%26iv_load_policy%3D3%26modestbranding%3D1%26playsinline%3D1%26start%3D5%26disablekb%3D1%26fs%3D0%26enablejsapi%3D1%26origin%3Dhttp%253A%252F%252Flocalhost%253A3000%26widgetid%3D1%26forigin%3Dhttp%253A%252F%252Flocalhost%253A3000%252F%26aoriginsup%3D1%26vf%3D4&list=TLGG1E2nM8IEOeswNzA3MjAyNg&of=jZF5NqmMoR5oFAvMWCGmdQ&vm=CAEQABgEOjJBSHFpSlRJUDhYQ1g0ZVhTeUtYcmxqd2JfTjJvRVJLaTZDSHJzYjBFWjJkVkhXN0NaQWJsQUxkcUFQSjhvbEFoa3FMVFNaMzhqUzZrcGRLTHhQSFROSlAzLU10WWNrNnJRRDMzeXZzRVluMkJveDhTUko3MFRETlNhd0JleGNqZUxFNVBEX3BLUU1mR0g4djNvUXRHRW9XaGlnRkNKb05t",
+      "url": "https://yt3.ggpht.com/lAnsH6AuorUOZrPrgceqI2tt3FePC3wUvibe46inRXSb0OP5yDiKKfy3gJCyzwd1Rc-ZFx4Kz1M=s68-c-k-c0x00ffffff-no-rj",
       "reason": "net::ERR_ABORTED"
     },
     {
-      "url": "https://www.youtube.com/api/stats/qoe?fmt=134&afmt=251&cpn=Mh2cx6WNRnXCEBiI&el=embedded&ns=yt&fexp=v1%2C24004644%2C27058999%2C34656%2C124674%2C117689%2C9252%2C3479%2C13030%2C23206%2C68547%2C32155%2C2878%2C9729%2C2498%2C25059%2C4174%2C30447%2C18705%2C21437%2C4571%2C13016%2C16087%2C7516%2C1888%2C23826%2C9500%2C1840%2C18113%2C22488%2C5115%2C10929%2C2230%2C452%2C30489%2C5022%2C9969%2C3325%2C7294%2C4199%2C460%2C13549%2C11834%2C4271%2C24597%2C82%2C2539%2C1866%2C12971%2C12584%2C3228%2C4297%2C6032%2C1168%2C372%2C490%2C2324%2C2630%2C2314%2C16625%2C8868%2C3475%2C5353%2C1899%2C2286%2C5682%2C1095%2C500%2C927%2C191%2C2058%2C114%2C159%2C2285%2C5832%2C1142%2C2550%2C9222%2C236%2C2129%2C2220%2C22969%2C3971%2C3155%2C458%2C1132%2C8737%2C188%2C905%2C652%2C2%2C4547%2C773&cl=940135309&seq=2&docid=WiMQ5cDpKNE&ei=f6xMau2-E5GAp-oPl_eywAU&event=streamingstats&plid=AAZWAHMZ4Jk6iEBX&cbr=HeadlessChrome&cbrver=149.0.7827.55&c=WEB_EMBEDDED_PLAYER&cver=2.20260630.09.00&cplayer=UNIPLAYER&cos=Windows&cosver=10.0&cplatform=DESKTOP&cfs=0.961:a.en:::s&afs=1.062:251::i:fl.-14.17;tl.-14;vg.0;nm.1;sms.2:CAEoAQ&ctmp=atrkchg:t.1064;id.und;m.0,startSeconds:t.1169;ss.5&cmt=1.323:5.000,1.382:5.018,2.132:5.769,10.009:13.646&vps=1.323:B,1.382:PL,10.009:PL&user_intent=0.007&bh=1.382:1.360,10.009:16.548&bwm=10.009:2703154:9.007&bwe=10.009:249361&bat=10.009:0.87:1&df=10.009:0&qclc=ChBNaDJjeDZXTlJuWENFQmlJEAI",
+      "url": "https://www.youtube.com/api/stats/watchtime?ns=yt&el=embedded&cpn=l6sAjFQh3A730xUD&ver=2&cmt=8.613&fmt=134&fs=0&rt=4.006&euri=http%3A%2F%2Flocalhost%3A3000%2F&lact=4027&cl=940135309&state=playing&volume=100&cbr=HeadlessChrome&cbrver=149.0.7827.55&c=WEB_EMBEDDED_PLAYER&cver=2.20260630.09.00&cplayer=UNIPLAYER&cos=Windows&cosver=10.0&cplatform=DESKTOP&autoplay=1&splay=1&delay=4&hl=en_US&cr=LB&len=40&rtn=14&afmt=251&idpj=-7&ldpj=-19&rti=4&size=346%3A194&inview=0.7&st=5.008&et=8.613&muted=1&docid=WiMQ5cDpKNE&ei=sMRMasjCCdiBp-oPrPDq8As&plid=AAZWAeQ5FfNO4Syp&referrer=https%3A%2F%2Fwww.youtube.com%2Fembed%2FWiMQ5cDpKNE%3Fautoplay%3D1%26mute%3D1%26loop%3D1%26playlist%3DWiMQ5cDpKNE%26controls%3D0%26showinfo%3D0%26rel%3D0%26iv_load_policy%3D3%26modestbranding%3D1%26playsinline%3D1%26start%3D5%26disablekb%3D1%26fs%3D0%26enablejsapi%3D1%26origin%3Dhttp%253A%252F%252Flocalhost%253A3000%26widgetid%3D1%26forigin%3Dhttp%253A%252F%252Flocalhost%253A3000%252F%26aoriginsup%3D1%26vf%3D4&list=TLGG1E2nM8IEOeswNzA3MjAyNg&of=jZF5NqmMoR5oFAvMWCGmdQ&vm=CAEQABgEOjJBSHFpSlRJalVzTnZ4RFdkVjRoZVliVFV1NDFESnhQX0RnbHNoVTlTRUxfSThNa2YxUWJoQUxkcUFQSXI0Ukhhd25DNFFtUmU4Vk1ncnZwdHRyUnJrS3prOGZfU3RlRlR5NVVGRXlkVVQ1djZxZlFGMzVCSDNyakIwbm5PeU1QazhRNnpGd1JkWVIwQUgwWGJYUmNsbnJSY2N6WDc",
       "reason": "net::ERR_ABORTED"
     },
     {
-      "url": "https://www.youtube.com/api/stats/watchtime?ns=yt&el=embedded&cpn=Mh2cx6WNRnXCEBiI&ver=2&cmt=16.645&fmt=134&fs=0&rt=13.007&euri=http%3A%2F%2Flocalhost%3A3000%2F&lact=13027&cl=940135309&state=playing&volume=100&cbr=HeadlessChrome&cbrver=149.0.7827.55&c=WEB_EMBEDDED_PLAYER&cver=2.20260630.09.00&cplayer=UNIPLAYER&cos=Windows&cosver=10.0&cplatform=DESKTOP&autoplay=1&splay=1&delay=4&hl=en_US&cr=LB&len=39.421&rtn=23&afmt=251&idpj=-9&ldpj=-25&dtm=1&rti=13&size=346%3A194&inview=0.7&st=6.643&et=16.645&muted=1&cc=a.en&docid=WiMQ5cDpKNE&ei=f6xMau2-E5GAp-oPl_eywAU&plid=AAZWAHMZ4Jk6iEBX&referrer=https%3A%2F%2Fwww.youtube.com%2Fembed%2FWiMQ5cDpKNE%3Fautoplay%3D1%26mute%3D1%26loop%3D1%26playlist%3DWiMQ5cDpKNE%26controls%3D0%26showinfo%3D0%26rel%3D0%26iv_load_policy%3D3%26modestbranding%3D1%26playsinline%3D1%26start%3D5%26disablekb%3D1%26fs%3D0%26enablejsapi%3D1%26origin%3Dhttp%253A%252F%252Flocalhost%253A3000%26widgetid%3D1%26forigin%3Dhttp%253A%252F%252Flocalhost%253A3000%252F%26aoriginsup%3D1%26vf%3D4&list=TLGG1E2nM8IEOeswNzA3MjAyNg&of=jZF5NqmMoR5oFAvMWCGmdQ&vm=CAEQABgEOjJBSHFpSlRJUDhYQ1g0ZVhTeUtYcmxqd2JfTjJvRVJLaTZDSHJzYjBFWjJkVkhXN0NaQWJsQUxkcUFQSjhvbEFoa3FMVFNaMzhqUzZrcGRLTHhQSFROSlAzLU10WWNrNnJRRDMzeXZzRVluMkJveDhTUko3MFRETlNhd0JleGNqZUxFNVBEX3BLUU1mR0g4djNvUXRHRW9XaGlnRkNKb05t",
+      "url": "https://www.youtube.com/api/stats/qoe?fmt=134&afmt=251&cpn=l6sAjFQh3A730xUD&el=embedded&ns=yt&fexp=v1%2C24004644%2C27058999%2C34656%2C124674%2C117689%2C9252%2C3479%2C13030%2C23206%2C68547%2C32155%2C2877%2C12228%2C25059%2C4174%2C30447%2C18705%2C21437%2C4571%2C5239%2C7776%2C16088%2C9404%2C23826%2C9500%2C1840%2C45715%2C7917%2C3014%2C2229%2C451%2C30490%2C5021%2C9970%2C10619%2C4199%2C460%2C29654%2C24597%2C82%2C4405%2C12972%2C5%2C12578%2C7524%2C6033%2C1168%2C372%2C490%2C2325%2C2629%2C2315%2C16624%2C8868%2C3475%2C27%2C5326%2C1900%2C7967%2C1595%2C927%2C193%2C2056%2C115%2C158%2C8117%2C1142%2C2550%2C11591%2C1351%2C862%2C22972%2C3971%2C913%2C2700%2C1011%2C121%2C8260%2C665%2C1558%2C2%2C4546%2C7829&cl=940135309&seq=2&docid=WiMQ5cDpKNE&ei=sMRMasjCCdiBp-oPrPDq8As&event=streamingstats&plid=AAZWAeQ5FfNO4Syp&cbr=HeadlessChrome&cbrver=149.0.7827.55&c=WEB_EMBEDDED_PLAYER&cver=2.20260630.09.00&cplayer=UNIPLAYER&cos=Windows&cosver=10.0&cplatform=DESKTOP&cmt=0.353:5.000,0.401:5.008,1.155:5.762,10.009:14.616&vps=0.353:B,0.401:PL,10.009:PL&user_intent=0.007&bh=0.401:6.280,10.009:21.406&cfs=0.411:a.en:::s&bwm=10.009:3111471:0.424&bwe=10.009:5972228&bat=10.009:1:1&df=10.009:1&qclc=ChBsNnNBakZRaDNBNzMweFVEEAI",
       "reason": "net::ERR_ABORTED"
     },
     {
-      "url": "https://www.youtube.com/api/stats/watchtime?ns=yt&el=embedded&cpn=Mh2cx6WNRnXCEBiI&ver=2&cmt=26.642&fmt=134&fs=0&rt=23.006&euri=http%3A%2F%2Flocalhost%3A3000%2F&lact=23026&cl=940135309&state=playing&volume=100&cbr=HeadlessChrome&cbrver=149.0.7827.55&c=WEB_EMBEDDED_PLAYER&cver=2.20260630.09.00&cplayer=UNIPLAYER&cos=Windows&cosver=10.0&cplatform=DESKTOP&autoplay=1&splay=1&delay=4&hl=en_US&cr=LB&len=39.421&rtn=47&afmt=251&idpj=-9&ldpj=-25&rti=23&size=346%3A194&inview=0.7&st=16.645&et=26.642&muted=1&cc=a.en&docid=WiMQ5cDpKNE&ei=f6xMau2-E5GAp-oPl_eywAU&plid=AAZWAHMZ4Jk6iEBX&referrer=https%3A%2F%2Fwww.youtube.com%2Fembed%2FWiMQ5cDpKNE%3Fautoplay%3D1%26mute%3D1%26loop%3D1%26playlist%3DWiMQ5cDpKNE%26controls%3D0%26showinfo%3D0%26rel%3D0%26iv_load_policy%3D3%26modestbranding%3D1%26playsinline%3D1%26start%3D5%26disablekb%3D1%26fs%3D0%26enablejsapi%3D1%26origin%3Dhttp%253A%252F%252Flocalhost%253A3000%26widgetid%3D1%26forigin%3Dhttp%253A%252F%252Flocalhost%253A3000%252F%26aoriginsup%3D1%26vf%3D4&list=TLGG1E2nM8IEOeswNzA3MjAyNg&of=jZF5NqmMoR5oFAvMWCGmdQ&vm=CAEQABgEOjJBSHFpSlRJUDhYQ1g0ZVhTeUtYcmxqd2JfTjJvRVJLaTZDSHJzYjBFWjJkVkhXN0NaQWJsQUxkcUFQSjhvbEFoa3FMVFNaMzhqUzZrcGRLTHhQSFROSlAzLU10WWNrNnJRRDMzeXZzRVluMkJveDhTUko3MFRETlNhd0JleGNqZUxFNVBEX3BLUU1mR0g4djNvUXRHRW9XaGlnRkNKb05t",
+      "url": "https://www.youtube.com/api/stats/watchtime?ns=yt&el=embedded&cpn=l6sAjFQh3A730xUD&ver=2&cmt=18.612&fmt=134&fs=0&rt=14.005&euri=http%3A%2F%2Flocalhost%3A3000%2F&lact=14026&cl=940135309&state=playing&volume=100&cbr=HeadlessChrome&cbrver=149.0.7827.55&c=WEB_EMBEDDED_PLAYER&cver=2.20260630.09.00&cplayer=UNIPLAYER&cos=Windows&cosver=10.0&cplatform=DESKTOP&autoplay=1&splay=1&delay=4&hl=en_US&cr=LB&len=40&rtn=24&afmt=251&idpj=-7&ldpj=-19&dtm=1&rti=14&size=346%3A194&inview=0.7&st=8.613&et=18.612&muted=1&cc=a.en&docid=WiMQ5cDpKNE&ei=sMRMasjCCdiBp-oPrPDq8As&plid=AAZWAeQ5FfNO4Syp&referrer=https%3A%2F%2Fwww.youtube.com%2Fembed%2FWiMQ5cDpKNE%3Fautoplay%3D1%26mute%3D1%26loop%3D1%26playlist%3DWiMQ5cDpKNE%26controls%3D0%26showinfo%3D0%26rel%3D0%26iv_load_policy%3D3%26modestbranding%3D1%26playsinline%3D1%26start%3D5%26disablekb%3D1%26fs%3D0%26enablejsapi%3D1%26origin%3Dhttp%253A%252F%252Flocalhost%253A3000%26widgetid%3D1%26forigin%3Dhttp%253A%252F%252Flocalhost%253A3000%252F%26aoriginsup%3D1%26vf%3D4&list=TLGG1E2nM8IEOeswNzA3MjAyNg&of=jZF5NqmMoR5oFAvMWCGmdQ&vm=CAEQABgEOjJBSHFpSlRJalVzTnZ4RFdkVjRoZVliVFV1NDFESnhQX0RnbHNoVTlTRUxfSThNa2YxUWJoQUxkcUFQSXI0Ukhhd25DNFFtUmU4Vk1ncnZwdHRyUnJrS3prOGZfU3RlRlR5NVVGRXlkVVQ1djZxZlFGMzVCSDNyakIwbm5PeU1QazhRNnpGd1JkWVIwQUgwWGJYUmNsbnJSY2N6WDc",
       "reason": "net::ERR_ABORTED"
     }
   ],

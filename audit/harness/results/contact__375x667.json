@@ -29,41 +29,6 @@
       "height": 23
     },
     {
-      "selector": "input",
-      "width": 277,
-      "height": 44
-    },
-    {
-      "selector": "input",
-      "width": 277,
-      "height": 44
-    },
-    {
-      "selector": "input",
-      "width": 277,
-      "height": 44
-    },
-    {
-      "selector": "input",
-      "width": 277,
-      "height": 44
-    },
-    {
-      "selector": "select(\"ActivationFan ZoneF1 / S\")",
-      "width": 277,
-      "height": 44
-    },
-    {
-      "selector": "input",
-      "width": 277,
-      "height": 44
-    },
-    {
-      "selector": "select(\"< 30 days1 – 3 months3 –\")",
-      "width": 277,
-      "height": 44
-    },
-    {
       "selector": "button(\"whatsapp\")",
       "width": 106,
       "height": 35
@@ -135,82 +100,47 @@
     },
     {
       "selector": "a(\"linkedin →\")",
-      "width": 69,
+      "width": 73,
       "height": 20
     },
     {
       "selector": "a(\"request a proposal →\")",
-      "width": 148,
+      "width": 152,
       "height": 20
     }
   ],
   "paletteViolations": [],
-  "inputFontSizeViolations": [
-    {
-      "selector": "input",
-      "fontSize": "15px"
-    },
-    {
-      "selector": "input",
-      "fontSize": "15px"
-    },
-    {
-      "selector": "input",
-      "fontSize": "15px"
-    },
-    {
-      "selector": "input",
-      "fontSize": "15px"
-    },
-    {
-      "selector": "input",
-      "fontSize": "15px"
-    },
-    {
-      "selector": "select",
-      "fontSize": "15px"
-    },
-    {
-      "selector": "select",
-      "fontSize": "15px"
-    },
-    {
-      "selector": "textarea",
-      "fontSize": "15px"
-    }
-  ],
+  "inputFontSizeViolations": [],
   "borderRadiusViolations": [
     {
       "selector": "a",
       "borderRadius": "50%"
     }
   ],
-  "fontFamilyOutliers": [],
+  "fontFamilyOutliers": [
+    {
+      "selector": "h3",
+      "fontFamily": "Prompt, \"Prompt Fallback\"",
+      "text": "navigate"
+    },
+    {
+      "selector": "h3",
+      "fontFamily": "Prompt, \"Prompt Fallback\"",
+      "text": "regional"
+    },
+    {
+      "selector": "h3",
+      "fontFamily": "Prompt, \"Prompt Fallback\"",
+      "text": "contact"
+    }
+  ],
   "axeViolations": [
     {
-      "id": "heading-order",
-      "impact": "moderate",
-      "help": "Heading levels should only increase by one",
+      "id": "aria-allowed-role",
+      "impact": "minor",
+      "help": "ARIA role should be appropriate for the element",
       "nodes": [
-        "div:nth-child(2) > h4"
-      ]
-    },
-    {
-      "id": "region",
-      "impact": "moderate",
-      "help": "All page content should be contained by landmarks",
-      "nodes": [
-        "body > div:nth-child(4)",
-        "body > a[href=\"https://wa.me/966551520499\"][target=\"_blank\"][rel=\"noopener noreferrer\"]"
-      ]
-    },
-    {
-      "id": "select-name",
-      "impact": "critical",
-      "help": "Select element must have an accessible name",
-      "nodes": [
-        "div:nth-child(5) > select",
-        "div:nth-child(7) > select"
+        "a[role=\"complementary\"]"
       ]
     }
   ],

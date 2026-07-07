@@ -15,7 +15,7 @@
     },
     {
       "selector": "a(\"← all posts\")",
-      "width": 79,
+      "width": 83,
       "height": 21
     },
     {
@@ -80,12 +80,12 @@
     },
     {
       "selector": "a(\"linkedin →\")",
-      "width": 69,
+      "width": 73,
       "height": 20
     },
     {
       "selector": "a(\"request a proposal →\")",
-      "width": 148,
+      "width": 152,
       "height": 20
     }
   ],
@@ -97,31 +97,38 @@
       "borderRadius": "50%"
     }
   ],
-  "fontFamilyOutliers": [],
+  "fontFamilyOutliers": [
+    {
+      "selector": "h3",
+      "fontFamily": "Prompt, \"Prompt Fallback\"",
+      "text": "navigate"
+    },
+    {
+      "selector": "h3",
+      "fontFamily": "Prompt, \"Prompt Fallback\"",
+      "text": "regional"
+    },
+    {
+      "selector": "h3",
+      "fontFamily": "Prompt, \"Prompt Fallback\"",
+      "text": "contact"
+    }
+  ],
   "axeViolations": [
+    {
+      "id": "aria-allowed-role",
+      "impact": "minor",
+      "help": "ARIA role should be appropriate for the element",
+      "nodes": [
+        "a[target=\"_blank\"]"
+      ]
+    },
     {
       "id": "color-contrast",
       "impact": "serious",
       "help": "Elements must meet minimum color contrast ratio thresholds",
       "nodes": [
         "section:nth-child(6) > .meta-label > span"
-      ]
-    },
-    {
-      "id": "heading-order",
-      "impact": "moderate",
-      "help": "Heading levels should only increase by one",
-      "nodes": [
-        "div:nth-child(2) > h4"
-      ]
-    },
-    {
-      "id": "region",
-      "impact": "moderate",
-      "help": "All page content should be contained by landmarks",
-      "nodes": [
-        "body > div:nth-child(4)",
-        "a[target=\"_blank\"]"
       ]
     }
   ],
