@@ -47,7 +47,7 @@ export default function Preloader() {
         position: "fixed",
         inset: 0,
         zIndex: 9999,
-        background: "radial-gradient(ellipse at 50% 30%, #1A0870 0%, #080035 65%)",
+        background: "radial-gradient(ellipse at 50% 30%, var(--dusk-matter) 0%, var(--abyssal-black) 65%)",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",

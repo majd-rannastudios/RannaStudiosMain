@@ -24,12 +24,12 @@ const MAP_STYLES = `
     position: absolute;
     width: 10px; height: 10px;
     border-radius: 50%;
-    background: #D400AA;
+    background: var(--crimson-bloom);
     transform: translate(-50%, -50%);
     box-shadow:
-      0 0 0 2px rgba(212,0,170,.22),
-      0 0 10px 5px rgba(212,0,170,.5),
-      0 0 22px 10px rgba(212,0,170,.18);
+      0 0 0 2px color-mix(in oklab, var(--crimson-bloom) 22%, transparent),
+      0 0 10px 5px color-mix(in oklab, var(--crimson-bloom) 50%, transparent),
+      0 0 22px 10px color-mix(in oklab, var(--crimson-bloom) 18%, transparent);
     animation: rannaDotPulse 3.2s ease-in-out infinite;
   }
   @keyframes rannaDotPulse {
@@ -41,9 +41,9 @@ const MAP_STYLES = `
     }
     50% {
       box-shadow:
-        0 0 0 3px rgba(212,0,170,.15),
-        0 0 14px 8px rgba(212,0,170,.7),
-        0 0 32px 16px rgba(212,0,170,.25);
+        0 0 0 3px color-mix(in oklab, var(--crimson-bloom) 15%, transparent),
+        0 0 14px 8px color-mix(in oklab, var(--crimson-bloom) 70%, transparent),
+        0 0 32px 16px color-mix(in oklab, var(--crimson-bloom) 25%, transparent);
     }
   }
   .ranna-label {
@@ -59,7 +59,7 @@ const MAP_STYLES = `
   }
   .ranna-label.right { left: 11px; }
   .ranna-label.left  { right: 11px; }
-  .leaflet-container { background: #080A1C !important; }
+  .leaflet-container { background: var(--abyssal-black) !important; }
 `;
 
 interface Props {
@@ -123,7 +123,7 @@ export default function RegionalMap({ onReady }: Props) {
           const id = parseInt(f?.id ?? "0", 10);
           const mena = MENA_IDS.has(id);
           return {
-            fillColor:   mena ? "#16103A" : "#09091E",
+            fillColor:   mena ? "var(--dusk-matter)" : "var(--abyssal-black)",
             fillOpacity: 1,
             color:       mena ? "rgba(160,100,255,0.32)" : "rgba(80,60,160,0.12)",
             weight:      mena ? 0.9 : 0.4,
@@ -157,6 +157,6 @@ export default function RegionalMap({ onReady }: Props) {
   }, []);
 
   return (
-    <div ref={containerRef} style={{ width: "100%", height: "100%", background: "#080A1C" }} />
+    <div ref={containerRef} style={{ width: "100%", height: "100%", background: "var(--abyssal-black)" }} />
   );
 }

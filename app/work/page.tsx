@@ -19,7 +19,7 @@ export default function WorkPage() {
       {/* Page hero */}
       <section
         style={{
-          background: "linear-gradient(160deg, #1A0870 0%, #080035 55%)",
+          background: "linear-gradient(160deg, var(--dusk-matter) 0%, var(--abyssal-black) 55%)",
           padding: "clamp(140px, 18vw, 240px) clamp(20px, 5vw, 88px) clamp(64px, 8vw, 96px)",
           borderBottom: "1px solid var(--rule-on-dark)",
         }}
