@@ -10,24 +10,23 @@ const config: Config = {
     extend: {
       colors: {
         ranna: {
-          purple:     "#462969",
-          burgundy:   "#6D0E4E",
-          orange:     "#FB9203",
-          deepOrange: "#E3500A",
-          navy:       "#1B1941",
-          indigo:     "#2A2B6B",
-          black:      "#000000",
+          emberDawn:      "var(--ember-dawn)",
+          burntHorizon:   "var(--burnt-horizon)",
+          crimsonBloom:   "var(--crimson-bloom)",
+          veilBecoming:   "var(--veil-becoming)",
+          duskMatter:     "var(--dusk-matter)",
+          abyssalBlack:   "var(--abyssal-black)",
         },
       },
       fontFamily: {
-        poppins: ["var(--font-poppins)", "sans-serif"],
-        prompts:  ["var(--font-prompts)",  "var(--font-dm-sans)", "sans-serif"],
+        poppins: ["var(--font-display)", "sans-serif"],
+        prompts: ["var(--font-support)", "sans-serif"],
       },
       backgroundImage: {
         "ranna-gradient":
-          "linear-gradient(135deg, #462969 0%, #6D0E4E 20%, #FB9203 45%, #E3500A 60%, #1B1941 80%, #2A2B6B 100%)",
+          "linear-gradient(135deg, var(--ember-dawn) 0%, var(--burnt-horizon) 35%, var(--crimson-bloom) 65%, var(--veil-becoming) 100%)",
         "ranna-gradient-v":
-          "linear-gradient(180deg, #462969 0%, #6D0E4E 20%, #FB9203 45%, #E3500A 60%, #1B1941 80%, #2A2B6B 100%)",
+          "linear-gradient(180deg, var(--ember-dawn) 0%, var(--burnt-horizon) 35%, var(--crimson-bloom) 65%, var(--veil-becoming) 100%)",
       },
       animation: {
         "pulse-slow":    "pulse 3s ease-in-out infinite",
