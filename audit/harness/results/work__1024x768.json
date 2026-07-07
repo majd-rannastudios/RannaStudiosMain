@@ -1,0 +1,246 @@
+{
+  "route": "/work",
+  "viewport": "1024x768",
+  "overflow": {
+    "overflowing": false,
+    "scrollWidth": 1024,
+    "clientWidth": 1024,
+    "culprits": []
+  },
+  "tapTargets": [
+    {
+      "selector": "a(\"studios\")",
+      "width": 66,
+      "height": 27
+    },
+    {
+      "selector": "a(\"work\")",
+      "width": 45,
+      "height": 27
+    },
+    {
+      "selector": "a(\"news\")",
+      "width": 45,
+      "height": 27
+    },
+    {
+      "selector": "a(\"about\")",
+      "width": 52,
+      "height": 27
+    },
+    {
+      "selector": "a(\"contact\")",
+      "width": 67,
+      "height": 27
+    },
+    {
+      "selector": "button",
+      "width": 28,
+      "height": 28
+    },
+    {
+      "selector": "button",
+      "width": 28,
+      "height": 28
+    },
+    {
+      "selector": "button",
+      "width": 8,
+      "height": 8
+    },
+    {
+      "selector": "button",
+      "width": 8,
+      "height": 8
+    },
+    {
+      "selector": "button",
+      "width": 8,
+      "height": 8
+    },
+    {
+      "selector": "button",
+      "width": 28,
+      "height": 28
+    },
+    {
+      "selector": "button",
+      "width": 28,
+      "height": 28
+    },
+    {
+      "selector": "button",
+      "width": 8,
+      "height": 8
+    },
+    {
+      "selector": "button",
+      "width": 8,
+      "height": 8
+    },
+    {
+      "selector": "button",
+      "width": 8,
+      "height": 8
+    },
+    {
+      "selector": "button",
+      "width": 8,
+      "height": 8
+    },
+    {
+      "selector": "button",
+      "width": 8,
+      "height": 8
+    },
+    {
+      "selector": "button",
+      "width": 28,
+      "height": 28
+    },
+    {
+      "selector": "button",
+      "width": 28,
+      "height": 28
+    },
+    {
+      "selector": "button",
+      "width": 8,
+      "height": 8
+    },
+    {
+      "selector": "button",
+      "width": 8,
+      "height": 8
+    },
+    {
+      "selector": "button",
+      "width": 8,
+      "height": 8
+    },
+    {
+      "selector": "button",
+      "width": 8,
+      "height": 8
+    },
+    {
+      "selector": "button",
+      "width": 8,
+      "height": 8
+    },
+    {
+      "selector": "button",
+      "width": 28,
+      "height": 28
+    },
+    {
+      "selector": "button",
+      "width": 28,
+      "height": 28
+    },
+    {
+      "selector": "button",
+      "width": 8,
+      "height": 8
+    },
+    {
+      "selector": "button",
+      "width": 8,
+      "height": 8
+    },
+    {
+      "selector": "button",
+      "width": 8,
+      "height": 8
+    },
+    {
+      "selector": "button",
+      "width": 8,
+      "height": 8
+    }
+  ],
+  "paletteViolations": [],
+  "inputFontSizeViolations": [],
+  "borderRadiusViolations": [
+    {
+      "selector": "a",
+      "borderRadius": "50%"
+    }
+  ],
+  "fontFamilyOutliers": [],
+  "axeViolations": [
+    {
+      "id": "color-contrast",
+      "impact": "serious",
+      "help": "Elements must meet minimum color contrast ratio thresholds",
+      "nodes": [
+        "#case-f1 > div:nth-child(2) > div:nth-child(1) > span",
+        "#case-rolls-royce > div:nth-child(2) > div:nth-child(1) > span",
+        "#case-saudi-games > div:nth-child(2) > div:nth-child(1) > span",
+        "#case-wta > div:nth-child(2) > div:nth-child(1) > span",
+        "#case-isg > div:nth-child(2) > div:nth-child(1) > span",
+        "#case-range-rover > div:nth-child(2) > div:nth-child(1) > span",
+        "#case-elie-saab > div:nth-child(2) > div:nth-child(1) > span",
+        "#case-riyadh-tours > div:nth-child(2) > div:nth-child(1) > span",
+        "#case-ims > div:nth-child(2) > div:nth-child(1) > span",
+        "#case-snooker > div:nth-child(2) > div:nth-child(1) > span"
+      ]
+    },
+    {
+      "id": "heading-order",
+      "impact": "moderate",
+      "help": "Heading levels should only increase by one",
+      "nodes": [
+        "div:nth-child(2) > h4"
+      ]
+    },
+    {
+      "id": "region",
+      "impact": "moderate",
+      "help": "All page content should be contained by landmarks",
+      "nodes": [
+        "a[target=\"_blank\"]"
+      ]
+    }
+  ],
+  "consoleErrors": [],
+  "networkFailures": [
+    {
+      "url": "http://localhost:3000/cases/range-rover/rv-1.mp4",
+      "reason": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://localhost:3000/cases/range-rover/rv-2.mp4",
+      "reason": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://localhost:3000/cases/rolls-royce/rr-1.mp4",
+      "reason": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://localhost:3000/cases/rolls-royce/rr-3.mp4",
+      "reason": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://localhost:3000/cases/isg-gala/isg-gala-1.mp4",
+      "reason": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://localhost:3000/cases/afc27/afc-4.mp4",
+      "reason": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://localhost:3000/cases/isg-gala/isg-gala-4-compressed.mp4",
+      "reason": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://localhost:3000/cases/sifi/sifi-4.mp4",
+      "reason": "net::ERR_ABORTED"
+    },
+    {
+      "url": "http://localhost:3000/cases/range-rover/rv-1.mp4",
+      "reason": "net::ERR_ABORTED"
+    }
+  ],
+  "screenshot": "screens\\work__1024x768.png"
+}

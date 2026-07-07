@@ -1,0 +1,146 @@
+{
+  "route": "/services",
+  "viewport": "1024x768",
+  "overflow": {
+    "overflowing": false,
+    "scrollWidth": 1024,
+    "clientWidth": 1024,
+    "culprits": []
+  },
+  "tapTargets": [
+    {
+      "selector": "a(\"studios\")",
+      "width": 66,
+      "height": 27
+    },
+    {
+      "selector": "a(\"work\")",
+      "width": 45,
+      "height": 27
+    },
+    {
+      "selector": "a(\"news\")",
+      "width": 45,
+      "height": 27
+    },
+    {
+      "selector": "a(\"about\")",
+      "width": 52,
+      "height": 27
+    },
+    {
+      "selector": "a(\"contact\")",
+      "width": 67,
+      "height": 27
+    },
+    {
+      "selector": "a(\"studios\")",
+      "width": 51,
+      "height": 20
+    },
+    {
+      "selector": "a(\"selected work\")",
+      "width": 96,
+      "height": 20
+    },
+    {
+      "selector": "a(\"news\")",
+      "width": 36,
+      "height": 20
+    },
+    {
+      "selector": "a(\"about\")",
+      "width": 42,
+      "height": 20
+    },
+    {
+      "selector": "a(\"regional\")",
+      "width": 58,
+      "height": 20
+    },
+    {
+      "selector": "a(\"contact\")",
+      "width": 55,
+      "height": 20
+    },
+    {
+      "selector": "a(\"saudi arabia\")",
+      "width": 89,
+      "height": 20
+    },
+    {
+      "selector": "a(\"united arab emirates\")",
+      "width": 148,
+      "height": 20
+    },
+    {
+      "selector": "a(\"qatar\")",
+      "width": 39,
+      "height": 20
+    },
+    {
+      "selector": "a(\"lebanon\")",
+      "width": 58,
+      "height": 20
+    },
+    {
+      "selector": "a(\"+966 55 152 0499\")",
+      "width": 122,
+      "height": 20
+    },
+    {
+      "selector": "a(\"@rannastudios\")",
+      "width": 107,
+      "height": 20
+    },
+    {
+      "selector": "a(\"linkedin →\")",
+      "width": 69,
+      "height": 20
+    },
+    {
+      "selector": "a(\"request a proposal →\")",
+      "width": 148,
+      "height": 20
+    }
+  ],
+  "paletteViolations": [],
+  "inputFontSizeViolations": [],
+  "borderRadiusViolations": [
+    {
+      "selector": "a",
+      "borderRadius": "50%"
+    }
+  ],
+  "fontFamilyOutliers": [],
+  "axeViolations": [
+    {
+      "id": "color-contrast",
+      "impact": "serious",
+      "help": "Elements must meet minimum color contrast ratio thresholds",
+      "nodes": [
+        "a[href$=\"#proposal\"]:nth-child(1) > div[data-meta=\"true\"]",
+        "a[href$=\"#proposal\"]:nth-child(2) > div[data-meta=\"true\"]",
+        "a[href$=\"#proposal\"]:nth-child(3) > div[data-meta=\"true\"]",
+        "a[href$=\"#proposal\"]:nth-child(4) > div[data-meta=\"true\"]",
+        "a[href$=\"#proposal\"]:nth-child(5) > div[data-meta=\"true\"]",
+        "a[href$=\"#proposal\"]:nth-child(6) > div:nth-child(3) > span[data-sub=\"true\"]",
+        "a[href$=\"#proposal\"]:nth-child(6) > div[data-meta=\"true\"]",
+        "a[href$=\"#proposal\"]:nth-child(7) > div[data-meta=\"true\"]",
+        "a[href$=\"#proposal\"]:nth-child(8) > div[data-meta=\"true\"]",
+        "a[href$=\"#proposal\"]:nth-child(9) > div[data-meta=\"true\"]"
+      ]
+    },
+    {
+      "id": "region",
+      "impact": "moderate",
+      "help": "All page content should be contained by landmarks",
+      "nodes": [
+        "a[target=\"_blank\"]"
+      ]
+    }
+  ],
+  "consoleErrors": [],
+  "networkFailures": [],
+  "screenshot": "screens\\services__1024x768.png"
+}

@@ -1,0 +1,190 @@
+{
+  "route": "/",
+  "viewport": "1440x900",
+  "overflow": {
+    "overflowing": false,
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "culprits": []
+  },
+  "tapTargets": [
+    {
+      "selector": "a(\"studios\")",
+      "width": 66,
+      "height": 27
+    },
+    {
+      "selector": "a(\"work\")",
+      "width": 45,
+      "height": 27
+    },
+    {
+      "selector": "a(\"news\")",
+      "width": 45,
+      "height": 27
+    },
+    {
+      "selector": "a(\"about\")",
+      "width": 52,
+      "height": 27
+    },
+    {
+      "selector": "a(\"contact\")",
+      "width": 67,
+      "height": 27
+    },
+    {
+      "selector": "a(\"explore all services→\")",
+      "width": 212,
+      "height": 39
+    },
+    {
+      "selector": "a(\"studios\")",
+      "width": 51,
+      "height": 20
+    },
+    {
+      "selector": "a(\"selected work\")",
+      "width": 96,
+      "height": 20
+    },
+    {
+      "selector": "a(\"news\")",
+      "width": 36,
+      "height": 20
+    },
+    {
+      "selector": "a(\"about\")",
+      "width": 42,
+      "height": 20
+    },
+    {
+      "selector": "a(\"regional\")",
+      "width": 58,
+      "height": 20
+    },
+    {
+      "selector": "a(\"contact\")",
+      "width": 55,
+      "height": 20
+    },
+    {
+      "selector": "a(\"saudi arabia\")",
+      "width": 89,
+      "height": 20
+    },
+    {
+      "selector": "a(\"united arab emirates\")",
+      "width": 148,
+      "height": 20
+    },
+    {
+      "selector": "a(\"qatar\")",
+      "width": 39,
+      "height": 20
+    },
+    {
+      "selector": "a(\"lebanon\")",
+      "width": 58,
+      "height": 20
+    },
+    {
+      "selector": "a(\"+966 55 152 0499\")",
+      "width": 122,
+      "height": 20
+    },
+    {
+      "selector": "a(\"@rannastudios\")",
+      "width": 107,
+      "height": 20
+    },
+    {
+      "selector": "a(\"linkedin →\")",
+      "width": 69,
+      "height": 20
+    },
+    {
+      "selector": "a(\"request a proposal →\")",
+      "width": 148,
+      "height": 20
+    }
+  ],
+  "paletteViolations": [
+    {
+      "hex": "#080A1C",
+      "compliant": false,
+      "nearest": "abyssal-black",
+      "distance": 26.92582403567252
+    },
+    {
+      "hex": "#D400AA",
+      "compliant": false,
+      "nearest": "crimson-bloom",
+      "distance": 56.16048432839589
+    }
+  ],
+  "inputFontSizeViolations": [],
+  "borderRadiusViolations": [
+    {
+      "selector": "a",
+      "borderRadius": "50%"
+    }
+  ],
+  "fontFamilyOutliers": [],
+  "axeViolations": [
+    {
+      "id": "color-contrast",
+      "impact": "serious",
+      "help": "Elements must meet minimum color contrast ratio thresholds",
+      "nodes": [
+        "nav > a[href$=\"services\"]",
+        "nav > a[href$=\"work\"]",
+        "nav > a[href$=\"contact\"]",
+        "button:nth-child(1) > span:nth-child(1)",
+        "button:nth-child(2) > span:nth-child(1)",
+        "button:nth-child(2) > span:nth-child(2)",
+        "button:nth-child(3) > span:nth-child(1)",
+        "button:nth-child(3) > span:nth-child(2)",
+        "button:nth-child(4) > span:nth-child(1)",
+        "button:nth-child(4) > span:nth-child(2)"
+      ]
+    },
+    {
+      "id": "heading-order",
+      "impact": "moderate",
+      "help": "Heading levels should only increase by one",
+      "nodes": [
+        "h3",
+        "div:nth-child(2) > h4"
+      ]
+    },
+    {
+      "id": "region",
+      "impact": "moderate",
+      "help": "All page content should be contained by landmarks",
+      "nodes": [
+        "a[target=\"_blank\"]"
+      ]
+    }
+  ],
+  "consoleErrors": [],
+  "networkFailures": [
+    {
+      "url": "https://www.youtube.com/api/timedtext?v=WiMQ5cDpKNE&ei=F61Mat3mMuTRp-oPnOPN4As&caps=asr&opi=112496729&xoaf=5&xowf=1&xospf=1&hl=en&ip=0.0.0.0&ipbits=0&expire=1783435143&sparams=ip%2Cipbits%2Cexpire%2Cv%2Cei%2Ccaps%2Copi%2Cxoaf&signature=A340234E636CAC4037422C1772096677839FB2FB.9B743D0F7D0CD4E737CC3377DAAB1BD9308C585A&key=yt8&kind=asr&lang=en&fmt=json3&xorb=2&xobt=3&xovt=3&cbr=HeadlessChrome&cbrver=149.0.7827.55&c=WEB_EMBEDDED_PLAYER&cver=2.20260630.09.00&cplayer=UNIPLAYER&cos=Windows&cosver=10.0&cplatform=DESKTOP",
+      "reason": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://www.youtube.com/api/stats/qoe?fmt=136&afmt=251&cpn=GcxHmL361AryfhrO&el=embedded&ns=yt&fexp=v1%2C24004644%2C27058999%2C34656%2C124674%2C117689%2C9252%2C3479%2C13030%2C6257%2C16949%2C35404%2C65298%2C2878%2C12227%2C25059%2C4174%2C30447%2C18705%2C21437%2C4571%2C13016%2C1190%2C14897%2C7516%2C1888%2C23826%2C9500%2C1840%2C45716%2C13159%2C451%2C30490%2C5022%2C9969%2C3324%2C7295%2C4200%2C457%2C29656%2C24597%2C82%2C4406%2C12971%2C8889%2C3694%2C7524%2C6033%2C1168%2C372%2C490%2C2324%2C2630%2C2314%2C16625%2C3000%2C5868%2C3475%2C26%2C5327%2C1899%2C2286%2C5682%2C1095%2C500%2C928%2C192%2C2056%2C115%2C158%2C8116%2C1143%2C2550%2C9222%2C236%2C2129%2C1354%2C866%2C22970%2C3969%2C3156%2C458%2C1010%2C122%2C3219%2C5042%2C476%2C189%2C1557%2C2%2C4300%2C246&cl=940135309&seq=1&docid=WiMQ5cDpKNE&ei=F61Mat3mMuTRp-oPnOPN4As&event=streamingstats&plid=AAZWAHwxYGHTTfvu&cbr=HeadlessChrome&cbrver=149.0.7827.55&c=WEB_EMBEDDED_PLAYER&cver=2.20260630.09.00&cplayer=UNIPLAYER&cos=Windows&cosver=10.0&cplatform=DESKTOP&vps=0.000:N,0.026:B,0.211:S:ss.15,0.450:S,0.450:S&cat=streaming,sabr&cmt=0.026:0.000,0.211:5.000,0.450:5.000&afs=0.447:251::i:fl.-14.17;tl.-14;vg.0;nm.1;sms.2:CAEoAQ&vfs=0.450:136:136::a:sms.2:CAEoAQ&view=0.450:1358:753&bwm=0.450:1686:0.237&bwe=0.450:616038&bat=0.450:0.87:1&vis=0.450:0&bh=0.450:0.000&qclc=ChBHY3hIbUwzNjFBcnlmaHJPEAE",
+      "reason": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://www.youtube.com/api/stats/playback?ns=yt&el=embedded&cpn=GcxHmL361AryfhrO&ver=2&cmt=5.017&fmt=136&fs=0&rt=1.017&euri=http%3A%2F%2Flocalhost%3A3000%2F&lact=1037&cl=940135309&mos=1&volume=100&cbr=HeadlessChrome&cbrver=149.0.7827.55&c=WEB_EMBEDDED_PLAYER&cver=2.20260630.09.00&cplayer=UNIPLAYER&cos=Windows&cosver=10.0&cplatform=DESKTOP&autoplay=1&epm=1&splay=1&delay=4&hl=en_US&cr=LB&len=40&fexp=v1%2C24004644%2C27058999%2C34656%2C124674%2C117689%2C9252%2C3479%2C13030%2C6257%2C16949%2C35404%2C65298%2C2878%2C12227%2C25059%2C4174%2C30447%2C18705%2C21437%2C4571%2C13016%2C1190%2C14897%2C7516%2C1888%2C23826%2C9500%2C1840%2C45716%2C13159%2C451%2C30490%2C5022%2C9969%2C3324%2C7295%2C4200%2C457%2C29656%2C24597%2C82%2C4406%2C12971%2C8889%2C3694%2C7524%2C6033%2C1168%2C372%2C490%2C2324%2C2630%2C2314%2C16625%2C3000%2C5868%2C3475%2C26%2C5327%2C1899%2C2286%2C5682%2C1095%2C500%2C928%2C192%2C2056%2C115%2C158%2C8116%2C1143%2C2550%2C9222%2C236%2C2129%2C1354%2C866%2C22970%2C3969%2C3156%2C458%2C1010%2C122%2C3219%2C5042%2C476%2C189%2C1557%2C2%2C4300%2C246&rtn=11&afmt=251&size=1358%3A753&inview=0&muted=1&cc=a.en&docid=WiMQ5cDpKNE&ei=F61Mat3mMuTRp-oPnOPN4As&plid=AAZWAHwxYGHTTfvu&referrer=https%3A%2F%2Fwww.youtube.com%2Fembed%2FWiMQ5cDpKNE%3Fautoplay%3D1%26mute%3D1%26loop%3D1%26playlist%3DWiMQ5cDpKNE%26controls%3D0%26showinfo%3D0%26rel%3D0%26iv_load_policy%3D3%26modestbranding%3D1%26playsinline%3D1%26start%3D5%26disablekb%3D1%26fs%3D0%26enablejsapi%3D1%26origin%3Dhttp%253A%252F%252Flocalhost%253A3000%26widgetid%3D1%26forigin%3Dhttp%253A%252F%252Flocalhost%253A3000%252F%26aoriginsup%3D1%26vf%3D5&list=TLGG1E2nM8IEOeswNzA3MjAyNg&of=jZF5NqmMoR5oFAvMWCGmdQ&vm=CAEQABgEOjJBSHFpSlRJa0d4TGJfLXVHU2Y1eHJKRjU1TFdFT2ZaamRKMW9ZZVBWaGdhbDBvS0RyQWJoQUxkcUFQSUNVLUJXQkNIZ3B5QzB0cXAzMWJTZUN6UjRMajJYVHIxSjYyb1VOZllPampNTXNjdEl1YTc4OXU5MVJnSFlYcEpuRmxNQ3VNVVdJUVNNMXdmRndsSkdxRWxxVmp2WGwxM3U",
+      "reason": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://www.youtube.com/ptracking?html5=1&video_id=WiMQ5cDpKNE&cpn=GcxHmL361AryfhrO&ei=F61Mat3mMuTRp-oPnOPN4As&ptk=youtube_none&pltype=contentugc",
+      "reason": "net::ERR_ABORTED"
+    }
+  ],
+  "screenshot": "screens\\home__1440x900.png"
+}

@@ -1,0 +1,5 @@
+{
+  "route": "/contact",
+  "hasHamburgerInSSR": true,
+  "hasDesktopNavLinkInSSR": true
+}

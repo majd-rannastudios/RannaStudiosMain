@@ -1,0 +1,5 @@
+node_modules/
+test-results/
+results/artifacts/
+playwright-report/
+results/playwright-report.json

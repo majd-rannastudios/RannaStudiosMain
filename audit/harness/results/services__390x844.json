@@ -1,0 +1,127 @@
+{
+  "route": "/services",
+  "viewport": "390x844",
+  "overflow": {
+    "overflowing": false,
+    "scrollWidth": 390,
+    "clientWidth": 390,
+    "culprits": []
+  },
+  "tapTargets": [
+    {
+      "selector": "a",
+      "width": 152,
+      "height": 42
+    },
+    {
+      "selector": "a(\"studios\")",
+      "width": 51,
+      "height": 20
+    },
+    {
+      "selector": "a(\"selected work\")",
+      "width": 96,
+      "height": 20
+    },
+    {
+      "selector": "a(\"news\")",
+      "width": 36,
+      "height": 20
+    },
+    {
+      "selector": "a(\"about\")",
+      "width": 42,
+      "height": 20
+    },
+    {
+      "selector": "a(\"regional\")",
+      "width": 58,
+      "height": 20
+    },
+    {
+      "selector": "a(\"contact\")",
+      "width": 55,
+      "height": 20
+    },
+    {
+      "selector": "a(\"saudi arabia\")",
+      "width": 89,
+      "height": 20
+    },
+    {
+      "selector": "a(\"united arab emirates\")",
+      "width": 148,
+      "height": 20
+    },
+    {
+      "selector": "a(\"qatar\")",
+      "width": 39,
+      "height": 20
+    },
+    {
+      "selector": "a(\"lebanon\")",
+      "width": 58,
+      "height": 20
+    },
+    {
+      "selector": "a(\"+966 55 152 0499\")",
+      "width": 122,
+      "height": 20
+    },
+    {
+      "selector": "a(\"@rannastudios\")",
+      "width": 107,
+      "height": 20
+    },
+    {
+      "selector": "a(\"linkedin →\")",
+      "width": 69,
+      "height": 20
+    },
+    {
+      "selector": "a(\"request a proposal →\")",
+      "width": 148,
+      "height": 20
+    }
+  ],
+  "paletteViolations": [],
+  "inputFontSizeViolations": [],
+  "borderRadiusViolations": [
+    {
+      "selector": "a",
+      "borderRadius": "50%"
+    }
+  ],
+  "fontFamilyOutliers": [],
+  "axeViolations": [
+    {
+      "id": "color-contrast",
+      "impact": "serious",
+      "help": "Elements must meet minimum color contrast ratio thresholds",
+      "nodes": [
+        ".reveal > .meta-label > span",
+        "div:nth-child(1) > button > div > span:nth-child(1)",
+        "div:nth-child(2) > button > div > span:nth-child(1)",
+        "div:nth-child(3) > button > div > span:nth-child(1)",
+        "div:nth-child(4) > button > div > span:nth-child(1)",
+        "div:nth-child(5) > button > div > span:nth-child(1)",
+        "div:nth-child(6) > button > div > span:nth-child(1)",
+        "div:nth-child(7) > button > div > span:nth-child(1)",
+        "div:nth-child(8) > button > div > span:nth-child(1)",
+        "div:nth-child(9) > button > div > span:nth-child(1)"
+      ]
+    },
+    {
+      "id": "region",
+      "impact": "moderate",
+      "help": "All page content should be contained by landmarks",
+      "nodes": [
+        "body > div:nth-child(4)",
+        "a[target=\"_blank\"]"
+      ]
+    }
+  ],
+  "consoleErrors": [],
+  "networkFailures": [],
+  "screenshot": "screens\\services__390x844.png"
+}
