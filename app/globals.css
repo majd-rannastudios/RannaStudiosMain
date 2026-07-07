@@ -1,4 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Prompt:wght@100;200;300;400;500;600;700;800;900&display=swap");
 @import "tailwindcss";
 
 /* ============================================================
@@ -25,9 +24,9 @@
   --rule-on-dark:  color-mix(in oklab, #FBF9F9 14%, transparent);
   --rule-on-light: color-mix(in oklab, #080035 12%, transparent);
 
-  /* Type */
-  --font-display: 'Poppins', system-ui, sans-serif;
-  --font-support: 'Prompt', 'Poppins', system-ui, sans-serif;
+  /* Type: --font-display / --font-support are injected by next/font/google
+     via the .variable classNames on <html> in app/layout.tsx (no fallback
+     redeclaration here anymore - see F15 in audit/REPORT.md). */
 
   /* Motion */
   --ease-in-out: cubic-bezier(.6, 0, .2, 1);
