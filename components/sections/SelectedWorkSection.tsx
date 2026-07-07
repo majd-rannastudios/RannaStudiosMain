@@ -549,7 +549,7 @@ export default function SelectedWorkSection() {
             {/* Info */}
             <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", gap: 24, paddingTop: 8, order: 2 }}>
               <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-                <span style={{ fontFamily: "var(--font-support)", fontSize: 11, letterSpacing: "0.16em", textTransform: "lowercase", color: "var(--pitch-black)", opacity: 0.55 }}>
+                <span style={{ fontFamily: "var(--font-support)", fontSize: 11, letterSpacing: "0.16em", textTransform: "lowercase", color: "var(--pitch-black)", opacity: 0.6 }}>
                   {c.super}
                 </span>
                 <h3 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(28px, 3.6vw, 52px)", fontWeight: 500, letterSpacing: "-0.02em", lineHeight: 1.0, margin: 0, color: "var(--pitch-black)" }}>

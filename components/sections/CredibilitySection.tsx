@@ -247,7 +247,7 @@ export default function CredibilitySection() {
                   letterSpacing: "0.22em",
                   textTransform: "uppercase",
                   color: "var(--pitch-black)",
-                  opacity: 0.55,
+                  opacity: 0.6,
                   paddingTop: "clamp(4px, 0.6vw, 8px)",
                   borderTop: "1px solid rgba(8,0,53,0.15)",
                   width: "100%",

@@ -20,7 +20,7 @@
 
   /* Semantic */
   --fg-muted-on-dark:  color-mix(in oklab, #FBF9F9 55%, #0F0F0F);
-  --fg-muted-on-light: color-mix(in oklab, #080035 55%, #FBF9F9);
+  --fg-muted-on-light: color-mix(in oklab, #080035 60%, #FBF9F9);
   --rule-on-dark:  color-mix(in oklab, #FBF9F9 14%, transparent);
   --rule-on-light: color-mix(in oklab, #080035 12%, transparent);
 
