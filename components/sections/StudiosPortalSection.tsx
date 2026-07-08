@@ -1,6 +1,5 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
-import Link from "next/link";
 import { useIsMobile } from "@/hooks/useIsMobile";
 
 const STUDIOS = [
@@ -226,12 +225,6 @@ export default function StudiosPortalSection() {
                     <span style={{ display: "block", fontFamily: "var(--font-display)", fontSize: "clamp(24px, 3.2vw, 56px)", fontWeight: 700, letterSpacing: "-0.04em", lineHeight: 0.88, textTransform: "uppercase", color: i === active ? tc : tmut, transition: "color 400ms ease" }}>{s.name}</span>
                   </button>
                 ))}
-              </div>
-              <div style={{ paddingTop: "clamp(12px, 1.5vw, 22px)", borderTop: `1px solid ${tb}` }}>
-                <Link href="/services" className="btn-rs" style={{ fontSize: 11, padding: "10px 18px", borderColor: tc, color: tc, textDecoration: "none", display: "inline-flex" }}>
-                  <span>explore all services</span>
-                  <span style={{ opacity: 0.6, marginLeft: 10 }}>→</span>
-                </Link>
               </div>
             </>
           )}

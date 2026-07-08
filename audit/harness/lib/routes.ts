@@ -8,7 +8,6 @@ export const ROUTES: RouteDef[] = [
   { path: "/", slug: "home", hasMap: true },
   { path: "/about", slug: "about", hasMap: true },
   { path: "/contact", slug: "contact", hasMap: false },
-  { path: "/services", slug: "services", hasMap: false },
   { path: "/work", slug: "work", hasMap: false },
   { path: "/news", slug: "news", hasMap: false },
   { path: "/news/f1-sagp-fan-zone-2025", slug: "news-slug", hasMap: false },

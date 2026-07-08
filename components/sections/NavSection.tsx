@@ -4,13 +4,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useIsMobile } from "@/hooks/useIsMobile";
 
-const STUDIOS = [
-  { code: "01", name: "Activations", desc: "Fan zones, brand experiences, live entertainment, and crowd activations at scale.", href: "/services#activations", accent: "#E3500A" },
-  { code: "02", name: "Creative",    desc: "Concept development, art direction, spatial design, and motion graphics.",          href: "/services#creative",     accent: "#C91B7A" },
-  { code: "03", name: "Tech",        desc: "Interactive hardware, AI engagement, live streaming, and digital platforms.",        href: "/services#tech",         accent: "#68097D" },
-  { code: "04", name: "Production",  desc: "Logistics, site management, run-of-show, and full event operations.",               href: "/services#production",   accent: "#FB9203" },
-];
-
 const NAV_LINKS = [
   { label: "work",    href: "/work",    color: "var(--burnt-horizon)" },
   { label: "news",    href: "/news",    color: "var(--crimson-bloom)" },
@@ -34,7 +27,10 @@ export default function NavSection() {
     if (href === "/") return pathname === "/";
     return pathname === href || pathname.startsWith(href + "/") || pathname.startsWith(href + "#");
   }
-  const studiosActive = pathname === "/services" || pathname.startsWith("/services");
+  // "studios" is now an anchor within /about rather than its own route, so it
+  // doesn't get its own active-state indicator (avoids double-highlighting
+  // alongside the "about" nav item when on that page).
+  const studiosActive = false;
 
   useEffect(() => {
     const updateHeader = () => {
@@ -152,7 +148,7 @@ export default function NavSection() {
       <nav className="nav-desktop-links" style={{ display: "flex", gap: 36, alignItems: "center" }}>
           {/* Studios — plain link */}
           <Link
-            href="/services"
+            href="/about#studios"
             style={{
               fontFamily: "var(--font-support)", fontSize: 15, fontWeight: 700,
               letterSpacing: "0.12em", textTransform: "lowercase",
@@ -271,7 +267,7 @@ export default function NavSection() {
 
           {/* Studios — plain link */}
           <Link
-            href="/services" onClick={() => setMenuOpen(false)}
+            href="/about#studios" onClick={() => setMenuOpen(false)}
             style={{
               display: "block", padding: "20px 0",
               borderBottom: "1px solid var(--rule-on-dark)",
