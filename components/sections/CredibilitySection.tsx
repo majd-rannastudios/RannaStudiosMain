@@ -51,6 +51,7 @@ function CountUp({ value, plus = false }: { value: number; plus?: boolean }) {
 
 const LOGOS = [
   { file: "f1.png",           label: "Formula 1 STC Saudi Arabian Grand Prix" },
+  { file: "afc27.png",        label: "AFC Asian Cup Saudi Arabia 2027" },
   { file: "wta.png",          label: "WTA Finals Riyadh" },
   { file: "saudi_games.png",  label: "Saudi Games" },
   { file: "joulat_riyadh.png",label: "Joulat Al-Riyadh" },
@@ -59,7 +60,7 @@ const LOGOS = [
   { file: "fifa_cwc.png",     label: "FIFA Club World Cup" },
   { file: "dakar.png",        label: "Dakar Rally" },
   { file: "neom.png",         label: "NEOM" },
-  { file: "range_rover.webp", label: "Range Rover" },
+  { file: "range_rover.png",  label: "Range Rover" },
   { file: "formula_e.png",    label: "ABB Formula E" },
   { file: "beesline.png",     label: "Beesline" },
   { file: "ims.png",          label: "International MICE Summit" },
@@ -68,6 +69,7 @@ const LOGOS = [
   { file: "smf.png",          label: "Saudi Media Forum" },
   { file: "pfl.png",          label: "Professional Fighters League" },
   { file: "tantora.png",      label: "Winter at Tantora" },
+  { file: "elie_saab.png",    label: "The 1001 Seasons of Elie Saab" },
   { file: "riyadh25.png",     label: "Riyadh 2025 — Islamic Solidarity Games" },
   { file: "diriyah.png",      label: "Diriyah Season" },
   { file: "alula.png",        label: "AlUla Camel Cup" },
