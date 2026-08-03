@@ -1,5 +1,4 @@
 "use client";
-import WhoWeAreSection from "@/components/sections/WhoWeAreSection";
 import ExperiencesSection from "@/components/sections/ExperiencesSection";
 import StudiosPortalSection from "@/components/sections/StudiosPortalSection";
 import TeamSection from "@/components/sections/TeamSection";
@@ -65,10 +64,9 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <WhoWeAreSection />
+      <TeamSection />
       <ExperiencesSection />
       <StudiosPortalSection />
-      <TeamSection />
       <RegionalSection />
 
       {/* CTA */}
