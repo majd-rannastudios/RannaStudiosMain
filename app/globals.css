@@ -277,6 +277,17 @@ button { font-family: inherit; }
 @media (max-width: 767px) { .nav-desktop-links { display: none !important; } }
 @media (min-width: 768px) { .nav-mobile-trigger { display: none !important; } }
 
+/* Team cut-outs: the figure lifts off the floor line on hover. Applied to the
+   image only so the role/name block stays anchored to the shared floor. */
+.team-fig {
+  transition: transform var(--dur-slow) var(--ease-out);
+  will-change: transform;
+}
+.team-card:hover .team-fig { transform: translateY(-10px); }
+
+/* Mobile team scrollers snap; the scrollbar is replaced by the dot indicators. */
+.team-scroller::-webkit-scrollbar { display: none; }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
